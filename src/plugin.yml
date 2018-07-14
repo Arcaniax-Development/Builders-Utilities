@@ -1,0 +1,56 @@
+name: BuildersUtilities
+main: com.buildersrefuge.utilities.Main
+version: 1.2.6
+author: Arcaniax
+commands:
+    banner:
+        description: opens banner creator
+        aliases: bm
+    armorcolor:
+        description: opens armor color creator
+        aliases: color
+    nc:
+        aliases: noclip
+        description: Toggles NoClip.
+    af:
+        aliases: advfly
+        description: Toggles Advanced fly.
+    n:
+        aliases: nv
+        description: Toggles Nightvision.
+    /1:
+        description: alias
+    /2:
+        description: alias
+    /r:
+        description: alias
+    /s:
+        description: alias
+    /c:
+        description: alias
+    /f:
+        description: alias
+    /pa:
+        description: alias
+    /derot:
+        description: alias
+    /twist:
+        description: alias
+    /scale:
+        description: alias
+    butil:
+        description: alias
+        aliases: bu
+    /cuboid:
+        description: alias
+        aliases: /cub
+    /convex:
+        description: alias
+        aliases: /con
+    blocks:
+        description: opens secret blocks menu
+        aliases: secretblocks
+    ws:
+        description: alias
+    fs:
+        description: alias

@@ -1,0 +1,19 @@
+disable-weather-changes: true
+
+disable-redstone: false
+
+disable-physics: true
+
+disable-gravity-physics: false
+
+disable-explosions: true
+
+disable-soil-trample: true
+
+disable-leaves-decay: true
+
+fix-attackspeed: true
+
+prevent-dragon-egg-teleport: true
+
+remove-end-gate-from-blocks: false
