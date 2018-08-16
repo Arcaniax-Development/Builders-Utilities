@@ -1,6 +1,5 @@
 package com.buildersrefuge.utilities.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,10 +30,9 @@ public class ToggleInventoryListener implements Listener{
             name = e.getClickedInventory().getName();
         }
         catch(Exception exc){
-            exc.printStackTrace();
             return;
         }
-        if (name.contains("Builders Utilities") || e.getInventory().getName().contains("Builders Utilities")) {
+        if (name.contains("Builders Utilities")) {
             ToggleGUI gui = new ToggleGUI();
             e.setCancelled(true);
             if (slot==1||slot==10||slot==19){
@@ -54,7 +52,7 @@ public class ToggleInventoryListener implements Listener{
                 }
             }
             if (slot==3||slot==12||slot==21){
-                if (Main.version.contains("v1_12")){
+                if (Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
                     if (Main.terracottaNames.contains(p.getName())){
                         Main.terracottaNames.remove(p.getName());
                     }

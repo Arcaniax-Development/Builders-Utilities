@@ -6,6 +6,7 @@ import com.buildersrefuge.utilities.cmd.CommandHandler;
 import com.buildersrefuge.utilities.cmd.SecretBlockHandler;
 import com.buildersrefuge.utilities.listeners.*;
 import com.buildersrefuge.utilities.object.NoClipManager;
+import com.buildersrefuge.utilities.util.NmsManager;
 import com.massivestats.MassiveStats;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -35,15 +36,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends JavaPlugin implements Listener {
-    public static String version;
+    public static NmsManager nmsManager;
     public static List<String> ironTrapdoorNames;
     public static List<String> slabNames;
     public static List<String> terracottaNames;
     public static Main main;
 
     public void onEnable() {
-        String a = this.getServer().getClass().getPackage().getName();
-        version = a.substring(a.lastIndexOf('.') + 1);
+        nmsManager = new NmsManager();
 
         PluginManager pm = getServer().getPluginManager();
         CommandHandler commandHandler = new CommandHandler(this);
@@ -150,7 +150,7 @@ public class Main extends JavaPlugin implements Listener {
         }
         if (!e.getAction().equals(Action.LEFT_CLICK_BLOCK)){return;}
         Material type = e.getPlayer().getInventory().getItemInHand().getType();
-        if (!version.contains("v1_8")){
+        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
             if (!(type.equals(Material.STEP)||type.equals(Material.WOOD_STEP)||type.equals(Material.STONE_SLAB2)||type.equals(Material.PURPUR_SLAB))){
                 return;
             }
@@ -203,7 +203,7 @@ public class Main extends JavaPlugin implements Listener {
                 }
             }
         }
-        if (!version.contains("v1_8")){
+        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
             if (e.getClickedBlock().getType().equals(Material.PURPUR_DOUBLE_SLAB)){
                 if (e.getClickedBlock().getData()<=7){
                     e.setCancelled(true);
@@ -269,7 +269,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent e) {
-        if (!version.contains("v1_8")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
             if (this.getConfig().getBoolean("fix-attackspeed")) {
                 AttributeInstance attribute = e.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
                 attribute.setBaseValue(1024.0D);
@@ -299,10 +299,7 @@ public class Main extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public void GlazedTerracottaInteract(final PlayerInteractEvent e) {
-        if (!version.contains("v1_12") && (e.getHand() == null)) {
-            return;
-        }
-        if (e.getHand() == null) {
+        if (!Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
             return;
         }
         if (!e.getHand().equals(EquipmentSlot.HAND)) {
@@ -357,7 +354,7 @@ public class Main extends JavaPlugin implements Listener {
         if (!e.getClickedBlock().getType().equals(Material.IRON_TRAPDOOR)) {
             return;
         }
-        if (!version.contains("v1_8")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
             if (!e.getHand().equals(EquipmentSlot.HAND)) {
                 return;
             }

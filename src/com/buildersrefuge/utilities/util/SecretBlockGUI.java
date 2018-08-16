@@ -49,7 +49,7 @@ public class SecretBlockGUI {
         inv.setItem(18, i.create(Material.MOB_SPAWNER, (short) 0, 1, "§3Spawner Cage", ""));
         inv.setItem(19, i.create(Material.BARRIER, (short) 0, 1, "§3Barrier", ""));
         inv.setItem(20, i.create(Material.DRAGON_EGG, (short) 0, 1, "§3Dragon Egg", ""));
-        if (!com.buildersrefuge.utilities.Main.version.contains("v1_8")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
             inv.setItem(21, i.create(Material.GRASS_PATH, (short) 0, 1, "§3Grass Path", ""));
             if (!Main.main.getConfig().getBoolean("remove-end-gate-from-blocks")){
                 inv.setItem(22, i.createHead(endGatewayB64, 1, "§3End Gateway", "§7§lID§7 209:0"));

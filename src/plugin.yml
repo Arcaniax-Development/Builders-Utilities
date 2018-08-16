@@ -1,6 +1,6 @@
 name: BuildersUtilities
 main: com.buildersrefuge.utilities.Main
-version: 1.2.6
+version: 1.2.7
 author: Arcaniax
 commands:
     banner:

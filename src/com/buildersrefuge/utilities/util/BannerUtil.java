@@ -1,5 +1,6 @@
 package com.buildersrefuge.utilities.util;
 
+import com.buildersrefuge.utilities.Main;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
@@ -55,7 +56,7 @@ public class BannerUtil {
         Items i = new Items();
         ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
-        if (com.buildersrefuge.utilities.Main.version.contains("v1_12") || com.buildersrefuge.utilities.Main.version.contains("v1_11")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
             item.setDurability((short) allColors.indexOf(base));
         } else {
             meta.setBaseColor(base);
@@ -79,7 +80,7 @@ public class BannerUtil {
         Items i = new Items();
         ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
-        if (com.buildersrefuge.utilities.Main.version.contains("v1_12") || com.buildersrefuge.utilities.Main.version.contains("v1_11")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
             item.setDurability((short) allColors.indexOf(base));
         } else {
             meta.setBaseColor(base);
@@ -101,7 +102,7 @@ public class BannerUtil {
         Items i = new Items();
         ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
-        if (com.buildersrefuge.utilities.Main.version.contains("v1_12") || com.buildersrefuge.utilities.Main.version.contains("v1_11")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
             item.setDurability((short) allColors.indexOf(base));
         } else {
             meta.setBaseColor(base);
@@ -143,7 +144,7 @@ public class BannerUtil {
     DyeColor getBaseColor(ItemStack i) {
         if (i.getType().equals(Material.BANNER)) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
-            if (com.buildersrefuge.utilities.Main.version.contains("v1_12") || com.buildersrefuge.utilities.Main.version.contains("v1_11")) {
+            if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
                 return allColors.get(i.getDurability());
             } else {
                 return meta.getBaseColor();

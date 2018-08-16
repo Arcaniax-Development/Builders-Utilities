@@ -33,10 +33,8 @@ public class SecretBlocksInventoryListener implements Listener {
             return;
         }
 
-        if (name.equals("§1Secret Blocks") || e.getInventory().getName().equals("§1Secret Blocks")) {
-            if (name.equals("§1Secret Blocks")) {
-                e.getWhoClicked().getInventory().addItem(e.getCurrentItem());
-            }
+        if (name.contains("Secret Blocks")) {
+            e.getWhoClicked().getInventory().addItem(e.getCurrentItem());
             e.setCancelled(true);
         }
     }

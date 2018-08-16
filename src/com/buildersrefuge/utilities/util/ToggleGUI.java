@@ -45,7 +45,7 @@ public class ToggleGUI {
             inv.setItem(11, i.create(Material.STEP, (short) 0, 1, "&6Custom Slab Breaking", "&c&lDisabled__&7__&7Click to toggle"));
             inv.setItem(20, RED_GLASS_PANE);
         }
-        if (Main.version.contains("v1_12")) {
+        if (Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
             if (Main.terracottaNames.contains(p.getName())) {
                 inv.setItem(3, GREEN_GLASS_PANE);
                 inv.setItem(12, i.create(Material.ORANGE_GLAZED_TERRACOTTA, (short) 0, 1, "&6Glazed Terracotta Rotating", "&a&lEnabled__&7__&7Click to toggle"));

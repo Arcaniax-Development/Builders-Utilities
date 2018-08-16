@@ -12,7 +12,7 @@ disable-soil-trample: true
 
 disable-leaves-decay: true
 
-fix-attackspeed: true
+fix-attackspeed: false
 
 prevent-dragon-egg-teleport: true
 
