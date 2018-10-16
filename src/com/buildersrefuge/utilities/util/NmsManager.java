@@ -13,17 +13,11 @@ public class NmsManager {
     }
 
     public boolean isVersion(String v) {
-        if (version.equalsIgnoreCase(v)) {
-            return true;
-        }
-        return false;
+        return version.equalsIgnoreCase(v);
     }
 
     public boolean isVersion(int gameV, int releaseV, int subReleaseV) {
-        if (version.equalsIgnoreCase("v" + gameV + "_" + releaseV + "_R" + subReleaseV)) {
-            return true;
-        }
-        return false;
+        return version.equalsIgnoreCase("v" + gameV + "_" + releaseV + "_R" + subReleaseV);
     }
 
     public boolean isAtLeastVersion(int gameV, int releaseV, int subReleaseV) {
@@ -42,11 +36,7 @@ public class NmsManager {
             } else if (release < releaseV) {
                 return false;
             } else {
-                if (subRelease >= subReleaseV) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return subRelease >= subReleaseV;
             }
         }
     }

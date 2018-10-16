@@ -36,13 +36,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends JavaPlugin implements Listener {
+    public static Main main;
     public static NmsManager nmsManager;
     public static List<String> ironTrapdoorNames;
     public static List<String> slabNames;
     public static List<String> terracottaNames;
-    public static Main main;
 
     public void onEnable() {
+        main = this;
         nmsManager = new NmsManager();
 
         PluginManager pm = getServer().getPluginManager();
@@ -51,8 +52,6 @@ public class Main extends JavaPlugin implements Listener {
         ironTrapdoorNames = new ArrayList<>();
         slabNames = new ArrayList<>();
         terracottaNames = new ArrayList<>();
-
-        main = this;
 
         this.saveDefaultConfig();
         new NoClipManager(this);
@@ -133,6 +132,9 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDragonEggTP(PlayerInteractEvent e) {
+        if (e.isCancelled()){
+            return;
+        }
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getClickedBlock().getType().equals(Material.DRAGON_EGG) && this.getConfig().getBoolean("prevent-dragon-egg-teleport")) {
             e.setCancelled(true);
         }
@@ -142,6 +144,9 @@ public class Main extends JavaPlugin implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onBlockBreak(PlayerInteractEvent e)
     {
+        if (e.isCancelled()){
+            return;
+        }
         if (slabNames.contains(e.getPlayer().getName())){
             return;
         }
@@ -240,6 +245,9 @@ public class Main extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
+        if (e.isCancelled()){
+            return;
+        }
         if (this.getConfig().getBoolean("disable-soil-trample")) {
             if (e.getAction() == Action.PHYSICAL) {
                 Block block = e.getClickedBlock();
@@ -286,6 +294,9 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
+        if (event.isCancelled()) {
+            return;
+        }
         if (event.getCause() == null) {
             return;
         }
@@ -299,19 +310,19 @@ public class Main extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public void GlazedTerracottaInteract(final PlayerInteractEvent e) {
-        if (!Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
+        if (e.isCancelled()) {
             return;
         }
-        if (!e.getHand().equals(EquipmentSlot.HAND)) {
+        if (!Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
             return;
         }
         if (!terracottaNames.contains(e.getPlayer().getName())) {
             return;
         }
-        if (e.isCancelled()) {
+        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
-        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+        if (!e.getHand().equals(EquipmentSlot.HAND)) {
             return;
         }
         if (!e.getClickedBlock().getType().name().contains("GLAZED")) {
@@ -339,13 +350,13 @@ public class Main extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
     public void ironTrapDoorInteract(final PlayerInteractEvent e) {
+        if (e.isCancelled()) {
+            return;
+        }
         if (ironTrapdoorNames.contains(e.getPlayer().getName())) {
             return;
         }
         if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
-            return;
-        }
-        if (e.isCancelled()) {
             return;
         }
         if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -362,7 +373,6 @@ public class Main extends JavaPlugin implements Listener {
         if (e.getPlayer().isSneaking()) {
             return;
         }
-
         Bukkit.getScheduler().runTaskLater(this, new Runnable() {
             @Override
             public void run() {
