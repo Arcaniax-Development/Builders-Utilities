@@ -1,5 +1,7 @@
 package com.buildersrefuge.utilities.util;
 
+import com.buildersrefuge.utilities.enums.InventoryTypeEnum;
+import com.buildersrefuge.utilities.inventory.UtilitiesInventoryHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -12,9 +14,9 @@ public class ColorGUI {
     public Inventory generateInv() {
         Items i = new Items();
         String lore = "&7__&7Left click to increase__&7Right click to decrease__&7Shift click to change by 5";
-        Inventory inv = Bukkit.createInventory(null, 54, "§1Armor Color Creator");
+        Inventory inv = Bukkit.createInventory(new UtilitiesInventoryHolder(InventoryTypeEnum.COLOR), 54, "§1Armor Color Creator");
         for (int x = 0; x < 54; x++) {
-            inv.setItem(x, i.create(Material.STAINED_GLASS_PANE, (short) 8, 1, "&7", ""));
+            inv.setItem(x, i.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", ""));
         }
         inv.setItem(10, i.create(Material.LEATHER_HELMET, (short) 0, 1, "&aClick to get helmet", ""));
         inv.setItem(19, i.create(Material.LEATHER_CHESTPLATE, (short) 0, 1, "&aClick to get chestplate", ""));

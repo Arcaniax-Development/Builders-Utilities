@@ -1,6 +1,8 @@
 package com.buildersrefuge.utilities.util;
 
 import com.buildersrefuge.utilities.Main;
+import com.buildersrefuge.utilities.enums.InventoryTypeEnum;
+import com.buildersrefuge.utilities.inventory.UtilitiesInventoryHolder;
 import com.buildersrefuge.utilities.object.NoClipManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,8 +15,8 @@ public class ToggleGUI {
 
     public Inventory generateInv(Player p) {
         Items i = new Items();
-        Inventory inv = Bukkit.createInventory(null, 27, "§1Builders Utilities");
-        ItemStack GRAY_GLASS_PANE = i.create(Material.STAINED_GLASS_PANE, (short) 8, 1, "&7", "");
+        Inventory inv = Bukkit.createInventory(new UtilitiesInventoryHolder(InventoryTypeEnum.TOGGLE), 27, "§1Builders Utilities");
+        ItemStack GRAY_GLASS_PANE = i.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
         for (int x = 0; x < 27; x++) {
             inv.setItem(x, GRAY_GLASS_PANE);
         }
@@ -24,9 +26,9 @@ public class ToggleGUI {
 
     public void updateInv(Inventory inv, Player p) {
         Items i = new Items();
-        ItemStack GREEN_GLASS_PANE = i.create(Material.STAINED_GLASS_PANE, (short) 5, 1, "&7", "");
-        ItemStack ORANGE_GLASS_PANE = i.create(Material.STAINED_GLASS_PANE, (short) 1, 1, "&7", "");
-        ItemStack RED_GLASS_PANE = i.create(Material.STAINED_GLASS_PANE, (short) 14, 1, "&7", "");
+        ItemStack GREEN_GLASS_PANE = i.create(Material.LIME_STAINED_GLASS_PANE, (short)0, 1, "&7", "");
+        ItemStack ORANGE_GLASS_PANE = i.create(Material.ORANGE_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
+        ItemStack RED_GLASS_PANE = i.create(Material.RED_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
         if (!Main.ironTrapdoorNames.contains(p.getName())) {
             inv.setItem(1, GREEN_GLASS_PANE);
             inv.setItem(10, i.create(Material.IRON_TRAPDOOR, (short) 0, 1, "&6Iron Trapdoor Interaction", "&a&lEnabled__&7__&7Click to toggle"));
@@ -38,15 +40,15 @@ public class ToggleGUI {
         }
         if (!Main.slabNames.contains(p.getName())) {
             inv.setItem(2, GREEN_GLASS_PANE);
-            inv.setItem(11, i.create(Material.STEP, (short) 0, 1, "&6Custom Slab Breaking", "&a&lEnabled__&7__&7Click to toggle"));
+            inv.setItem(11, i.create(Material.STONE_SLAB, (short) 0, 1, "&6Custom Slab Breaking", "&a&lEnabled__&7__&7Click to toggle"));
             inv.setItem(20, GREEN_GLASS_PANE);
         } else {
             inv.setItem(2, RED_GLASS_PANE);
-            inv.setItem(11, i.create(Material.STEP, (short) 0, 1, "&6Custom Slab Breaking", "&c&lDisabled__&7__&7Click to toggle"));
+            inv.setItem(11, i.create(Material.STONE_SLAB, (short) 0, 1, "&6Custom Slab Breaking", "&c&lDisabled__&7__&7Click to toggle"));
             inv.setItem(20, RED_GLASS_PANE);
         }
         if (Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
-            if (Main.terracottaNames.contains(p.getName())) {
+            if (!Main.terracottaNames.contains(p.getName())) {
                 inv.setItem(3, GREEN_GLASS_PANE);
                 inv.setItem(12, i.create(Material.ORANGE_GLAZED_TERRACOTTA, (short) 0, 1, "&6Glazed Terracotta Rotating", "&a&lEnabled__&7__&7Click to toggle"));
                 inv.setItem(21, GREEN_GLASS_PANE);
@@ -57,23 +59,23 @@ public class ToggleGUI {
             }
         } else {
             inv.setItem(3, ORANGE_GLASS_PANE);
-            inv.setItem(12, i.create(Material.STAINED_GLASS, (short) 1, 1, "&6Glazed Terracotta Rotating", "&c&l1.12+ only"));
+            inv.setItem(12, i.create(Material.ORANGE_GLAZED_TERRACOTTA, (short) 0, 1, "&6Glazed Terracotta Rotating", "&c&l1.12+ only"));
             inv.setItem(21, ORANGE_GLASS_PANE);
         }
 
         if (p.hasPermission("builders.util.nightvision")) {
             if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
                 inv.setItem(5, GREEN_GLASS_PANE);
-                inv.setItem(14, i.create(Material.EYE_OF_ENDER, (short) 0, 1, "&6Nightvision", "&a&lEnabled__&7__&7Click to toggle"));
+                inv.setItem(14, i.create(Material.ENDER_EYE, (short) 0, 1, "&6Nightvision", "&a&lEnabled__&7__&7Click to toggle"));
                 inv.setItem(23, GREEN_GLASS_PANE);
             } else {
                 inv.setItem(5, RED_GLASS_PANE);
-                inv.setItem(14, i.create(Material.EYE_OF_ENDER, (short) 0, 1, "&6Nightvision", "&c&lDisabled__&7__&7Click to toggle"));
+                inv.setItem(14, i.create(Material.ENDER_EYE, (short) 0, 1, "&6Nightvision", "&c&lDisabled__&7__&7Click to toggle"));
                 inv.setItem(23, RED_GLASS_PANE);
             }
         } else {
             inv.setItem(5, ORANGE_GLASS_PANE);
-            inv.setItem(14, i.create(Material.EYE_OF_ENDER, (short) 0, 1, "&6Nightvision", "&c&lNo permission"));
+            inv.setItem(14, i.create(Material.ENDER_EYE, (short) 0, 1, "&6Nightvision", "&c&lNo permission"));
             inv.setItem(23, ORANGE_GLASS_PANE);
         }
 

@@ -40,7 +40,7 @@ public class BannerUtil {
         allColors.add(DyeColor.BLUE);
         allColors.add(DyeColor.PURPLE);
         allColors.add(DyeColor.CYAN);
-        allColors.add(DyeColor.SILVER);
+        allColors.add(DyeColor.LIGHT_GRAY);
         allColors.add(DyeColor.GRAY);
         allColors.add(DyeColor.PINK);
         allColors.add(DyeColor.LIME);
@@ -54,7 +54,7 @@ public class BannerUtil {
     @SuppressWarnings("deprecation")
     public ItemStack createBanner(String name, DyeColor base, String lore, List<Pattern> patterns) {
         Items i = new Items();
-        ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
+        ItemStack item = i.create(XMaterial.fromString(base.toString() + "_BANNER").parseMaterial(), (short)0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
         if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
             item.setDurability((short) allColors.indexOf(base));
@@ -78,13 +78,8 @@ public class BannerUtil {
     @SuppressWarnings("deprecation")
     ItemStack createBanner(String name, int amount, DyeColor base, String lore) {
         Items i = new Items();
-        ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
+        ItemStack item = i.create(XMaterial.fromString(base.toString() + "_BANNER").parseMaterial(), (short)0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
-        if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
-            item.setDurability((short) allColors.indexOf(base));
-        } else {
-            meta.setBaseColor(base);
-        }
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
             List<String> loreList = new ArrayList<>();
@@ -100,13 +95,8 @@ public class BannerUtil {
     @SuppressWarnings("deprecation")
     ItemStack createBanner(String name, int amount, DyeColor base, String lore, Pattern pat) {
         Items i = new Items();
-        ItemStack item = i.create(Material.BANNER, (short) 0, 1, name, "");
+        ItemStack item = i.create(XMaterial.fromString(base.toString() + "_BANNER").parseMaterial(), (short)0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
-        if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
-            item.setDurability((short) allColors.indexOf(base));
-        } else {
-            meta.setBaseColor(base);
-        }
         meta.addPattern(pat);
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
@@ -129,7 +119,7 @@ public class BannerUtil {
     }
 
     public ItemStack addPattern(ItemStack i, Pattern pat) {
-        if (i.getType().equals(Material.BANNER)) {
+        if (i.getType().toString().contains("BANNER")) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
             List<Pattern> patterns = meta.getPatterns();
             patterns.add(pat);
@@ -142,7 +132,7 @@ public class BannerUtil {
 
     @SuppressWarnings("deprecation")
     DyeColor getBaseColor(ItemStack i) {
-        if (i.getType().equals(Material.BANNER)) {
+        if (i.getType().toString().contains("BANNER")) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
             if (Main.nmsManager.isAtLeastVersion(1, 11 ,0)){
                 return allColors.get(i.getDurability());
@@ -155,7 +145,7 @@ public class BannerUtil {
     }
 
     public PatternType getPatternType(ItemStack i) {
-        if (i.getType().equals(Material.BANNER)) {
+        if (i.getType().toString().contains("BANNER")) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
             return meta.getPattern(0).getPattern();
         }
@@ -163,7 +153,7 @@ public class BannerUtil {
     }
 
     public DyeColor getColorFromBanner(ItemStack i) {
-        if (i.getType().equals(Material.BANNER)) {
+        if (i.getType().toString().contains("BANNER")) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
             return meta.getPattern(0).getColor();
         }
@@ -181,10 +171,24 @@ public class BannerUtil {
     }
 
     DyeColor getDyeColor(ItemStack i) {
-        if (i.getType().equals(Material.INK_SACK)) {
-            return allColors.get(i.getDurability());
-        } else {
-            return null;
+        switch (i.getType()){
+            case INK_SAC: return DyeColor.BLACK;
+            case ROSE_RED: return DyeColor.RED;
+            case CACTUS_GREEN: return DyeColor.GREEN;
+            case COCOA_BEANS: return DyeColor.BROWN;
+            case LAPIS_LAZULI: return DyeColor.BLUE;
+            case PURPLE_DYE: return DyeColor.PURPLE;
+            case CYAN_DYE: return DyeColor.CYAN;
+            case LIGHT_GRAY_DYE: return DyeColor.LIGHT_GRAY;
+            case GRAY_DYE: return DyeColor.GRAY;
+            case PINK_DYE: return DyeColor.PINK;
+            case LIME_DYE: return DyeColor.LIME;
+            case DANDELION_YELLOW: return DyeColor.YELLOW;
+            case LIGHT_BLUE_DYE: return DyeColor.LIGHT_BLUE;
+            case MAGENTA_DYE: return DyeColor.MAGENTA;
+            case ORANGE_DYE: return DyeColor.ORANGE;
+            case BONE_MEAL: return DyeColor.WHITE;
+            default: return DyeColor.BLACK;
         }
     }
 

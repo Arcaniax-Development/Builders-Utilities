@@ -47,8 +47,7 @@ public class Items {
     }
 
     public ItemStack createHead(String data, int amount, String name, String lore) {
-        ItemStack item = new ItemStack(Material.SKULL_ITEM);
-        item.setDurability((short) 3);
+        ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         item.setAmount(amount);
         ItemMeta meta = item.getItemMeta();
         if (!lore.equals("")) {

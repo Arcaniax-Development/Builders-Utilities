@@ -5,9 +5,9 @@ import com.buildersrefuge.utilities.cmd.ColorHandler;
 import com.buildersrefuge.utilities.cmd.CommandHandler;
 import com.buildersrefuge.utilities.cmd.SecretBlockHandler;
 import com.buildersrefuge.utilities.listeners.*;
+import com.buildersrefuge.utilities.object.Metrics;
 import com.buildersrefuge.utilities.object.NoClipManager;
 import com.buildersrefuge.utilities.util.NmsManager;
-import com.massivestats.MassiveStats;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -15,11 +15,16 @@ import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.type.Slab;
+import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -45,6 +50,8 @@ public class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         main = this;
         nmsManager = new NmsManager();
+
+        Metrics metrics = new Metrics(this);
 
         PluginManager pm = getServer().getPluginManager();
         CommandHandler commandHandler = new CommandHandler(this);
@@ -85,8 +92,6 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("/scale").setExecutor(commandHandler);
         getCommand("/twist").setExecutor(commandHandler);
         getCommand("butil").setExecutor(commandHandler);
-
-        new MassiveStats(this);
     }
 
     @EventHandler
@@ -99,6 +104,13 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {
+        try {
+            if (e.getChangedType().name().toLowerCase().contains("fence") ||
+                    e.getChangedType().name().toLowerCase().contains("pane") ||
+                    e.getChangedType().name().toLowerCase().contains("wall") ||
+                    e.getChangedType().name().toLowerCase().contains("bar")
+            ){return;}
+        } catch (Exception ex){return;}
         if (!this.getConfig().getBoolean("disable-redstone")) {
             if (e.getChangedType().name().toLowerCase().contains("redstone") ||
                     e.getChangedType().name().toLowerCase().contains("air") ||
@@ -142,7 +154,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onBlockBreak(PlayerInteractEvent e)
+    public void onBlockBreak(BlockBreakEvent e)
     {
         if (e.isCancelled()){
             return;
@@ -153,73 +165,25 @@ public class Main extends JavaPlugin implements Listener {
         if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)){
             return;
         }
-        if (!e.getAction().equals(Action.LEFT_CLICK_BLOCK)){return;}
-        Material type = e.getPlayer().getInventory().getItemInHand().getType();
-        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
-            if (!(type.equals(Material.STEP)||type.equals(Material.WOOD_STEP)||type.equals(Material.STONE_SLAB2)||type.equals(Material.PURPUR_SLAB))){
+        Material type = e.getPlayer().getInventory().getItemInMainHand().getType();
+        if (type.toString().toLowerCase().contains("slab")) {
+            if (e.isCancelled()) {
                 return;
             }
-        }
-        else{
-            if (!(type.equals(Material.STEP)||type.equals(Material.WOOD_STEP)||type.equals(Material.STONE_SLAB2))){
-                return;
-            }
-        }
-        if (e.isCancelled()){return;}
-        if (e.getClickedBlock().getType().equals(Material.DOUBLE_STEP)){
-            if (e.getClickedBlock().getData()<=7){
-                e.setCancelled(true);
-                byte data = e.getClickedBlock().getData();
-                if (isTop(e.getPlayer(), e.getClickedBlock())){
-                    e.getClickedBlock().setType(Material.STEP);
-                    e.getClickedBlock().setData(data);
-                }
-                else{
-                    e.getClickedBlock().setType(Material.STEP);
-                    e.getClickedBlock().setData((byte) (data+8));
-                }
-            }
-        }
-        if (e.getClickedBlock().getType().equals(Material.WOOD_DOUBLE_STEP)){
-            if (e.getClickedBlock().getData()<=7){
-                e.setCancelled(true);
-                byte data = e.getClickedBlock().getData();
-                if (isTop(e.getPlayer(), e.getClickedBlock())){
-                    e.getClickedBlock().setType(Material.WOOD_STEP);
-                    e.getClickedBlock().setData(data);
-                }
-                else{
-                    e.getClickedBlock().setType(Material.WOOD_STEP);
-                    e.getClickedBlock().setData((byte) (data+8));
-                }
-            }
-        }
-        if (e.getClickedBlock().getType().equals(Material.DOUBLE_STONE_SLAB2)){
-            if (e.getClickedBlock().getData()<=7){
-                e.setCancelled(true);
-                byte data = e.getClickedBlock().getData();
-                if (isTop(e.getPlayer(), e.getClickedBlock())){
-                    e.getClickedBlock().setType(Material.STONE_SLAB2);
-                    e.getClickedBlock().setData(data);
-                }
-                else{
-                    e.getClickedBlock().setType(Material.STONE_SLAB2);
-                    e.getClickedBlock().setData((byte) (data+8));
-                }
-            }
-        }
-        if (Main.nmsManager.isAtLeastVersion(1, 9 ,0)){
-            if (e.getClickedBlock().getType().equals(Material.PURPUR_DOUBLE_SLAB)){
-                if (e.getClickedBlock().getData()<=7){
-                    e.setCancelled(true);
-                    byte data = e.getClickedBlock().getData();
-                    if (isTop(e.getPlayer(), e.getClickedBlock())){
-                        e.getClickedBlock().setType(Material.PURPUR_SLAB);
-                        e.getClickedBlock().setData(data);
+            if (e.getBlock().getType().toString().toLowerCase().contains("slab")) {
+                if (isTop(e.getPlayer(), e.getBlock())) {
+                    Slab blockdata = (Slab) e.getBlock().getBlockData();
+                    if (blockdata.getType().equals(Slab.Type.DOUBLE)) {
+                        blockdata.setType(Slab.Type.BOTTOM);
+                        e.getBlock().setBlockData(blockdata, true);
+                        e.setCancelled(true);
                     }
-                    else{
-                        e.getClickedBlock().setType(Material.PURPUR_SLAB);
-                        e.getClickedBlock().setData((byte) (data+8));
+                } else {
+                    Slab blockdata = (Slab) e.getBlock().getBlockData();
+                    if (blockdata.getType().equals(Slab.Type.DOUBLE)) {
+                        blockdata.setType(Slab.Type.TOP);
+                        e.getBlock().setBlockData(blockdata, true);
+                        e.setCancelled(true);
                     }
                 }
             }
@@ -252,10 +216,9 @@ public class Main extends JavaPlugin implements Listener {
             if (e.getAction() == Action.PHYSICAL) {
                 Block block = e.getClickedBlock();
                 if (block == null) return;
-                if (block.getType() == Material.SOIL) {
+                if (block.getType() == Material.FARMLAND) {
                     e.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
                     e.setCancelled(true);
-                    block.setTypeIdAndData(block.getType().getId(), block.getData(), true);
                 }
             }
         }
@@ -313,10 +276,7 @@ public class Main extends JavaPlugin implements Listener {
         if (e.isCancelled()) {
             return;
         }
-        if (!Main.nmsManager.isAtLeastVersion(1, 12 ,0)){
-            return;
-        }
-        if (!terracottaNames.contains(e.getPlayer().getName())) {
+        if (terracottaNames.contains(e.getPlayer().getName())) {
             return;
         }
         if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -337,12 +297,20 @@ public class Main extends JavaPlugin implements Listener {
         }
         Bukkit.getScheduler().runTaskLater(this, () -> {
             Block b = e.getClickedBlock();
-            byte da = b.getData();
-            byte data = (byte) (da + 1);
-            if (!(da >= 0 && da < 4)) {
-                data = 0;
+            Directional directional = (Directional) b.getBlockData();
+            if (directional.getFacing().equals(BlockFace.NORTH)){
+                directional.setFacing(BlockFace.EAST);
             }
-            b.setData(data, true);
+            else if (directional.getFacing().equals(BlockFace.EAST)){
+                directional.setFacing(BlockFace.SOUTH);
+            }
+            else if (directional.getFacing().equals(BlockFace.SOUTH)){
+                directional.setFacing(BlockFace.WEST);
+            }
+            else if (directional.getFacing().equals(BlockFace.WEST)){
+                directional.setFacing(BlockFace.NORTH);
+            }
+            b.setBlockData(directional);
         }, 0L);
         e.setCancelled(true);
     }
@@ -377,18 +345,14 @@ public class Main extends JavaPlugin implements Listener {
             @Override
             public void run() {
                 Block b = e.getClickedBlock();
-                byte da = b.getData();
-                byte data = 0;
-                if (da >= 0 && da < 4) {
-                    data = (byte) (da + 4);
-                } else if (da >= 4 && da < 8) {
-                    data = (byte) (da - 4);
-                } else if (da >= 8 && da < 12) {
-                    data = (byte) (da + 4);
-                } else if (da >= 12 && da < 16) {
-                    data = (byte) (da - 4);
+                TrapDoor trapDoor = (TrapDoor) b.getBlockData();
+                if (trapDoor.isOpen()){
+                    trapDoor.setOpen(false);
                 }
-                b.setData(data, true);
+                else{
+                    trapDoor.setOpen(true);
+                }
+                b.setBlockData(trapDoor);
             }
         }, 0L);
         e.setCancelled(true);
