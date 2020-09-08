@@ -1,8 +1,9 @@
 name: Builders-Utilities
 version: "${version}"
 api-version: 1.13
-main: com.arcaniax.buildersutilities.Main
+main: net.arcaniax.buildersutilities.Main
 authors: [Ktar5, Arcaniax]
+website: "https://www.spigotmc.org/resources/42361/"
 commands:
   bu:
   buildersutils:

@@ -26,7 +26,6 @@ disable-soil-trample: true
 # nearby any logs
 disable-leaves-decay: true
 
-
 fix-attackspeed: false
 
 # Prevent the dragon egg from teleporting away
