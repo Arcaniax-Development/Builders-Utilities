@@ -21,7 +21,6 @@ public class ScaleAliasCommand implements ICommand {
             return;
         }
 
-
         double size;
         try {
             size = Double.parseDouble(args[0]);

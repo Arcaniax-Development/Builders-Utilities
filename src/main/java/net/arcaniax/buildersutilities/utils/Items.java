@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class Items {
+
     public static ItemStack create(Material mat, String name, String lore) {
         return Items.create(mat, (short) 0, 1, name, lore);
     }

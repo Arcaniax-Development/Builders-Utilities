@@ -4,6 +4,6 @@ import org.bukkit.entity.Player;
 
 public interface ICommand {
 
-    public void execute(Player player, String[] args);
+    void execute(Player player, String[] args);
 
 }

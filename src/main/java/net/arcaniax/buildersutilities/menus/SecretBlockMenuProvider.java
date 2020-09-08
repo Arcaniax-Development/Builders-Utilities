@@ -11,10 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class SecretBlockMenuProvider implements InventoryProvider {
-    private static ItemStack SPAWNER = Items.create(Material.SPAWNER, (short) 0, 1, ChatColor.DARK_AQUA + "Spawner Cage", "");
-    private static ItemStack BARRIER = Items.create(Material.BARRIER, (short) 0, 1, ChatColor.DARK_AQUA + "Barrier", "");
-    private static ItemStack DRAGON_EGG = Items.create(Material.DRAGON_EGG, (short) 0, 1, ChatColor.DARK_AQUA + "Dragon Egg", "");
-    private static ItemStack GRASS_PATH = Items.create(Material.GRASS_PATH, (short) 0, 1, ChatColor.DARK_AQUA + "Grass Path", "");
+    private static final ItemStack SPAWNER = Items.create(Material.SPAWNER, (short) 0, 1, ChatColor.DARK_AQUA + "Spawner Cage", "");
+    private static final ItemStack BARRIER = Items.create(Material.BARRIER, (short) 0, 1, ChatColor.DARK_AQUA + "Barrier", "");
+    private static final ItemStack DRAGON_EGG = Items.create(Material.DRAGON_EGG, (short) 0, 1, ChatColor.DARK_AQUA + "Dragon Egg", "");
+    private static final ItemStack GRASS_PATH = Items.create(Material.GRASS_PATH, (short) 0, 1, ChatColor.DARK_AQUA + "Grass Path", "");
 
     @Override
     public void init(Player player, InventoryContents contents) {

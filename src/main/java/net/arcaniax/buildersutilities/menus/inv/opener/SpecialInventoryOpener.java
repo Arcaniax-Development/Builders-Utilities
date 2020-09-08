@@ -1,8 +1,8 @@
 package net.arcaniax.buildersutilities.menus.inv.opener;
 
+import com.google.common.collect.ImmutableList;
 import net.arcaniax.buildersutilities.menus.inv.InventoryManager;
 import net.arcaniax.buildersutilities.menus.inv.SmartInventory;
-import com.google.common.collect.ImmutableList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;

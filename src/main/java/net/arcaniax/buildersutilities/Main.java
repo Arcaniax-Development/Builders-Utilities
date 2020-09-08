@@ -1,20 +1,10 @@
 package net.arcaniax.buildersutilities;
 
 import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
-import net.arcaniax.buildersutilities.listeners.WeatherChangeListener;
+import net.arcaniax.buildersutilities.listeners.*;
 import net.arcaniax.buildersutilities.menus.inv.InventoryManager;
 import net.arcaniax.buildersutilities.utils.CustomConfig;
 import net.arcaniax.buildersutilities.utils.NmsManager;
-import net.arcaniax.buildersutilities.listeners.BlockBreakListener;
-import net.arcaniax.buildersutilities.listeners.BlockPhysicsListener;
-import net.arcaniax.buildersutilities.listeners.ExplosionListener;
-import net.arcaniax.buildersutilities.listeners.IronTrapdoorListener;
-import net.arcaniax.buildersutilities.listeners.LeafDecayListener;
-import net.arcaniax.buildersutilities.listeners.PlayerInteractListener;
-import net.arcaniax.buildersutilities.listeners.PlayerMoveListener;
-import net.arcaniax.buildersutilities.listeners.PlayerQuitAndJoinListener;
-import net.arcaniax.buildersutilities.listeners.TeleportListener;
-import net.arcaniax.buildersutilities.listeners.TerracottaInteractListener;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,16 +13,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
+
     public static final String MSG_PREFIX = ChatColor.DARK_AQUA + "BuildersUtils> " + ChatColor.AQUA;
     public static final String MSG_ERROR = ChatColor.DARK_RED + "Error: " + ChatColor.RED;
-    private static Main instance;
     private static final int BSTATS_ID = 5168;
-
+    private static Main instance;
     private Settings settings;
     private NoClipManager noClipManager;
 
     private InventoryManager inventoryManager;
     private NmsManager nmsManager;
+
+    public static Main getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -59,7 +53,6 @@ public final class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new TerracottaInteractListener(), this);
         this.getServer().getPluginManager().registerEvents(new WeatherChangeListener(), this);
 
-
         CommandForwarder executor = new CommandForwarder();
         this.getCommand("bu").setExecutor(executor);
         this.getCommand("buildersutils").setExecutor(executor);
@@ -69,12 +62,11 @@ public final class Main extends JavaPlugin {
 
         CommandExecutor commandExecutor = new CommandExecutor() {
             @Override
-            public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+            public boolean onCommand(CommandSender commandSender, Command command, String s,
+                                     String[] strings) {
                 String[] commandArgs = new String[strings.length + 1];
                 commandArgs[0] = s;
-                for (int i = 0; i < strings.length; i++) {
-                    commandArgs[i + 1] = strings[i];
-                }
+                System.arraycopy(strings, 0, commandArgs, 1, strings.length);
                 executor.onCommand(commandSender, command, s, commandArgs);
                 return true;
             }
@@ -126,9 +118,5 @@ public final class Main extends JavaPlugin {
 
     public NmsManager getNmsManager() {
         return nmsManager;
-    }
-
-    public static Main getInstance() {
-        return instance;
     }
 }

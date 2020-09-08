@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class DeformRotateAliasCommand implements ICommand {
-    private final float radiansPerDegree = 0.0174533f;
 
     @Override
     public void execute(Player player, String[] args) {
@@ -34,6 +33,7 @@ public class DeformRotateAliasCommand implements ICommand {
 //            float radian = (float) (((float) degrees / (float) 360) * 2 * Math.PI);
 
         //Use the degree to radian conversion number: "0.0174533" radians per degree
+        float radiansPerDegree = 0.0174533f;
         float radian = degrees * radiansPerDegree;
 
         if (args[0].equalsIgnoreCase("x")) {

@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 public class CustomConfig {
+
     private final JavaPlugin plugin;
     private final String fileName;
+    private final File configFile;
     private FileConfiguration config;
-    private File configFile;
 
     public CustomConfig(JavaPlugin plugin, File folder, String fileName) {
         this.plugin = plugin;
@@ -78,12 +79,14 @@ public class CustomConfig {
 
     public <T> T get(String path, Class<T> tClass, T tDefault) {
         if (tClass.isPrimitive()) {
-            throw new IllegalArgumentException(tClass + " is of a primitive type, please use the objectified version.");
+            throw new IllegalArgumentException(
+                    tClass + " is of a primitive type, please use the objectified version.");
         }
         if (!has(path)) {
             if (tDefault == null) {
                 try {
-                    throw new ConfigurationException("Configuration key doesn't exist and the default is null");
+                    throw new ConfigurationException(
+                            "Configuration key doesn't exist and the default is null");
                 } catch (ConfigurationException e) {
                     e.printStackTrace();
                 }

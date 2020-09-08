@@ -3,7 +3,8 @@ package net.arcaniax.buildersutilities.utils;
 import net.arcaniax.buildersutilities.Main;
 
 public class NmsManager {
-    private String version;
+
+    private final String version;
 
     public NmsManager() {
         String packageString = Main.getInstance().getServer().getClass().getPackage().getName();

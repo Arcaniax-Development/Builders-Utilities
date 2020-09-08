@@ -10,10 +10,10 @@ import org.bukkit.util.Vector;
 import java.util.*;
 
 public class PlayerMoveListener implements Listener {
-    private final HashMap<String, Double> lastVelocity = new HashMap<>();
     private static final List<String> slower = new ArrayList<>();
     private static final List<String> slower2 = new ArrayList<>();
     public static Set<UUID> enabledPlayers = new HashSet<>();
+    private final HashMap<String, Double> lastVelocity = new HashMap<>();
 
     public static boolean togglePlayer(Player p) {
         if (enabledPlayers.contains(p.getUniqueId())) {
@@ -49,7 +49,7 @@ public class PlayerMoveListener implements Listener {
                             v.setZ(0);
                             e.getPlayer().setVelocity(v);
                             lastVelocity.put(e.getPlayer().getName(), 0.0);
-                            //No more if slower.contains** as if e.getPlayer().getName() isn't thhere, it won't get removed (:
+                            //No more if slower.contains** as if e.getPlayer().getName() isn't there, it won't get removed (:
                             slower.remove(e.getPlayer().getName());
                             slower2.remove(e.getPlayer().getName());
                         } else {

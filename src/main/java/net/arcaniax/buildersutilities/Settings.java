@@ -3,6 +3,7 @@ package net.arcaniax.buildersutilities;
 import net.arcaniax.buildersutilities.utils.CustomConfig;
 
 public class Settings {
+
     public static boolean disableWeatherChanges;
     public static boolean disableRedstone;
     public static boolean disablePhysics;
@@ -21,7 +22,7 @@ public class Settings {
         reloadSettings();
     }
 
-    public void reloadSettings(){
+    public void reloadSettings() {
         disableWeatherChanges = customConfig.get("disable-weather-changes", Boolean.class, true);
         disableRedstone = customConfig.get("disable-redstone", Boolean.class, false);
         disablePhysics = customConfig.get("disable-physics", Boolean.class, true);

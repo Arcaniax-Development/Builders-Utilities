@@ -5,9 +5,12 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class NoClipManager {
+
     public static Set<UUID> noClipPlayerIds;
 
     public NoClipManager() {
@@ -21,7 +24,8 @@ public class NoClipManager {
             if (player != null && player.isOnline()) {
                 if (player.getGameMode().equals(GameMode.CREATIVE)) {
                     boolean noClip;
-                    if (player.getLocation().add(0, -0.1, 0).getBlock().getType() != Material.AIR && player.isSneaking()) {
+                    if (player.getLocation().add(0, -0.1, 0).getBlock().getType() != Material.AIR && player
+                            .isSneaking()) {
                         noClip = true;
                     } else {
                         noClip = isNoClip(player);
@@ -33,7 +37,9 @@ public class NoClipManager {
                     boolean noClip;
                     if (player.getLocation().add(0, -0.1, 0).getBlock().getType() != Material.AIR) {
                         noClip = true;
-                    } else noClip = isNoClip(player);
+                    } else {
+                        noClip = isNoClip(player);
+                    }
                     if (!noClip) {
                         player.setGameMode(GameMode.CREATIVE);
                     }

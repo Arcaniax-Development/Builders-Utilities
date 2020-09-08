@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class TwistAliasCommand implements ICommand {
-    private final float radiansPerDegree = 0.0174533f;
 
     @Override
     public void execute(Player player, String[] args) {
@@ -31,6 +30,7 @@ public class TwistAliasCommand implements ICommand {
             return;
         }
 
+        float radiansPerDegree = 0.0174533f;
         float radian = degrees * radiansPerDegree;
 
         if (args[0].equalsIgnoreCase("x")) {

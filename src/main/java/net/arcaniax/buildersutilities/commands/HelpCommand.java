@@ -9,11 +9,10 @@ public class HelpCommand implements ICommand {
 
     @Override
     public void execute(Player player, String[] args) {
-        if (!player.hasPermission("builders.help")) {
-            if(Settings.sendErrorMessages){
+        if (!player.hasPermission("builders.util.help")) {
+            if (Settings.sendErrorMessages) {
                 player.sendMessage(Main.MSG_ERROR + "You do not have access to this command.");
             }
-            return;
         }
     }
 

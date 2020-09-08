@@ -75,16 +75,18 @@ public interface Pagination {
 
         @Override
         public Pagination previous() {
-            if (!isFirst())
+            if (!isFirst()) {
                 this.currentPage--;
+            }
 
             return this;
         }
 
         @Override
         public Pagination next() {
-            if (!isLast())
+            if (!isLast()) {
                 this.currentPage++;
+            }
 
             return this;
         }
@@ -100,8 +102,9 @@ public interface Pagination {
             for (ClickableItem item : getPageItems()) {
                 iterator.next().set(item);
 
-                if (iterator.ended())
+                if (iterator.ended()) {
                     break;
+                }
             }
 
             return this;

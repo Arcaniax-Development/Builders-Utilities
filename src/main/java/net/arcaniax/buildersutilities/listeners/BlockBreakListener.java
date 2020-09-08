@@ -11,12 +11,14 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class BlockBreakListener implements Listener {
     public static Set<UUID> slabIds;
 
-    public BlockBreakListener(){
+    public BlockBreakListener() {
         slabIds = new HashSet<>();
     }
 

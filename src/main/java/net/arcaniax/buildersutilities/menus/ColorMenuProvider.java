@@ -28,23 +28,23 @@ public class ColorMenuProvider implements InventoryProvider {
 
     private void setLeatherItems(Player player, InventoryContents contents) {
         int r;
-        if(contents.get(3, 4).get().getItem().getType().equals(Material.RED_STAINED_GLASS)){
+        if (contents.get(3, 4).get().getItem().getType().equals(Material.RED_STAINED_GLASS)) {
             r = 0;
-        }else{
+        } else {
             r = (int) (contents.get(3, 4).get().getItem().getAmount() * MULTIPLIER);
         }
 
         int g;
-        if(contents.get(3, 5).get().getItem().getType().equals(Material.GREEN_STAINED_GLASS)){
+        if (contents.get(3, 5).get().getItem().getType().equals(Material.GREEN_STAINED_GLASS)) {
             g = 0;
-        }else{
+        } else {
             g = (int) (contents.get(3, 5).get().getItem().getAmount() * MULTIPLIER);
         }
 
         int b;
-        if(contents.get(3, 6).get().getItem().getType().equals(Material.BLUE_STAINED_GLASS)){
+        if (contents.get(3, 6).get().getItem().getType().equals(Material.BLUE_STAINED_GLASS)) {
             b = 0;
-        }else{
+        } else {
             b = (int) (contents.get(3, 6).get().getItem().getAmount() * MULTIPLIER);
         }
 
@@ -61,17 +61,17 @@ public class ColorMenuProvider implements InventoryProvider {
     private void setRedItem(Player player, InventoryContents contents, int amount) {
         contents.set(3, 4, ClickableItem.of(
                 amount == 0 ? Items.create(Material.RED_STAINED_GLASS, "&cRed", LORE) :
-                Items.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2Y0NmMzMWQ2ZWU2ZWE2MTlmNzJlNzg1MjMyY2IwNDhhYjI3MDQ2MmRiMGNiMTQ1NDUxNDQzNjI1MWMxYSJ9fX0=",
-                amount, "&cRed", LORE), inventoryClickEvent -> {
-            if (inventoryClickEvent.isShiftClick()) {
-                setRedItem(player, contents,
-                        inventoryClickEvent.isLeftClick() ? Math.min(amount + 5, 20) : Math.max(amount - 5, 0));
-            } else {
-                setRedItem(player, contents,
-                        inventoryClickEvent.isLeftClick() ? Math.min(amount + 1, 20) : Math.max(amount - 1, 0));
-            }
-            setLeatherItems(player, contents);
-        }));
+                        Items.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2Y0NmMzMWQ2ZWU2ZWE2MTlmNzJlNzg1MjMyY2IwNDhhYjI3MDQ2MmRiMGNiMTQ1NDUxNDQzNjI1MWMxYSJ9fX0=",
+                                amount, "&cRed", LORE), inventoryClickEvent -> {
+                    if (inventoryClickEvent.isShiftClick()) {
+                        setRedItem(player, contents,
+                                inventoryClickEvent.isLeftClick() ? Math.min(amount + 5, 20) : Math.max(amount - 5, 0));
+                    } else {
+                        setRedItem(player, contents,
+                                inventoryClickEvent.isLeftClick() ? Math.min(amount + 1, 20) : Math.max(amount - 1, 0));
+                    }
+                    setLeatherItems(player, contents);
+                }));
     }
 
     private void setRedRandomItem(Player player, InventoryContents contents) {
@@ -85,17 +85,17 @@ public class ColorMenuProvider implements InventoryProvider {
     private void setGreenItem(Player player, InventoryContents contents, int amount) {
         contents.set(3, 5, ClickableItem.of(
                 amount == 0 ? Items.create(Material.GREEN_STAINED_GLASS, "&aGreen", LORE) :
-                Items.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzZmNjlmN2I3NTM4YjQxZGMzNDM5ZjM2NThhYmJkNTlmYWNjYTM2NmYxOTBiY2YxZDZkMGEwMjZjOGY5NiJ9fX0=",
-                amount, "&aGreen", LORE), inventoryClickEvent -> {
-            if (inventoryClickEvent.isShiftClick()) {
-                setGreenItem(player, contents,
-                        inventoryClickEvent.isLeftClick() ? Math.min(amount + 5, 20) : Math.max(amount - 5, 0));
-            } else {
-                setGreenItem(player, contents,
-                        inventoryClickEvent.isLeftClick() ? Math.min(amount + 1, 20) : Math.max(amount - 1, 0));
-            }
-            setLeatherItems(player, contents);
-        }));
+                        Items.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzZmNjlmN2I3NTM4YjQxZGMzNDM5ZjM2NThhYmJkNTlmYWNjYTM2NmYxOTBiY2YxZDZkMGEwMjZjOGY5NiJ9fX0=",
+                                amount, "&aGreen", LORE), inventoryClickEvent -> {
+                    if (inventoryClickEvent.isShiftClick()) {
+                        setGreenItem(player, contents,
+                                inventoryClickEvent.isLeftClick() ? Math.min(amount + 5, 20) : Math.max(amount - 5, 0));
+                    } else {
+                        setGreenItem(player, contents,
+                                inventoryClickEvent.isLeftClick() ? Math.min(amount + 1, 20) : Math.max(amount - 1, 0));
+                    }
+                    setLeatherItems(player, contents);
+                }));
     }
 
     private void setGreenRandomItem(Player player, InventoryContents contents) {
@@ -109,17 +109,17 @@ public class ColorMenuProvider implements InventoryProvider {
     private void setBlueItem(Player player, InventoryContents contents, int amount) {
         contents.set(3, 6, ClickableItem.of(
                 amount == 0 ? Items.create(Material.BLUE_STAINED_GLASS, "&bBlue", LORE) :
-                Items.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjgzOWUzODFkOWZlZGFiNmY4YjU5Mzk2YTI3NjQyMzhkY2ViMmY3ZWVhODU2ZGM2ZmM0NDc2N2RhMzgyZjEifX19",
-                amount, "&bBlue", LORE), inventoryClickEvent -> {
-            if (inventoryClickEvent.isShiftClick()) {
-                setBlueItem(player, contents,
-                        inventoryClickEvent.isLeftClick() ? Math.min(amount + 5, 20) : Math.max(amount - 5, 0));
-            } else {
-                setBlueItem(player, contents,
-                        inventoryClickEvent.isLeftClick() ? Math.min(amount + 1, 20) : Math.max(amount - 1, 0));
-            }
-            setLeatherItems(player, contents);
-        }));
+                        Items.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjgzOWUzODFkOWZlZGFiNmY4YjU5Mzk2YTI3NjQyMzhkY2ViMmY3ZWVhODU2ZGM2ZmM0NDc2N2RhMzgyZjEifX19",
+                                amount, "&bBlue", LORE), inventoryClickEvent -> {
+                    if (inventoryClickEvent.isShiftClick()) {
+                        setBlueItem(player, contents,
+                                inventoryClickEvent.isLeftClick() ? Math.min(amount + 5, 20) : Math.max(amount - 5, 0));
+                    } else {
+                        setBlueItem(player, contents,
+                                inventoryClickEvent.isLeftClick() ? Math.min(amount + 1, 20) : Math.max(amount - 1, 0));
+                    }
+                    setLeatherItems(player, contents);
+                }));
     }
 
     private void setBlueRandomItem(Player player, InventoryContents contents) {

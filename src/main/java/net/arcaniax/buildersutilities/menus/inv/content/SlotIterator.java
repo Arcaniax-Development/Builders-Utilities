@@ -44,15 +44,14 @@ public interface SlotIterator {
 
     class Impl implements SlotIterator {
 
-        private InventoryContents contents;
-        private SmartInventory inv;
+        private final InventoryContents contents;
+        private final SmartInventory inv;
 
-        private Type type;
+        private final Type type;
+        private final Set<SlotPos> blacklisted = new HashSet<>();
         private boolean started = false;
         private boolean allowOverride = true;
         private int row, column;
-
-        private Set<SlotPos> blacklisted = new HashSet<>();
 
         public Impl(InventoryContents contents, SmartInventory inv,
                     Type type, int startRow, int startColumn) {
@@ -79,8 +78,9 @@ public interface SlotIterator {
 
         @Override
         public SlotIterator set(ClickableItem item) {
-            if (canPlace())
+            if (canPlace()) {
                 contents.set(row, column, item);
+            }
 
             return this;
         }
@@ -136,14 +136,16 @@ public interface SlotIterator {
                         case HORIZONTAL:
                             column = ++column % inv.getColumns();
 
-                            if (column == 0)
+                            if (column == 0) {
                                 row++;
+                            }
                             break;
                         case VERTICAL:
                             row = ++row % inv.getRows();
 
-                            if (row == 0)
+                            if (row == 0) {
                                 column++;
+                            }
                             break;
                     }
                 }
@@ -209,7 +211,8 @@ public interface SlotIterator {
         }
 
         private boolean canPlace() {
-            return !blacklisted.contains(SlotPos.of(row, column)) && (allowOverride || !this.get().isPresent());
+            return !blacklisted.contains(SlotPos.of(row, column)) && (allowOverride || !this.get()
+                    .isPresent());
         }
 
     }

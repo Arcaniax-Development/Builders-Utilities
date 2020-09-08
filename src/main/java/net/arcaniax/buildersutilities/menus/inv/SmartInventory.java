@@ -16,17 +16,15 @@ import java.util.Optional;
 @SuppressWarnings("unchecked")
 public class SmartInventory {
 
+    private final InventoryManager manager;
     private String id;
     private String title;
     private InventoryType type;
     private int rows, columns;
     private boolean closeable;
-
     private InventoryProvider provider;
     private SmartInventory parent;
-
     private List<InventoryListener<? extends Event>> listeners;
-    private InventoryManager manager;
 
     private SmartInventory(InventoryManager manager) {
         this.manager = manager;
@@ -59,7 +57,8 @@ public class SmartInventory {
         this.provider.init(player, contents);
 
         InventoryOpener opener = this.manager.findOpener(type)
-                .orElseThrow(() -> new IllegalStateException("No opener found for the inventory type " + type.name()));
+                .orElseThrow(() -> new IllegalStateException(
+                        "No opener found for the inventory type " + type.name()));
         Inventory handle = opener.open(this, player);
 
         this.manager.setInventory(player, this);
@@ -126,17 +125,15 @@ public class SmartInventory {
 
     public static final class Builder {
 
+        private final List<InventoryListener<? extends Event>> listeners = new ArrayList<>();
         private String id = "unknown";
         private String title = "";
         private InventoryType type = InventoryType.CHEST;
         private int rows = 6, columns = 9;
         private boolean closeable = true;
-
         private InventoryManager manager;
         private InventoryProvider provider;
         private SmartInventory parent;
-
-        private List<InventoryListener<? extends Event>> listeners = new ArrayList<>();
 
         private Builder() {
         }
@@ -188,14 +185,18 @@ public class SmartInventory {
         }
 
         public SmartInventory build() {
-            if (this.provider == null)
-                throw new IllegalStateException("The provider of the SmartInventory.Builder must be set.");
+            if (this.provider == null) {
+                throw new IllegalStateException(
+                        "The provider of the SmartInventory.Builder must be set.");
+            }
 
             InventoryManager manager = this.manager;
 
-            if (manager == null)
-                throw new IllegalStateException("The manager of the SmartInventory.Builder must be set, "
-                        + "or the SmartInvs should be loaded as a plugin.");
+            if (manager == null) {
+                throw new IllegalStateException(
+                        "The manager of the SmartInventory.Builder must be set, "
+                                + "or the SmartInvs should be loaded as a plugin.");
+            }
 
             SmartInventory inv = new SmartInventory(manager);
             inv.id = this.id;
