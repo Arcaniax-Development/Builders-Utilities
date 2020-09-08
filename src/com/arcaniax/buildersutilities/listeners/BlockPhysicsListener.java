@@ -1,6 +1,7 @@
 package com.arcaniax.buildersutilities.listeners;
 
 import com.arcaniax.buildersutilities.Settings;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPhysicsEvent;
@@ -8,9 +9,15 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 public class BlockPhysicsListener implements Listener {
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {
+        Bukkit.broadcastMessage(e.getSourceBlock().getType().name());
+        Bukkit.broadcastMessage(e.getChangedType().name());
         try {
             if (e.getChangedType().name().toLowerCase().contains("chest") ||
                     e.getChangedType().name().toLowerCase().contains("fence") ||
+                    e.getChangedType().name().toLowerCase().contains("grass_block") ||
+                    e.getChangedType().name().toLowerCase().contains("snow") ||
+                    e.getBlock().getType().name().toLowerCase().contains("snow") ||
+                    e.getBlock().getType().name().toLowerCase().contains("grass_block") ||
                     e.getChangedType().name().toLowerCase().contains("pane") ||
                     e.getChangedType().name().toLowerCase().contains("wall") ||
                     e.getChangedType().name().toLowerCase().contains("bar")) {
@@ -21,7 +28,6 @@ public class BlockPhysicsListener implements Listener {
         }
         if (!Settings.disableRedstone) {
             if (e.getChangedType().name().toLowerCase().contains("redstone") ||
-                    e.getChangedType().name().toLowerCase().contains("air") ||
                     e.getChangedType().name().toLowerCase().contains("daylight") ||
                     e.getChangedType().name().toLowerCase().contains("diode") ||
                     e.getChangedType().name().toLowerCase().contains("note") ||
