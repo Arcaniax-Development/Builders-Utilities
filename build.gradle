@@ -26,6 +26,7 @@ license {
     mapping 'java', 'SLASHSTAR_STYLE'
     ext.year = 2020
     includes(["**/*.java"])
+    excludes(["**/XMaterial.java"])
 }
 
 processResources {
