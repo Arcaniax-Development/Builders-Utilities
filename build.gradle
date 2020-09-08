@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
+    maven { url = "https://libraries.minecraft.net/" }
+}
+
+dependencies {
+    "compileOnly"("org.spigotmc:spigot-api:1.16.2-R0.1-SNAPSHOT")
+    "implementation"("com.mojang:authlib:1.5.25")
+}
+
+version = "1.4.0"
+
+processResources {
+    from('src/main/resources') {
+        include 'plugin.yml'
+        expand(
+                version: project.version
+        )
+        include 'config.yml'
+    }
+}
+
+clean.doFirst {
+    delete "../target"
+}

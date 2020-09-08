@@ -1,5 +1,5 @@
 name: Builders-Utilities
-version: 1.4.0
+version: "${version}"
 api-version: 1.13
 main: com.arcaniax.buildersutilities.Main
 authors: [Ktar5, Arcaniax]
