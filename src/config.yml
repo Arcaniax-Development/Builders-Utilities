@@ -1,17 +1,39 @@
+# This disables weather changing from what it currently is
+# If it is currently raining, it will continue raining
+# If it is currently sunny, it will continue being sunny
+# True if you want this feature, false if you do not.
 disable-weather-changes: true
 
+# This completely disables all redstone functions
+# True if you want this feature, false if you do not
 disable-redstone: false
 
+# This completely disables all physics for blocks
 disable-physics: true
 
 disable-gravity-physics: false
 
+# Disables all types of explosions
+# EX: creepers, tnt, end crystals, etc.
 disable-explosions: true
 
+# Prevents pesky peers pulverizing produce
+# Prevent people from trampling your crops and ruining
+# your soil
 disable-soil-trample: true
 
+# Disables leaves from vanishing when they are not
+# nearby any logs
 disable-leaves-decay: true
+
 
 fix-attackspeed: false
 
+# Prevent the dragon egg from teleporting away
 prevent-dragon-egg-teleport: true
+
+# Determines if players will be sent messages such as
+# "You do not have permission for this command"
+# This is useful for when you do not want to give away what
+# plugins exist on your server.
+send-error-messages: true
