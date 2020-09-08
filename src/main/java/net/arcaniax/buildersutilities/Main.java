@@ -29,18 +29,23 @@ import net.arcaniax.buildersutilities.listeners.*;
 import net.arcaniax.buildersutilities.menus.inv.InventoryManager;
 import net.arcaniax.buildersutilities.utils.CustomConfig;
 import net.arcaniax.buildersutilities.utils.NmsManager;
-import net.arcaniax.buildersutilities.utils.Metrics;
 import org.bukkit.ChatColor;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public final class Main extends JavaPlugin {
 
+    private static final Logger logger = LoggerFactory.getLogger("BU/" + Main.class.getSimpleName());
+
     public static final String MSG_PREFIX = ChatColor.DARK_AQUA + "BuildersUtils> " + ChatColor.AQUA;
     public static final String MSG_ERROR = ChatColor.DARK_RED + "Error: " + ChatColor.RED;
-    private Metrics metrics;
+    private static final int BSTATS_ID = 5168;
     private static Main instance;
     private Settings settings;
     private NoClipManager noClipManager;
@@ -62,7 +67,7 @@ public final class Main extends JavaPlugin {
         this.inventoryManager = new InventoryManager(this);
         this.inventoryManager.init();
 
-        this.metrics = new Metrics(this, 5168);
+        Metrics metrics = new Metrics(this, BSTATS_ID);
 
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         this.getServer().getPluginManager().registerEvents(new BlockPhysicsListener(), this);
