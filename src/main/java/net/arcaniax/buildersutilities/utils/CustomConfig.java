@@ -28,6 +28,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.naming.ConfigurationException;
 import java.io.File;
@@ -36,6 +38,8 @@ import java.util.List;
 import java.util.Set;
 
 public class CustomConfig {
+
+    private static final Logger logger = LoggerFactory.getLogger("BU/" + CustomConfig.class.getSimpleName());
 
     private final JavaPlugin plugin;
     private final String fileName;
@@ -58,7 +62,7 @@ public class CustomConfig {
 
     public void reloadConfig() {
         if (!configFile.exists()) {
-            plugin.getLogger().info("Attempting to save resource: " + configFile.getName());
+            logger.info("Attempting to save resource: {}", configFile.getName());
             plugin.saveResource(fileName, true);
         }
         config = YamlConfiguration.loadConfiguration(configFile);
@@ -68,8 +72,7 @@ public class CustomConfig {
         try {
             config.save(configFile);
         } catch (Exception e) {
-            plugin.getLogger().severe(String.format("Couldn't save '%s', because: '%s'", fileName,
-                    e.getMessage()));
+            logger.error("Couldn't save {}, because {}", fileName, e.getMessage());
         }
         reloadConfig();
     }
