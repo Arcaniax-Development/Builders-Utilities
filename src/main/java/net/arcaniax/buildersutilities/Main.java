@@ -83,11 +83,6 @@ public final class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new WeatherChangeListener(), this);
 
         CommandForwarder executor = new CommandForwarder();
-        this.getCommand("bu").setExecutor(executor);
-        this.getCommand("buildersutils").setExecutor(executor);
-        this.getCommand("builders").setExecutor(executor);
-        this.getCommand("utils").setExecutor(executor);
-        this.getCommand("util").setExecutor(executor);
 
         CommandExecutor commandExecutor = new CommandExecutor() {
             @Override
@@ -101,6 +96,8 @@ public final class Main extends JavaPlugin {
             }
         };
 
+
+        getCommand("butil").setExecutor(commandExecutor);
         getCommand("banner").setExecutor(commandExecutor);
         getCommand("armorcolor").setExecutor(commandExecutor);
         getCommand("blocks").setExecutor(commandExecutor);
@@ -122,7 +119,6 @@ public final class Main extends JavaPlugin {
         getCommand("/derot").setExecutor(commandExecutor);
         getCommand("/scale").setExecutor(commandExecutor);
         getCommand("/twist").setExecutor(commandExecutor);
-        getCommand("butil").setExecutor(commandExecutor);
     }
 
     private void startMetrics() {

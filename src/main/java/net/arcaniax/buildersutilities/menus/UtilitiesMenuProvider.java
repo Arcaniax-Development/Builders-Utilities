@@ -66,12 +66,12 @@ public class UtilitiesMenuProvider implements InventoryProvider {
             return;
         }
 
-        if (IronTrapdoorListener.ironTrapdoorIds.contains(player.getUniqueId())) {
+        if (!IronTrapdoorListener.ironTrapdoorIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(1, true, contents);
             contents.set(1, 1, ClickableItem.of(Items.create(Material.IRON_TRAPDOOR,
                     "&6Iron Trapdoor Interaction", ENABLED_LORE),
                     inventoryClickEvent -> {
-                        IronTrapdoorListener.ironTrapdoorIds.remove(player.getUniqueId());
+                        IronTrapdoorListener.ironTrapdoorIds.add(player.getUniqueId());
                         setIronTrapdoorItem(player, contents);
                     }));
         } else {
@@ -79,7 +79,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
             contents.set(1, 1, ClickableItem.of(Items.create(Material.IRON_TRAPDOOR,
                     "&6Iron Trapdoor Interaction", DISABLED_LORE),
                     inventoryClickEvent -> {
-                        IronTrapdoorListener.ironTrapdoorIds.add(player.getUniqueId());
+                        IronTrapdoorListener.ironTrapdoorIds.remove(player.getUniqueId());
                         setIronTrapdoorItem(player, contents);
                     }));
         }
@@ -93,12 +93,12 @@ public class UtilitiesMenuProvider implements InventoryProvider {
             return;
         }
 
-        if (BlockBreakListener.slabIds.contains(player.getUniqueId())) {
+        if (!BlockBreakListener.slabIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(2, true, contents);
             contents.set(1, 2, ClickableItem.of(Items.create(Material.STONE_SLAB,
                     "&6Custom Slab Breaking", ENABLED_LORE),
                     inventoryClickEvent -> {
-                        BlockBreakListener.slabIds.remove(player.getUniqueId());
+                        BlockBreakListener.slabIds.add(player.getUniqueId());
                         setSlabItem(player, contents);
                     }));
         } else {
@@ -106,7 +106,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
             contents.set(1, 2, ClickableItem.of(Items.create(Material.STONE_SLAB,
                     "&6Custom Slab Breaking", DISABLED_LORE),
                     inventoryClickEvent -> {
-                        BlockBreakListener.slabIds.add(player.getUniqueId());
+                        BlockBreakListener.slabIds.remove(player.getUniqueId());
                         setSlabItem(player, contents);
                     }));
         }
@@ -120,12 +120,12 @@ public class UtilitiesMenuProvider implements InventoryProvider {
             return;
         }
 
-        if (TerracottaInteractListener.terracottaIds.contains(player.getUniqueId())) {
+        if (!TerracottaInteractListener.terracottaIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(3, true, contents);
             contents.set(1, 3, ClickableItem.of(Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
                     "&6Glazed Terracotta Rotating", ENABLED_LORE),
                     inventoryClickEvent -> {
-                        TerracottaInteractListener.terracottaIds.remove(player.getUniqueId());
+                        TerracottaInteractListener.terracottaIds.add(player.getUniqueId());
                         setTerracottaItem(player, contents);
                     }));
         } else {
@@ -133,7 +133,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
             contents.set(1, 3, ClickableItem.of(Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
                     "&6Glazed Terracotta Rotating", DISABLED_LORE),
                     inventoryClickEvent -> {
-                        TerracottaInteractListener.terracottaIds.add(player.getUniqueId());
+                        TerracottaInteractListener.terracottaIds.remove(player.getUniqueId());
                         setTerracottaItem(player, contents);
                     }));
         }

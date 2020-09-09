@@ -48,6 +48,7 @@ import net.arcaniax.buildersutilities.commands.aliases.TwistAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.ScaleAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.WalkSpeedAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.FlySpeedAliasCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -62,26 +63,25 @@ public class CommandForwarder implements CommandExecutor {
 
     public CommandForwarder() {
         commands = new HashMap<>();
-        registerCommand(new HelpCommand(), "help", "h", "?");
         registerCommand(new AdvancedFlyCommand(), "af", "advancedfly");
         registerCommand(new BannerCommand(), "banner");
         registerCommand(new ColorCommand(), "color", "ac", "armorcolor");
-        registerCommand(new SecretBlockCommand(), "secretblock", "secretblocks", "blocks");
+        registerCommand(new SecretBlockCommand(), "blocks");
         registerCommand(new NoClipCommand(), "noclip", "nc");
         registerCommand(new NightVisionCommand(), "nv", "nightvision", "n");
-        registerCommand(new UtilsCommand(), "utils", "u", "util", "gui", "inventory");
-        registerCommand(new PosOneAliasCommand(), "p1", "1", "one", "pos1");
-        registerCommand(new PosTwoAliasCommand(), "p2", "2", "two", "pos2");
-        registerCommand(new CuboidSelectionAliasCommand(), "cuboid", "cube");
-        registerCommand(new ConvexSelectionAliasCommand(), "convex", "conv");
-        registerCommand(new SetAliasCommand(), "set", "s");
-        registerCommand(new ReplaceAliasCommand(), "replace", "r", "repl", "rep");
-        registerCommand(new PasteAliasCommand(), "paste", "pa");
-        registerCommand(new FlipAliasCommand(), "flip", "f");
-        registerCommand(new CopyAliasCommand(), "copy", "c", "clone");
-        registerCommand(new DeformRotateAliasCommand(), "deformrotate", "defrot", "dr");
-        registerCommand(new TwistAliasCommand(), "twist", "tw", "t");
-        registerCommand(new ScaleAliasCommand(), "scale", "sc");
+        registerCommand(new UtilsCommand(), "butil", "bu");
+        registerCommand(new PosOneAliasCommand(), "/p1", "/1");
+        registerCommand(new PosTwoAliasCommand(), "/p2", "/2");
+        registerCommand(new CuboidSelectionAliasCommand(), "/cub");
+        registerCommand(new ConvexSelectionAliasCommand(), "/con");
+        registerCommand(new SetAliasCommand(), "/s");
+        registerCommand(new ReplaceAliasCommand(), "/r");
+        registerCommand(new PasteAliasCommand(), "/pa");
+        registerCommand(new FlipAliasCommand(), "/f");
+        registerCommand(new CopyAliasCommand(), "/c");
+        registerCommand(new DeformRotateAliasCommand(), "/derot");
+        registerCommand(new TwistAliasCommand(), "/twist");
+        registerCommand(new ScaleAliasCommand(), "/scale");
         registerCommand(new WalkSpeedAliasCommand(), "walkspeed", "ws");
         registerCommand(new FlySpeedAliasCommand(), "flyspeed", "fs");
     }
@@ -101,12 +101,7 @@ public class CommandForwarder implements CommandExecutor {
             return false;
         }
 
-        if (args.length == 0) {
-            new HelpCommand().execute(player, args);
-            return true;
-        }
-
-        ICommand iCommand = commands.get(args[0].toLowerCase());
+        ICommand iCommand = commands.get(s.toLowerCase());
         if (iCommand != null) {
             iCommand.execute(player, Arrays.copyOfRange(args, 1, args.length));
         }

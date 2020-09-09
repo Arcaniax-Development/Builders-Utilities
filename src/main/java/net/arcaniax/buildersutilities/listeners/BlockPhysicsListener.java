@@ -34,8 +34,6 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 public class BlockPhysicsListener implements Listener {
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {
-        Bukkit.broadcastMessage(e.getSourceBlock().getType().name());
-        Bukkit.broadcastMessage(e.getChangedType().name());
         try {
             if (e.getChangedType().name().toLowerCase().contains("chest") ||
                     e.getChangedType().name().toLowerCase().contains("fence") ||

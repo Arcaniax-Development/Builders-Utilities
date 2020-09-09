@@ -5,11 +5,9 @@ main: net.arcaniax.buildersutilities.Main
 authors: [ Ktar5, Arcaniax ]
 website: "https://www.spigotmc.org/resources/42361/"
 commands:
-  bu:
-  buildersutils:
-  builders:
-  utils:
-  util:
+  butil:
+    aliases: bu
+    description: opens toggle menu
   banner:
     description: opens banner creator
     aliases: bm
@@ -62,10 +60,6 @@ commands:
   /copy:
     description: alias
     permission: builders.util.aliases
-  butil:
-    description: alias
-    aliases: bu
-    permission: builders.util.gui
   /cuboid:
     description: alias
     aliases: /cub
