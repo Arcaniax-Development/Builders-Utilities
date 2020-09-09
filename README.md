@@ -22,7 +22,7 @@ This plugin is a collection of a lot of tiny features that help with building.
 * [Issues](https://github.com/Brennian/Builders-Utilities/issues)
 
 # Building
-Gradle is the recommended way to build the project. Use `./gradlew build` in the main project directory to build the project.
+Gradle is the recommended way to build the project. Use `./gradlew build shadowJar` in the main project directory to build the project.
 
 # Contributing
 See [here](https://github.com/Brennian/Builders-Utilities/blob/master/CONTRIBUTING.md)
