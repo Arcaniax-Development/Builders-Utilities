@@ -23,3 +23,5 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
       - name: Test with Gradle
         run: ./gradlew clean build
+      - name: Test shadowJar
+        run: ./gradlew clean build shadowJar
