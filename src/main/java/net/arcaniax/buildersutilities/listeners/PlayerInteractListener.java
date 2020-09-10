@@ -47,7 +47,6 @@ public class PlayerInteractListener implements Listener {
         }
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)
                 && event.getClickedBlock().getType().equals(Material.DRAGON_EGG)
-                && (!event.getPlayer().isSneaking())
                 && Settings.preventDragonEggTeleport) {
             event.setCancelled(true);
             if (Settings.sendDebugMessages) {
