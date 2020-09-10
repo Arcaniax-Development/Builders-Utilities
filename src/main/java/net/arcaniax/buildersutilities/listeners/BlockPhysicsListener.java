@@ -26,12 +26,16 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BlockPhysicsListener implements Listener {
+
+    private static final Logger logger = LoggerFactory.getLogger("BU/" + BlockPhysicsListener.class.getSimpleName());
+
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {
         try {
@@ -71,10 +75,19 @@ public class BlockPhysicsListener implements Listener {
         if (e.getChangedType().hasGravity()) {
             if (Settings.disableGravityPhysics) {
                 e.setCancelled(true);
+                if (Settings.sendDebugMessages) {
+                    logger.info(
+                        "Gravity physics were cancelled because disable-gravity-physics: true");
+                }
+
             }
         } else {
             if (Settings.disablePhysics) {
                 e.setCancelled(true);
+                if (Settings.sendDebugMessages) {
+                    logger.info(
+                        "Physics were cancelled because disable-physics: true");
+                }
             }
         }
 

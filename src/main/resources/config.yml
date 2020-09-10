@@ -36,3 +36,7 @@ prevent-dragon-egg-teleport: true
 # This is useful for when you do not want to give away what
 # plugins exist on your server.
 send-error-messages: true
+
+# Whether or not Builders-Utilities should send debug messages
+# Leave it on "false" unless you are debugging Builders-Utilities' events.
+send-debug-messages: false
