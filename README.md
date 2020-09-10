@@ -4,7 +4,7 @@
 
 ---
 
-Builders- Utilities was a requested plugin by Alex_deGrote,
+Builders-Utilities was a requested plugin by Alex_deGrote,
 who won the plugin giveaway at my panel from McBcon.
 This plugin is a collection of a lot of tiny features that help with building.
 
