@@ -32,11 +32,13 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
 public class BannerUtil {
     public static final HashMap<UUID, ItemStack> currentBanner = new HashMap<>();
+    public static final HashMap<UUID, DyeColor> selectedColor = new HashMap<>();
 
     public static final List<DyeColor> allColors = new ArrayList<>();
     public static final List<PatternType> allPatterns = new ArrayList<>();
@@ -72,13 +74,23 @@ public class BannerUtil {
     public static ItemStack createBanner(String name, DyeColor base, String lore, List<Pattern> patterns) {
         ItemStack item = Items.create(XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial(), (short) 0, 1, name, "");
         BannerMeta meta = (BannerMeta) item.getItemMeta();
-        if (Main.getInstance().getNmsManager().isAtLeastVersion(1, 11, 0)) {
-            item.setDurability((short) allColors.indexOf(base));
-        } else {
-            meta.setBaseColor(base);
-        }
 
         meta.setPatterns(patterns);
+        if (!lore.equals("")) {
+            String[] loreListArray = lore.split("__");
+            List<String> loreList = new ArrayList<>();
+            for (String s : loreListArray) {
+                loreList.add(s.replace('&', ChatColor.COLOR_CHAR));
+            }
+            meta.setLore(loreList);
+        }
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public static ItemStack createDye(String name, DyeColor base, String lore) {
+        ItemStack item = Items.create(XMaterial.matchXMaterial(base.toString() + "_DYE").get().parseMaterial(), (short) 0, 1, name, "");
+        ItemMeta meta = item.getItemMeta();
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
             List<String> loreList = new ArrayList<>();
@@ -136,33 +148,13 @@ public class BannerUtil {
         return null;
     }
 
-    public static DyeColor getBaseColor(ItemStack i) {
+    public static List<Pattern> getPatterns(ItemStack i) {
         if (i.getType().toString().contains("BANNER")) {
             BannerMeta meta = (BannerMeta) i.getItemMeta();
-            if (Main.getInstance().getNmsManager().isAtLeastVersion(1, 11, 0)) {
-                return allColors.get(i.getDurability());
-            } else {
-                return meta.getBaseColor();
-            }
-
+            List<Pattern> patterns = meta.getPatterns();
+            return patterns;
         }
-        return null;
-    }
-
-    public static PatternType getPatternType(ItemStack i) {
-        if (i.getType().toString().contains("BANNER")) {
-            BannerMeta meta = (BannerMeta) i.getItemMeta();
-            return meta.getPattern(0).getPattern();
-        }
-        return null;
-    }
-
-    public static DyeColor getColorFromBanner(ItemStack i) {
-        if (i.getType().toString().contains("BANNER")) {
-            BannerMeta meta = (BannerMeta) i.getItemMeta();
-            return meta.getPattern(0).getColor();
-        }
-        return null;
+        return new ArrayList<>();
     }
 
     public static DyeColor getRandomDye() {
@@ -171,6 +163,30 @@ public class BannerUtil {
 
     public static PatternType getRandomPattern() {
         return allPatterns.get(random.nextInt(allPatterns.size()));
+    }
+
+    public static DyeColor getOppositeBaseColor(DyeColor dyeColor){
+        switch (dyeColor){
+            case RED:
+            case BLUE:
+            case CYAN:
+            case GRAY:
+            case BLACK:
+            case BROWN:
+            case GREEN:
+            case PURPLE:
+                return DyeColor.WHITE;
+            case PINK:
+            case WHITE:
+            case ORANGE:
+            case YELLOW:
+            case MAGENTA:
+            case LIGHT_BLUE:
+            case LIGHT_GRAY:
+            case LIME:
+            default:
+                return DyeColor.BLACK;
+        }
     }
 }
 

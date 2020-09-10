@@ -33,11 +33,13 @@ import net.arcaniax.buildersutilities.menus.inv.content.InventoryProvider;
 import net.arcaniax.buildersutilities.menus.inv.content.SlotPos;
 import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.Items;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.StringUtil;
 
 import java.util.Random;
 
@@ -64,7 +66,7 @@ public class BannerMenuProvider implements InventoryProvider {
         int row = 2;
         int column = 1;
         for (DyeColor color : BannerUtil.allColors){
-            contents.set(row, column, ClickableItem.of(BannerUtil.createBanner("&3" + color.toString().toLowerCase().replace("_", " "), color, "&7__&7click to select"), inventoryClickEvent -> selectColor(player, color)));
+            contents.set(row, column, ClickableItem.of(BannerUtil.createBanner("&3" + StringUtils.capitalize(color.toString().toLowerCase().replace("_", " ")), color, "&7__&7Click to select"),inventoryClickEvent -> selectColor(player, color)));
             column++;
             if (column==9){
                 column = 1;
@@ -86,14 +88,13 @@ public class BannerMenuProvider implements InventoryProvider {
     }
 
     private void selectRandomColor(Player player){
-        Random random = new Random();
-        DyeColor dyeColor = BannerUtil.allColors.get(random.nextInt(BannerUtil.allColors.size()-1));
-        BannerUtil.currentBanner.put(player.getUniqueId(), BannerUtil.createBanner("&3" + dyeColor.toString().toLowerCase().replace("_", " "), dyeColor, "&7__&7click to select"));
+        DyeColor dyeColor = BannerUtil.getRandomDye();
+        BannerUtil.currentBanner.put(player.getUniqueId(), BannerUtil.createBanner("&6Banner", dyeColor, "&7__&7Click to get banner"));
         Menus.BANNER_MENU_COLOR.open(player);
     }
 
     private void selectColor(Player player, DyeColor dyeColor){
-        BannerUtil.currentBanner.put(player.getUniqueId(), BannerUtil.createBanner("&3" + dyeColor.toString().toLowerCase().replace("_", " "), dyeColor, "&7__&7click to select"));
+        BannerUtil.currentBanner.put(player.getUniqueId(), BannerUtil.createBanner("&6Banner", dyeColor, "&7__&7Click to get banner"));
         Menus.BANNER_MENU_COLOR.open(player);
     }
 }

@@ -25,38 +25,86 @@
 
 package net.arcaniax.buildersutilities.menus.bannermenus;
 
+import net.arcaniax.buildersutilities.menus.Menus;
+import net.arcaniax.buildersutilities.menus.inv.ClickableItem;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryContents;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryProvider;
+import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.Items;
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class BannerColorMenuProvider implements InventoryProvider {
 
+
     private static final ItemStack grayPane = Items
-            .create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
-    private static final ItemStack head = Items.createHead(
+            .create(Material.GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
+    private static final ItemStack randomizeHead = Items.createHead(
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19",
             1, "&7Click to randomise", "");
+    //    private static final ItemStack currentColor = BannerUtil.createBanner("&a", 1, DyeColor.WHITE, "");
+    private static final ItemStack closeButton = Items
+            .create(Material.BARRIER, (short) 0, 1, "&cClick to close", "");
+    private static final ItemStack whiteBanner = Items
+            .create(Material.WHITE_BANNER, (short) 0, 1, "&c", "");
 
     @Override
     public void init(Player player, InventoryContents contents) {
-//        for (int x = 0; x < 54; x++) {
-//            contents.set(x / 9, x % 9, grayPane);
-//        }
-//        inv1.setItem(1, );
-//        if (first) {
-//            inv1.setItem(4, bU.createBanner("&aClick to get the banner", 1, DyeColor.valueOf(clicked.getType().toString().replace("_BANNER", "")), ""));
-//        } else {
-//            inv1.setItem(4, bU.addPattern(inv.getItem(4), new Pattern(bU.getColorFromBanner(clicked), bU.getPatternType(clicked))));
-//        }
-//        inv1.setItem(7, i.create(Material.BARRIER, (short) 0, 1, "&cClick to close", ""));
+        contents.fill(ClickableItem.empty(grayPane));
+        contents.set(0, 1, ClickableItem.of(randomizeHead, inventoryClickEvent -> selectRandomColor(player)));
+        contents.set(0, 4, ClickableItem.of(BannerUtil.currentBanner.get(player.getUniqueId()), inventoryClickEvent -> getBanner(player)));
+        contents.set(0, 7, ClickableItem.of(closeButton, inventoryClickEvent -> contents.inventory().close(player)));
+
+        int row = 2;
+        int column = 1;
+        for (DyeColor color : BannerUtil.allColors){
+            contents.set(row, column, ClickableItem.of(BannerUtil.createDye("&3" + StringUtils.capitalize(color.toString().toLowerCase().replace("_", " ")), color, "&7__&7click to select"), inventoryClickEvent -> selectColor(player, color)));
+            column++;
+            if (column==9){
+                column = 1;
+                row++;
+            }
+        }
+
+//        contents.set(0, 1, ClickableItem.of(randomizeHead, NULL));
+//        contents.set(0, 4, ClickableItem.empty(currentColor));
+//        contents.set(0, 7, ClickableItem.of(closeButton, inventoryClickEvent -> contents.inventory().close(player)));
 //        for (int x = 19; x < 27; x++) {
-//            inv1.setItem(x, i.create(Material.LEGACY_INK_SACK, (short) (x - 19), 1, "&3" + bU.getAllColors().get(x - 19).toString().toLowerCase().replace("_", " "), "&7__&7click to select"));
+//            ItemStack banner = BannerUtil.createBanner("&3" + BannerUtil.allColors.get(x - 19).toString().toLowerCase().replace("_", " "), 1, BannerUtil.allColors.get(x - 19), "&7__&7click to select");
+//            contents.set(x / 9, x % 9, ClickableItem.of(banner, NULL));
 //        }
 //        for (int x = 28; x < 36; x++) {
-//            inv1.setItem(x, i.create(Material.LEGACY_INK_SACK, (short) (x - 20), 1, "&3" + bU.getAllColors().get(x - 20).toString().toLowerCase().replace("_", " "), "&7__&7click to select"));
+//            ItemStack banner = BannerUtil.createBanner("&3" + BannerUtil.allColors.get(x - 28 + 8).toString().toLowerCase().replace("_", " "), 1, BannerUtil.allColors.get(x - 28 + 8), "&7__&7click to select");
+//            contents.set(x / 9, x % 9, ClickableItem.of(banner, NULL));
 //        }
+    }
+
+    private void selectRandomColor(Player player){
+        DyeColor dyeColor = BannerUtil.getRandomDye();
+        BannerUtil.selectedColor.put(player.getUniqueId(), dyeColor);
+        Menus.BANNER_MENU_PATTERN.open(player);
+    }
+
+    private void selectColor(Player player, DyeColor dyeColor){
+        BannerUtil.selectedColor.put(player.getUniqueId(), dyeColor);
+        Menus.BANNER_MENU_PATTERN.open(player);
+    }
+
+    private void getBanner(Player player){
+        ItemStack banner = BannerUtil.currentBanner.get(player.getUniqueId());
+        ItemMeta meta = banner.getItemMeta();
+        meta.setDisplayName("");
+        meta.setLore(new ArrayList<>());
+        banner.setItemMeta(meta);
+        player.getInventory().addItem(banner);
+        player.closeInventory();
+        BannerUtil.currentBanner.remove(player.getUniqueId());
     }
 }
