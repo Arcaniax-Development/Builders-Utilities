@@ -20,7 +20,7 @@
  *     GNU General Public License for more details.
  *
  *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https:www.gnu.org/licenses/>.
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package net.arcaniax.buildersutilities.utils;
@@ -42,12 +42,7 @@ public class BannerUtil {
     public static final List<PatternType> allPatterns = new ArrayList<>();
     private static final Random random = new Random();
 
-    {
-        addColors();
-        addPatterns();
-    }
-
-    private void addPatterns() {
+    public static void addPatterns() {
         for (PatternType pt : PatternType.values()) {
             if (!pt.equals(PatternType.BASE)) {
                 allPatterns.add(pt);
@@ -55,7 +50,7 @@ public class BannerUtil {
         }
     }
 
-    private void addColors() {
+    public static void addColors() {
         allColors.add(DyeColor.BLACK);
         allColors.add(DyeColor.RED);
         allColors.add(DyeColor.GREEN);

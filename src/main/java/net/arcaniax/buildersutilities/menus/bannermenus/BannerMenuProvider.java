@@ -44,7 +44,7 @@ import java.util.Random;
 public class BannerMenuProvider implements InventoryProvider {
 
     private static final ItemStack grayPane = Items
-            .create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
+            .create(Material.GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
     private static final ItemStack randomizeHead = Items.createHead(
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19",
             1, "&7Click to randomise", "");
@@ -56,9 +56,9 @@ public class BannerMenuProvider implements InventoryProvider {
 
     @Override
     public void init(Player player, InventoryContents contents) {
-        contents.fillRect(0, 0, 5,8, ClickableItem.empty(grayPane));
+        contents.fill(ClickableItem.empty(grayPane));
         contents.set(0, 1, ClickableItem.of(randomizeHead, inventoryClickEvent -> selectRandomColor(player)));
-        contents.set(0, 7, ClickableItem.empty(whiteBanner));
+        contents.set(0, 4, ClickableItem.empty(whiteBanner));
         contents.set(0, 7, ClickableItem.of(closeButton, inventoryClickEvent -> contents.inventory().close(player)));
 
         int row = 2;

@@ -28,6 +28,7 @@ package net.arcaniax.buildersutilities;
 import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
 import net.arcaniax.buildersutilities.listeners.*;
 import net.arcaniax.buildersutilities.menus.inv.InventoryManager;
+import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.CustomConfig;
 import net.arcaniax.buildersutilities.utils.NmsManager;
 import org.bukkit.ChatColor;
@@ -67,6 +68,9 @@ public final class Main extends JavaPlugin {
         this.nmsManager = new NmsManager();
         this.inventoryManager = new InventoryManager(this);
         this.inventoryManager.init();
+        BannerUtil.addColors();
+        BannerUtil.addPatterns();
+
 
         Metrics metrics = new Metrics(this, BSTATS_ID);
 
