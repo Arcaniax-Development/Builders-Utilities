@@ -11,75 +11,54 @@ commands:
   banner:
     description: opens banner creator
     aliases: bm
-    permission: builders.util.banner
   armorcolor:
     description: opens armor color creator
     aliases: color
-    permission: builders.util.color
   nc:
     aliases: noclip
     description: Toggles NoClip.
-    permission: builders.util.noclip
   af:
     aliases: advfly
     description: Toggles Advanced fly.
-    permission: builders.util.advancedfly
   n:
     aliases: nv
     description: Toggles Nightvision.
-    permission: builders.util.nightvision
   /1:
     description: alias
-    permission: builders.util.aliases
   /2:
     description: alias
-    permission: builders.util.aliases
   /r:
     description: alias
-    permission: builders.util.aliases
   /s:
     description: alias
-    permission: builders.util.aliases
   /c:
     description: alias
-    permission: builders.util.aliases
   /f:
     description: alias
-    permission: builders.util.aliases
   /pa:
     description: alias
-    permission: builders.util.aliases
   /derot:
     description: alias
-    permission: builders.util.aliases
   /twist:
     description: alias
   /scale:
     description: alias
-    permission: builders.util.aliases
   /copy:
     description: alias
-    permission: builders.util.aliases
   /cuboid:
     description: alias
     aliases: /cub
-    permission: builders.util.aliases
   /flip:
     description: alias
-    permission: builders.util.aliases
   /convex:
     description: alias
     aliases: /con
-    permission: builders.util.aliases
   blocks:
     description: Opens secret blocks menu
     aliases: secretblocks
-    permission: builders.util.secretblocks
   ws:
     description: alias
-    permission: builders.util.aliases
   fs:
     description: alias
-    permission: builders.util.aliases
   help:
-    permission: builders.util.help
+    description: Help command

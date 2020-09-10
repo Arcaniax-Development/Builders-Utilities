@@ -37,16 +37,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 public final class Main extends JavaPlugin {
 
-    private static final Logger logger = LoggerFactory.getLogger("BU/" + Main.class.getSimpleName());
-
-    public static final String MSG_PREFIX = ChatColor.DARK_AQUA + "BuildersUtils> " + ChatColor.AQUA;
-    public static final String MSG_ERROR = ChatColor.DARK_RED + "Error: " + ChatColor.RED;
+    public static final String MSG_PREFIX = ChatColor.DARK_AQUA + "Builders-Utilities > " + ChatColor.AQUA;
+    public static final String MSG_NO_PERMISSION = MSG_PREFIX + ChatColor.AQUA + "You do not have access to this command. Lacking permission: " + ChatColor.RED;
+    public static final String MSG_ERROR = MSG_PREFIX + ChatColor.DARK_RED + "Error: " + ChatColor.RED;
     private static final int BSTATS_ID = 5168;
     private static Main instance;
     private Settings settings;
@@ -70,7 +66,6 @@ public final class Main extends JavaPlugin {
         this.inventoryManager.init();
         BannerUtil.addColors();
         BannerUtil.addPatterns();
-
 
         Metrics metrics = new Metrics(this, BSTATS_ID);
 

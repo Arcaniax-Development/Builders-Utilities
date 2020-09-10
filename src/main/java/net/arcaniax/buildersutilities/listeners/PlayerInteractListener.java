@@ -33,8 +33,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PlayerInteractListener implements Listener {
+
+    private static final Logger logger = LoggerFactory.getLogger("BU/" + PlayerInteractListener.class.getSimpleName());
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDragonEggTP(PlayerInteractEvent event) {
         if (event.isCancelled()) {
@@ -42,9 +47,12 @@ public class PlayerInteractListener implements Listener {
         }
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)
                 && event.getClickedBlock().getType().equals(Material.DRAGON_EGG)
-                && (!event.getPlayer().isSneaking())
                 && Settings.preventDragonEggTeleport) {
             event.setCancelled(true);
+            if (Settings.sendDebugMessages) {
+                logger.info(
+                    "Dragon egg teleport was cancelled because prevent-dragon-egg-teleport: true");
+            }
         }
     }
 
@@ -59,6 +67,10 @@ public class PlayerInteractListener implements Listener {
                 if (block != null && block.getType() == Material.FARMLAND) {
                     event.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
                     event.setCancelled(true);
+                    if (Settings.sendDebugMessages) {
+                        logger.info(
+                            "Soil trampling was cancelled because disable-soil-trample: true");
+                    }
                 }
             }
         }

@@ -38,7 +38,7 @@ public class NightVisionCommand implements ICommand {
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.nightvision")) {
             if (Settings.sendErrorMessages) {
-                player.sendMessage(Main.MSG_ERROR + "You do not have access to this command.");
+                player.sendMessage(Main.MSG_NO_PERMISSION + "builders.util.nightvision");
             }
             return;
         }

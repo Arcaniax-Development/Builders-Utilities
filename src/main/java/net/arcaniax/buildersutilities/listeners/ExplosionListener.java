@@ -29,12 +29,21 @@ import net.arcaniax.buildersutilities.Settings;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExplosionListener implements Listener {
+
+    private static final Logger logger = LoggerFactory.getLogger("BU/" + ExplosionListener.class.getSimpleName());
+
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
         if (Settings.disableExplosions) {
             event.setCancelled(true);
+            if (Settings.sendDebugMessages) {
+                logger.info(
+                    "Explosion was cancelled because disable-explosions: true");
+            }
         }
     }
 
