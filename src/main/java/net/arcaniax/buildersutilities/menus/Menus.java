@@ -26,7 +26,9 @@
 package net.arcaniax.buildersutilities.menus;
 
 import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.menus.bannermenus.BannerColorMenuProvider;
 import net.arcaniax.buildersutilities.menus.bannermenus.BannerMenuProvider;
+import net.arcaniax.buildersutilities.menus.bannermenus.BannerPatternMenuProvider;
 import net.arcaniax.buildersutilities.menus.inv.InventoryListener;
 import net.arcaniax.buildersutilities.menus.inv.SmartInventory;
 import org.bukkit.Bukkit;
@@ -50,6 +52,26 @@ public class Menus {
             .size(6, 9)
             .listener(removeGhostItemsListener)
             .title(ChatColor.BLUE + "Select a base color")
+            .closeable(true)
+            .build();
+
+    public static final SmartInventory BANNER_MENU_COLOR = SmartInventory.builder()
+            .manager(Main.getInstance().getInventoryManager())
+            .id("buildersutilsbannercolor")
+            .provider(new BannerColorMenuProvider())
+            .size(6, 9)
+            .listener(removeGhostItemsListener)
+            .title(ChatColor.BLUE + "Select a color")
+            .closeable(true)
+            .build();
+
+    public static final SmartInventory BANNER_MENU_PATTERN = SmartInventory.builder()
+            .manager(Main.getInstance().getInventoryManager())
+            .id("buildersutilsbannerpattern")
+            .provider(new BannerPatternMenuProvider())
+            .size(6, 9)
+            .listener(removeGhostItemsListener)
+            .title(ChatColor.BLUE + "Select a pattern")
             .closeable(true)
             .build();
 
