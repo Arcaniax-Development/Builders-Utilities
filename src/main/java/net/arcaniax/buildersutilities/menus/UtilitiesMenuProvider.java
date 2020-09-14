@@ -34,6 +34,7 @@ import net.arcaniax.buildersutilities.menus.inv.ClickableItem;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryContents;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryProvider;
 import net.arcaniax.buildersutilities.utils.Items;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -189,6 +190,9 @@ public class UtilitiesMenuProvider implements InventoryProvider {
                     "&6No Clip", ENABLED_LORE + NO_CLIP_LORE),
                     inventoryClickEvent -> {
                         NoClipManager.noClipPlayerIds.remove(player.getUniqueId());
+                        if (player.getGameMode().equals(GameMode.SPECTATOR)){
+                            player.setGameMode(GameMode.CREATIVE);
+                        }
                         setNoClipItem(player, contents);
                     }));
         } else {

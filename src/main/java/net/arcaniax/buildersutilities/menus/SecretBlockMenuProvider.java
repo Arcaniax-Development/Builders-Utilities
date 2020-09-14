@@ -40,7 +40,7 @@ public class SecretBlockMenuProvider implements InventoryProvider {
     private static final ItemStack BARRIER = Items.create(Material.BARRIER, (short) 0, 1, ChatColor.RED + "Barrier", "");
     private static final ItemStack DRAGON_EGG = Items.create(Material.DRAGON_EGG, (short) 0, 1, ChatColor.LIGHT_PURPLE + "Dragon Egg", "");
     private static final ItemStack STRUCTURE_VOID = Items.create(Material.STRUCTURE_VOID, (short) 0, 1, ChatColor.DARK_AQUA + "Structure Void", "");
-    private static final ItemStack DEBUG_STICK = Items.create(Material.DEBUG_STICK, (short) 0, 1, ChatColor.AQUA + "Debug Stick", "");
+    private static final ItemStack DEBUG_STICK = Items.create(Material.DEBUG_STICK, (short) 0, 1, ChatColor.AQUA + "Debug Stick", "&7Only works as operator in creative.");
 
     @Override
     public void init(Player player, InventoryContents contents) {
