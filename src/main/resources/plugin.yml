@@ -62,3 +62,17 @@ commands:
     description: alias
   help:
     description: Help command
+
+permissions:
+  builders.util.trapdoor:
+    default: false
+  builders.util.slabs:
+    default: false
+  builders.util.terracotta:
+    default: false
+  builders.util.nightvision:
+    default: false
+  builders.util.noclip:
+    default: false
+  builders.util.advancedfly:
+    default: false
