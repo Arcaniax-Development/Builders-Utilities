@@ -98,7 +98,9 @@ public final class Main extends JavaPlugin {
 
         getCommand("butil").setExecutor(commandExecutor);
         getCommand("banner").setExecutor(commandExecutor);
+        getCommand("banner").setExecutor(commandExecutor);
         getCommand("armorcolor").setExecutor(commandExecutor);
+        getCommand("secretblocks").setExecutor(commandExecutor);
         getCommand("blocks").setExecutor(commandExecutor);
         getCommand("n").setExecutor(commandExecutor);
         getCommand("nc").setExecutor(commandExecutor);

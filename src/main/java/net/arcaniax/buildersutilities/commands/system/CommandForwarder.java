@@ -63,10 +63,10 @@ public class CommandForwarder implements CommandExecutor {
 
     public CommandForwarder() {
         commands = new HashMap<>();
-        registerCommand(new AdvancedFlyCommand(), "af", "advancedfly");
-        registerCommand(new BannerCommand(), "banner");
+        registerCommand(new AdvancedFlyCommand(), "af", "advfly");
+        registerCommand(new BannerCommand(), "banner", "bm");
         registerCommand(new ColorCommand(), "color", "ac", "armorcolor");
-        registerCommand(new SecretBlockCommand(), "blocks");
+        registerCommand(new SecretBlockCommand(), "blocks", "secretblocks");
         registerCommand(new NoClipCommand(), "noclip", "nc");
         registerCommand(new NightVisionCommand(), "nv", "nightvision", "n");
         registerCommand(new UtilsCommand(), "butil", "bu");

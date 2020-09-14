@@ -26,6 +26,7 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPhysicsEvent;
@@ -38,13 +39,25 @@ public class BlockPhysicsListener implements Listener {
 
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {
+        if (e.getSourceBlock().getType().isAir()){
+            if (e.getChangedType().isAir()){
+                if (e.getBlock().getLocation().getBlockY()>0){
+                    if (e.getBlock().getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")){
+                        return;
+                    }
+                }
+            }
+        }
+        if (e.getSourceBlock().getType().name().toLowerCase().contains("snow")){
+            if (e.getBlock().getLocation().getBlockY()>0){
+                if (e.getBlock().getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")){
+                    return;
+                }
+            }
+        }
         try {
             if (e.getChangedType().name().toLowerCase().contains("chest") ||
                     e.getChangedType().name().toLowerCase().contains("fence") ||
-                    e.getChangedType().name().toLowerCase().contains("grass_block") ||
-                    e.getChangedType().name().toLowerCase().contains("snow") ||
-                    e.getBlock().getType().name().toLowerCase().contains("snow") ||
-                    e.getBlock().getType().name().toLowerCase().contains("grass_block") ||
                     e.getChangedType().name().toLowerCase().contains("pane") ||
                     e.getChangedType().name().toLowerCase().contains("wall") ||
                     e.getChangedType().name().toLowerCase().contains("bar")) {
