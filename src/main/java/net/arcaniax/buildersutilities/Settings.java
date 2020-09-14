@@ -59,6 +59,6 @@ public class Settings {
         fixAttackSpeed = customConfig.get("fix-attackspeed", Boolean.class, false);
         preventDragonEggTeleport = customConfig.get("prevent-dragon-egg-teleport", Boolean.class, true);
         sendErrorMessages = customConfig.get("send-error-messages", Boolean.class, true);
-        sendDebugMessages = customConfig.get("send-debug-messages", Boolean.class, true);
+        sendDebugMessages = customConfig.get("send-debug-messages", Boolean.class, false);
     }
 }
