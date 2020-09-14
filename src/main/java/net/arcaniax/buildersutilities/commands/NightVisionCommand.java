@@ -45,10 +45,10 @@ public class NightVisionCommand implements ICommand {
 
         if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
             player.removePotionEffect(PotionEffectType.NIGHT_VISION);
-            player.sendMessage(Main.MSG_PREFIX + "Night Vision " + ChatColor.RED + ChatColor.ITALIC + "Disabled");
+            player.sendMessage(Main.MSG_PREFIX + "Night Vision " + ChatColor.RED + "disabled");
         } else {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
-            player.sendMessage(Main.MSG_PREFIX + "Night Vision " + ChatColor.GREEN + ChatColor.ITALIC + "Enabled");
+            player.sendMessage(Main.MSG_PREFIX + "Night Vision " + ChatColor.GREEN +  "enabled");
         }
     }
 }

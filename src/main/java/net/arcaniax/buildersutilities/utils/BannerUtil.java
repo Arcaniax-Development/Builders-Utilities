@@ -25,7 +25,6 @@
 
 package net.arcaniax.buildersutilities.utils;
 
-import net.arcaniax.buildersutilities.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
