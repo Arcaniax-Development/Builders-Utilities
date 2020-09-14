@@ -62,10 +62,6 @@ tasks.named<Copy>("processResources") {
     }
 }
 
-tasks.jar.configure {
-    archiveClassifier.set("no-libs")
-}
-
 tasks.named("build").configure {
     dependsOn("shadowJar")
 }
