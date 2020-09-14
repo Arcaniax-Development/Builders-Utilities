@@ -61,3 +61,7 @@ tasks.named<Copy>("processResources") {
         expand("version" to project.version)
     }
 }
+
+tasks.named("build").configure {
+    dependsOn("shadowJar")
+}
