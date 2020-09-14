@@ -25,20 +25,29 @@
 
 package net.arcaniax.buildersutilities.listeners;
 
+import net.arcaniax.buildersutilities.Settings;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TeleportListener implements Listener {
+
+    private static final Logger logger = LoggerFactory.getLogger("BU/" + TeleportListener.class.getSimpleName());
+
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
         if (event.isCancelled()) {
             return;
         }
         if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.SPECTATE)) {
-            //TODO what is this tpgm3 lol
             if (!event.getPlayer().hasPermission("builders.util.tpgm3")) {
                 event.setCancelled(true);
+                if (Settings.sendDebugMessages) {
+                    logger.info(
+                        "Spectate teleport was cancelled because {} lacks the permission builders.util.tpgm3", event.getPlayer());
+                }
             }
         }
     }
