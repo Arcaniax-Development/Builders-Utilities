@@ -58,10 +58,10 @@ public class PlayerMoveListener implements Listener {
             }
             Double speed = e.getFrom().clone().add(0, -e.getFrom().getY(), 0).distance(e.getTo().clone().add(0, -e.getTo().getY(), 0));
 
-            if (Math.abs(e.getFrom().getYaw() - e.getTo().getYaw()) > 5) {
+            if (Math.abs(e.getFrom().getYaw() - e.getTo().getYaw()) > 2.5) {
                 return;
             }
-            if (Math.abs(e.getFrom().getPitch() - e.getTo().getPitch()) > 5) {
+            if (Math.abs(e.getFrom().getPitch() - e.getTo().getPitch()) > 2.5) {
                 return;
             }
             if (lastVelocity.containsKey(e.getPlayer().getName())) {
