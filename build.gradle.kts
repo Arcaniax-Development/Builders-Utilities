@@ -39,6 +39,7 @@ dependencies {
 version = "2.0.0"
 
 tasks.named<ShadowJar>("shadowJar") {
+    archiveClassifier.set("")
     dependencies {
         include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
         include(dependency("org.slf4j:slf4j-api"))
@@ -53,7 +54,6 @@ configure<LicenseExtension> {
     header = rootProject.file("HEADER")
     include("**/*.java")
     exclude("**/XMaterial.java")
-
 }
 
 tasks.named<Copy>("processResources") {
