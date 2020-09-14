@@ -47,7 +47,11 @@ public class PlayerInteractListener implements Listener {
         }
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)
                 && event.getClickedBlock().getType().equals(Material.DRAGON_EGG)
-                && Settings.preventDragonEggTeleport) {
+                && Settings.preventDragonEggTeleport
+                && !(event.getPlayer().isSneaking()
+                   && (!event.getPlayer().getInventory().getItemInOffHand().getType().isAir()
+                       || !event.getPlayer().getInventory().getItemInMainHand().getType().isAir()))
+        ) {
             event.setCancelled(true);
             if (Settings.sendDebugMessages) {
                 logger.info(
