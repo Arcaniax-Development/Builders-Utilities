@@ -26,6 +26,10 @@ disable-soil-trample: true
 # nearby any logs
 disable-leaves-decay: true
 
+# Makes blocks and items appear faster in your hand
+# Great for better building on creative servers
+# This changes Player NBT data and is hard to reverse without this plugin!
+# DO NOT ENABLE on PVP or PVE servers!
 fix-attackspeed: false
 
 # Prevent the dragon egg from teleporting away
