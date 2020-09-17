@@ -27,6 +27,7 @@ package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPhysicsEvent;
@@ -39,8 +40,8 @@ public class BlockPhysicsListener implements Listener {
 
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {
-        if (e.getSourceBlock().getType().isAir()){
-            if (e.getChangedType().isAir()){
+        if (e.getSourceBlock().getType().equals(Material.AIR)){
+            if (e.getChangedType().equals(Material.AIR)){
                 if (e.getBlock().getLocation().getBlockY()>0){
                     if (e.getBlock().getLocation().add(0, -1, 0).getBlock().getType().name().toLowerCase().contains("grass_block")){
                         return;
