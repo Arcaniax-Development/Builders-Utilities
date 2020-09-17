@@ -122,14 +122,6 @@ public final class Main extends JavaPlugin {
         getCommand("/twist").setExecutor(commandExecutor);
     }
 
-    private void startMetrics() {
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     public Settings getSettings() {
         return settings;
     }
