@@ -54,7 +54,7 @@ public class PlayerQuitAndJoinListener implements Listener {
             if (Settings.fixAttackSpeed) {
                 attribute.setBaseValue(1024.0D);
             } else if (attribute.getBaseValue() == 1024.0D) {
-                attribute.setBaseValue(attribute.getDefaultValue());
+                attribute.setBaseValue(4.0D);
             }
             event.getPlayer().saveData();
 
