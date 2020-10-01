@@ -58,6 +58,7 @@ public class BlockPhysicsListener implements Listener {
         }
         try {
             if (e.getChangedType().name().toLowerCase().contains("chest") ||
+                    e.getChangedType().name().toLowerCase().contains("stair") ||
                     e.getChangedType().name().toLowerCase().contains("fence") ||
                     e.getChangedType().name().toLowerCase().contains("pane") ||
                     e.getChangedType().name().toLowerCase().contains("wall") ||
