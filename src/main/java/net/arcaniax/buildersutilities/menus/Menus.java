@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.menus;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.menus.bannermenus.BannerColorMenuProvider;
 import net.arcaniax.buildersutilities.menus.bannermenus.BannerMenuProvider;
 import net.arcaniax.buildersutilities.menus.bannermenus.BannerPatternMenuProvider;
@@ -40,13 +39,13 @@ public class Menus {
 
     private static final InventoryListener<InventoryCloseEvent> removeGhostItemsListener =
             new InventoryListener<>(InventoryCloseEvent.class, inventoryCloseEvent -> {
-                Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+                Bukkit.getScheduler().runTaskLater(BuildersUtilities.getInstance(), () -> {
                     ((Player) inventoryCloseEvent.getPlayer()).updateInventory();
                 }, 1L);
             });
 
     public static final SmartInventory BANNER_MENU = SmartInventory.builder()
-            .manager(Main.getInstance().getInventoryManager())
+            .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilsbanner")
             .provider(new BannerMenuProvider())
             .size(6, 9)
@@ -56,7 +55,7 @@ public class Menus {
             .build();
 
     public static final SmartInventory BANNER_MENU_COLOR = SmartInventory.builder()
-            .manager(Main.getInstance().getInventoryManager())
+            .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilsbannercolor")
             .provider(new BannerColorMenuProvider())
             .size(6, 9)
@@ -66,7 +65,7 @@ public class Menus {
             .build();
 
     public static final SmartInventory BANNER_MENU_PATTERN = SmartInventory.builder()
-            .manager(Main.getInstance().getInventoryManager())
+            .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilsbannerpattern")
             .provider(new BannerPatternMenuProvider())
             .size(6, 9)
@@ -76,7 +75,7 @@ public class Menus {
             .build();
 
     public static final SmartInventory COLOR_MENU = SmartInventory.builder()
-            .manager(Main.getInstance().getInventoryManager())
+            .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilscolor")
             .provider(new ColorMenuProvider())
             .size(6, 9)
@@ -86,7 +85,7 @@ public class Menus {
             .build();
 
     public static final SmartInventory SECRET_BLOCK_MENU = SmartInventory.builder()
-            .manager(Main.getInstance().getInventoryManager())
+            .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilssecretblock")
             .provider(new SecretBlockMenuProvider())
             .size(1, 9)
@@ -96,7 +95,7 @@ public class Menus {
             .build();
 
     public static final SmartInventory TOGGLE_MENU = SmartInventory.builder()
-            .manager(Main.getInstance().getInventoryManager())
+            .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilstoggle")
             .provider(new UtilitiesMenuProvider())
             .size(3, 9)

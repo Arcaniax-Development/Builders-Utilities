@@ -22,36 +22,45 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities;
 
 import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
-import net.arcaniax.buildersutilities.listeners.*;
+import net.arcaniax.buildersutilities.listeners.BlockBreakListener;
+import net.arcaniax.buildersutilities.listeners.BlockPhysicsListener;
+import net.arcaniax.buildersutilities.listeners.ExplosionListener;
+import net.arcaniax.buildersutilities.listeners.IronTrapdoorListener;
+import net.arcaniax.buildersutilities.listeners.LeafDecayListener;
+import net.arcaniax.buildersutilities.listeners.PlayerInteractListener;
+import net.arcaniax.buildersutilities.listeners.PlayerMoveListener;
+import net.arcaniax.buildersutilities.listeners.PlayerQuitAndJoinListener;
+import net.arcaniax.buildersutilities.listeners.TeleportListener;
+import net.arcaniax.buildersutilities.listeners.TerracottaInteractListener;
+import net.arcaniax.buildersutilities.listeners.WeatherChangeListener;
 import net.arcaniax.buildersutilities.menus.inv.InventoryManager;
 import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.CustomConfig;
 import net.arcaniax.buildersutilities.utils.NmsManager;
-import org.bukkit.ChatColor;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+public final class BuildersUtilities extends JavaPlugin {
 
     public static final String MSG_PREFIX = ChatColor.DARK_AQUA + "Builders-Utilities > " + ChatColor.AQUA;
     public static final String MSG_NO_PERMISSION = MSG_PREFIX + ChatColor.AQUA + "You do not have access to this command. Lacking permission: " + ChatColor.RED;
     public static final String MSG_ERROR = MSG_PREFIX + ChatColor.DARK_RED + "Error: " + ChatColor.RED;
     private static final int BSTATS_ID = 5168;
-    private static Main instance;
+    private static BuildersUtilities instance;
     private Settings settings;
     private NoClipManager noClipManager;
 
     private InventoryManager inventoryManager;
     private NmsManager nmsManager;
 
-    public static Main getInstance() {
+    public static BuildersUtilities getInstance() {
         return instance;
     }
 
@@ -94,8 +103,7 @@ public final class Main extends JavaPlugin {
                 return true;
             }
         };
-
-
+        
         getCommand("butil").setExecutor(commandExecutor);
         getCommand("banner").setExecutor(commandExecutor);
         getCommand("banner").setExecutor(commandExecutor);
