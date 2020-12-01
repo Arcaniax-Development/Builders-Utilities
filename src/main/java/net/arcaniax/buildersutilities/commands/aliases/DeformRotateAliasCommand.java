@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.commands.aliases;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.Settings;
 import net.arcaniax.buildersutilities.commands.system.ICommand;
 import org.bukkit.ChatColor;
@@ -37,13 +36,13 @@ public class DeformRotateAliasCommand implements ICommand {
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
             if (Settings.sendErrorMessages) {
-                player.sendMessage(Main.MSG_NO_PERMISSION + "builders.util.aliases");
+                player.sendMessage(BuildersUtilities.MSG_NO_PERMISSION + "builders.util.aliases");
             }
             return;
         }
 
         if (args.length != 2) {
-            player.sendMessage(Main.MSG_PREFIX + ChatColor.RED + "//derot [axis] [degrees]");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + ChatColor.RED + "//derot [axis] [degrees]");
             return;
         }
 
@@ -51,7 +50,7 @@ public class DeformRotateAliasCommand implements ICommand {
         try {
             degrees = Integer.parseInt(args[1]);
         } catch (Exception e) {
-            player.sendMessage(Main.MSG_PREFIX + ChatColor.RED + "//derot [axis] [degrees]");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + ChatColor.RED + "//derot [axis] [degrees]");
             return;
         }
 //            Old:
@@ -62,13 +61,13 @@ public class DeformRotateAliasCommand implements ICommand {
         float radian = degrees * radiansPerDegree;
 
         if (args[0].equalsIgnoreCase("x")) {
-            Main.getInstance().getServer().dispatchCommand(player, "/deform rotate(y,z," + radian + ")");
+            BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/deform rotate(y,z," + radian + ")");
         } else if (args[0].equalsIgnoreCase("y")) {
-            Main.getInstance().getServer().dispatchCommand(player, "/deform rotate(x,z," + radian + ")");
+            BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/deform rotate(x,z," + radian + ")");
         } else if (args[0].equalsIgnoreCase("z")) {
-            Main.getInstance().getServer().dispatchCommand(player, "/deform rotate(x,y," + radian + ")");
+            BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/deform rotate(x,y," + radian + ")");
         } else {
-            player.sendMessage(Main.MSG_PREFIX + ChatColor.RED + "//derot [axis] [degrees]");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + ChatColor.RED + "//derot [axis] [degrees]");
         }
     }
 }

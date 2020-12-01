@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.listeners;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -73,7 +72,7 @@ public class TerracottaInteractListener implements Listener {
         if (!(type.equals(Material.AIR))) {
             return;
         }
-        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskLater(BuildersUtilities.getInstance(), () -> {
             Block block = event.getClickedBlock();
             Directional directional = (Directional) block.getBlockData();
             if (directional.getFacing().equals(BlockFace.NORTH)) {

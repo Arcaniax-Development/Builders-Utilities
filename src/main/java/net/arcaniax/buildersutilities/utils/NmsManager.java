@@ -22,17 +22,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.utils;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 
 public class NmsManager {
 
     private final String version;
 
     public NmsManager() {
-        String packageString = Main.getInstance().getServer().getClass().getPackage().getName();
+        String packageString = BuildersUtilities.getInstance().getServer().getClass().getPackage().getName();
         version = packageString.substring(packageString.lastIndexOf('.') + 1);
     }
 

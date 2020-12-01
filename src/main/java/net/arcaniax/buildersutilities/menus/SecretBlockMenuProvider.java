@@ -22,10 +22,8 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.menus;
 
-import net.arcaniax.buildersutilities.Main;
 import net.arcaniax.buildersutilities.menus.inv.ClickableItem;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryContents;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryProvider;

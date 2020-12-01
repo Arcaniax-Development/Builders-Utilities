@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.commands.aliases;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.Settings;
 import net.arcaniax.buildersutilities.commands.system.ICommand;
 import org.bukkit.entity.Player;
@@ -35,12 +34,12 @@ public class PosOneAliasCommand implements ICommand {
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
             if (Settings.sendErrorMessages) {
-                player.sendMessage(Main.MSG_NO_PERMISSION + "builders.util.aliases");
+                player.sendMessage(BuildersUtilities.MSG_NO_PERMISSION + "builders.util.aliases");
             }
             return;
         }
 
-        Main.getInstance().getServer().dispatchCommand(player, "/pos1");
+        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/pos1");
 
     }
 }

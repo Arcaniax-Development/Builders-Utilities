@@ -22,7 +22,6 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities;
 
 import org.bukkit.Bukkit;
@@ -40,7 +39,7 @@ public class NoClipManager {
 
     public NoClipManager() {
         noClipPlayerIds = new HashSet<>();
-        Bukkit.getScheduler().runTaskTimer(Main.getInstance(), this::checkForBlocks, 1L, 1L);
+        Bukkit.getScheduler().runTaskTimer(BuildersUtilities.getInstance(), this::checkForBlocks, 1L, 1L);
     }
 
     private void checkForBlocks() {

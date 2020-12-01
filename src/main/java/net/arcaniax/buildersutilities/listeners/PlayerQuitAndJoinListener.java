@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.listeners;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.NoClipManager;
 import net.arcaniax.buildersutilities.Settings;
 import org.bukkit.attribute.Attribute;
@@ -45,7 +44,7 @@ public class PlayerQuitAndJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (Main.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
+        if (BuildersUtilities.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
             AttributeInstance attribute = event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
             if (attribute == null) {
                 return;

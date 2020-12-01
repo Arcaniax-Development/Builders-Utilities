@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.commands;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.Settings;
 import net.arcaniax.buildersutilities.commands.system.ICommand;
 import net.arcaniax.buildersutilities.listeners.PlayerMoveListener;
@@ -37,15 +36,15 @@ public class AdvancedFlyCommand implements ICommand {
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.advancedfly")) {
             if (Settings.sendErrorMessages) {
-                player.sendMessage(Main.MSG_NO_PERMISSION + "builders.util.advancedfly");
+                player.sendMessage(BuildersUtilities.MSG_NO_PERMISSION + "builders.util.advancedfly");
             }
             return;
         }
 
         if (PlayerMoveListener.togglePlayer(player)) {
-            player.sendMessage(Main.MSG_PREFIX + "Advanced Fly " + ChatColor.GREEN + "enabled");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + "Advanced Fly " + ChatColor.GREEN + "enabled");
         } else {
-            player.sendMessage(Main.MSG_PREFIX + "Advanced Fly " + ChatColor.RED + "disabled");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + "Advanced Fly " + ChatColor.RED + "disabled");
         }
     }
 }

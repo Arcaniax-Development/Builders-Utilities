@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.commands;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.NoClipManager;
 import net.arcaniax.buildersutilities.Settings;
 import net.arcaniax.buildersutilities.commands.system.ICommand;
@@ -38,20 +37,20 @@ public class NoClipCommand implements ICommand {
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.noclip")) {
             if (Settings.sendErrorMessages) {
-                player.sendMessage(Main.MSG_NO_PERMISSION + "builders.util.noclip");
+                player.sendMessage(BuildersUtilities.MSG_NO_PERMISSION + "builders.util.noclip");
             }
             return;
         }
 
         if (NoClipManager.noClipPlayerIds.contains(player.getUniqueId())) {
             NoClipManager.noClipPlayerIds.remove(player.getUniqueId());
-            player.sendMessage(Main.MSG_PREFIX + "NoClip " + ChatColor.RED + "disabled");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + "NoClip " + ChatColor.RED + "disabled");
             if (player.getGameMode() == GameMode.SPECTATOR) {
                 player.setGameMode(GameMode.CREATIVE);
             }
         } else {
             NoClipManager.noClipPlayerIds.add(player.getUniqueId());
-            player.sendMessage(Main.MSG_PREFIX + "NoClip " + ChatColor.GREEN + "enabled");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + "NoClip " + ChatColor.GREEN + "enabled");
         }
     }
 }

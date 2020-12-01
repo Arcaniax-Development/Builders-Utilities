@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.listeners;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -66,7 +65,7 @@ public class IronTrapdoorListener implements Listener {
         if (!e.getClickedBlock().getType().equals(Material.IRON_TRAPDOOR)) {
             return;
         }
-        if (Main.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
+        if (BuildersUtilities.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
             if (!e.getHand().equals(EquipmentSlot.HAND)) {
                 return;
             }
@@ -74,7 +73,7 @@ public class IronTrapdoorListener implements Listener {
         if (e.getPlayer().isSneaking()) {
             return;
         }
-        Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+        Bukkit.getScheduler().runTaskLater(BuildersUtilities.getInstance(), () -> {
             Block b = e.getClickedBlock();
             TrapDoor trapDoor = (TrapDoor) b.getBlockData();
             trapDoor.setOpen(!trapDoor.isOpen());

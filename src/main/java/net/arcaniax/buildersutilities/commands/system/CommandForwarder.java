@@ -22,10 +22,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.arcaniax.buildersutilities.commands.system;
 
-import net.arcaniax.buildersutilities.Main;
+import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.commands.AdvancedFlyCommand;
 import net.arcaniax.buildersutilities.commands.BannerCommand;
 import net.arcaniax.buildersutilities.commands.ColorCommand;
@@ -95,7 +94,7 @@ public class CommandForwarder implements CommandExecutor {
         //Make it player-only
         Player player = sender instanceof Player ? ((Player) sender) : null;
         if (player == null) {
-            sender.sendMessage(Main.MSG_ERROR + "Sorry this command can only be used by a player.");
+            sender.sendMessage(BuildersUtilities.MSG_ERROR + "Sorry this command can only be used by a player.");
             return false;
         }
 
