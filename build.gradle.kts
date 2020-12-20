@@ -33,7 +33,7 @@ dependencies {
     "compileOnly"("org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT")
     "implementation"("com.mojang:authlib:1.5.25")
     "implementation"("org.apache.logging.log4j:log4j-slf4j-impl:2.8.1")
-    "compile"("org.bstats:bstats-bukkit:1.7")
+    "compile"("org.bstats:bstats-bukkit:1.8")
 }
 
 version = "2.0.0"
