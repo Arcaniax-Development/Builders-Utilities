@@ -4,7 +4,7 @@ import net.minecrell.gradle.licenser.LicenseExtension
 plugins {
     id("java")
     id("net.minecrell.licenser") version "0.4.1"
-    id("com.github.johnrengelman.shadow") version "6.0.0"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
 configure<JavaPluginConvention> {
