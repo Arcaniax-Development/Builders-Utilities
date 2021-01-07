@@ -24,6 +24,7 @@
  */
 package net.arcaniax.buildersutilities.utils;
 
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
