@@ -34,7 +34,7 @@ dependencies {
     compileOnlyApi("org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.8.1")
-    implementation("org.bstats:bstats-bukkit:1.8")
+    implementation("org.bstats:bstats-bukkit:2.1.0")
     implementation("com.github.cryptomorin:XSeries:7.8.0")
 }
 
