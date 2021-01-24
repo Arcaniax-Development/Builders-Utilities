@@ -18,11 +18,7 @@ repositories {
     jcenter()
     maven {
         name = "Spigot"
-        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
-    }
-    maven {
-        name = "bStats"
-        url = uri("https://repo.codemc.org/repository/maven-public")
+        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
     maven {
         name = "Mojang"
@@ -31,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compileOnlyApi("org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT")
+    compileOnlyApi("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.8.1")
     implementation("org.bstats:bstats-bukkit:2.1.0")
@@ -41,7 +37,7 @@ dependencies {
 version = "2.0.0"
 
 tasks.named<ShadowJar>("shadowJar") {
-    archiveClassifier.set("")
+    archiveClassifier.set(null as String?)
     dependencies {
         include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
         include(dependency("org.slf4j:slf4j-api"))
