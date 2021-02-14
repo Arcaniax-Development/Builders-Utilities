@@ -30,8 +30,8 @@ dependencies {
     compileOnlyApi("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.8.1")
-    implementation("org.bstats:bstats-bukkit:2.1.0")
-    implementation("org.bstats:bstats-base:2.1.0")
+    implementation("org.bstats:bstats-bukkit:2.2.1")
+    implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:7.8.0")
 }
 
@@ -42,13 +42,13 @@ tasks.named<ShadowJar>("shadowJar") {
     dependencies {
         include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
         include(dependency("org.slf4j:slf4j-api"))
-        include(dependency("org.bstats:bstats-bukkit:2.1.0"))
+        include(dependency("org.bstats:bstats-bukkit:2.2.1"))
         include(dependency("com.github.cryptomorin:XSeries:7.8.0"))
         relocate("com.cryptomorin.xseries", "net.arcaniax.utils")
         relocate("org.apache.logging.slf4j", "net.arcaniax.logging.apache")
         relocate("org.slf4j", "net.arcaniax.logging.slf4j")
         relocate("org.bstats", "net.arcaniax.metrics") {
-            include(dependency("org.bstats:bstats-base:2.1.0"))
+            include(dependency("org.bstats:bstats-base:2.2.1"))
         }
     }
 }
