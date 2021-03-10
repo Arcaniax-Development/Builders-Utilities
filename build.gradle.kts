@@ -40,15 +40,18 @@ version = "2.0.0"
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
     dependencies {
-        include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
-        include(dependency("org.slf4j:slf4j-api"))
-        include(dependency("org.bstats:bstats-bukkit:2.2.1"))
-        include(dependency("com.github.cryptomorin:XSeries:7.8.0"))
-        relocate("com.cryptomorin.xseries", "net.arcaniax.utils")
-        relocate("org.apache.logging.slf4j", "net.arcaniax.logging.apache")
-        relocate("org.slf4j", "net.arcaniax.logging.slf4j")
-        relocate("org.bstats", "net.arcaniax.metrics") {
+        relocate("com.cryptomorin.xseries", "net.arcaniax.utils") {
+            include(dependency("com.github.cryptomorin:XSeries:7.8.0"))
+        }
+        relocate("org.apache.logging.slf4j", "net.arcaniax.logging.apache") {
+            include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
+        }
+        relocate("org.slf4j", "net.arcaniax.logging.slf4j") {
+            include(dependency("org.slf4j:slf4j-api"))
+        }
+        relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
             include(dependency("org.bstats:bstats-base:2.2.1"))
+            include(dependency("org.bstats:bstats-bukkit:2.2.1"))
         }
     }
 }
