@@ -32,7 +32,7 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.8.1")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
-    implementation("com.github.cryptomorin:XSeries:7.8.0")
+    implementation("com.github.cryptomorin:XSeries:7.9.0")
 }
 
 version = "2.0.0"
@@ -41,7 +41,7 @@ tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
     dependencies {
         relocate("com.cryptomorin.xseries", "net.arcaniax.utils") {
-            include(dependency("com.github.cryptomorin:XSeries:7.8.0"))
+            include(dependency("com.github.cryptomorin:XSeries:7.9.0"))
         }
         relocate("org.apache.logging.slf4j", "net.arcaniax.logging.apache") {
             include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
