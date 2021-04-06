@@ -35,7 +35,17 @@ dependencies {
     implementation("com.github.cryptomorin:XSeries:7.9.1")
 }
 
-version = "2.0.0"
+var rootVersion by extra("2.0.0")
+var buildNumber by extra("")
+
+if (project.hasProperty("buildnumber")) {
+    buildNumber = project.properties["buildnumber"] as String
+} else {
+    var index = "local"
+    buildNumber = index.toString()
+}
+
+version = String.format("%s-%s", rootVersion, buildNumber)
 
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
