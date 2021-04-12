@@ -29,7 +29,7 @@ repositories {
 dependencies {
     compileOnlyApi("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
-    implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.8.1") {
+    implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.14.1") {
         because("Spigot provides Log4J (sort of, not in API, implicitly part of server)")
     })
     implementation("org.apache.logging.log4j:log4j-api")
