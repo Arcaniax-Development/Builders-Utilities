@@ -1,5 +1,6 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "ignoreDeps": ["log4j-bom"]
 }
