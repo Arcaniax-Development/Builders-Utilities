@@ -28,8 +28,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.naming.ConfigurationException;
 import java.io.File;
@@ -37,9 +35,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.logging.log4j.Logger;
+
 public class CustomConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger("BU/" + CustomConfig.class.getSimpleName());
+    private static final Logger logger = LogManagerCompat.getLogger();
 
     private final JavaPlugin plugin;
     private final String fileName;

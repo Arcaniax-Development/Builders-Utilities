@@ -25,17 +25,16 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
-import org.bukkit.Bukkit;
+import net.arcaniax.buildersutilities.utils.LogManagerCompat;
+import org.apache.logging.log4j.Logger;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPhysicsEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BlockPhysicsListener implements Listener {
 
-    private static final Logger logger = LoggerFactory.getLogger("BU/" + BlockPhysicsListener.class.getSimpleName());
+    private static final Logger logger = LogManagerCompat.getLogger();
 
     @EventHandler
     public void onPhysics(BlockPhysicsEvent e) {

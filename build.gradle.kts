@@ -29,10 +29,21 @@ repositories {
 dependencies {
     compileOnlyApi("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
-    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.8.1")
+    implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.8.1") {
+        because("Spigot provides Log4J (sort of, not in API, implicitly part of server)")
+    })
+    implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:7.9.1")
+}
+
+configurations.findByName("compileClasspath")?.apply {
+    resolutionStrategy.componentSelection {
+        withModule("org.slf4j:slf4j-api") {
+            reject("No SLF4J allowed on compile classpath")
+        }
+    }
 }
 
 var rootVersion by extra("2.0.0")
@@ -52,12 +63,6 @@ tasks.named<ShadowJar>("shadowJar") {
     dependencies {
         relocate("com.cryptomorin.xseries", "net.arcaniax.utils") {
             include(dependency("com.github.cryptomorin:XSeries:7.9.1"))
-        }
-        relocate("org.apache.logging.slf4j", "net.arcaniax.logging.apache") {
-            include(dependency("org.apache.logging.log4j:log4j-slf4j-impl"))
-        }
-        relocate("org.slf4j", "net.arcaniax.logging.slf4j") {
-            include(dependency("org.slf4j:slf4j-api"))
         }
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
             include(dependency("org.bstats:bstats-base:2.2.1"))

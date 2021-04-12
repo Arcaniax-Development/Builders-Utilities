@@ -25,6 +25,8 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
+import net.arcaniax.buildersutilities.utils.LogManagerCompat;
+import org.apache.logging.log4j.Logger;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -32,12 +34,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PlayerInteractListener implements Listener {
 
-    private static final Logger logger = LoggerFactory.getLogger("BU/" + PlayerInteractListener.class.getSimpleName());
+    private static final Logger logger = LogManagerCompat.getLogger();
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDragonEggTP(PlayerInteractEvent event) {

@@ -22,33 +22,28 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package net.arcaniax.buildersutilities.listeners;
+package net.arcaniax.buildersutilities.utils;
 
-import net.arcaniax.buildersutilities.Settings;
-import net.arcaniax.buildersutilities.utils.LogManagerCompat;
+import com.google.common.base.Throwables;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerTeleportEvent;
 
-public class TeleportListener implements Listener {
+import java.util.List;
 
-    private static final Logger logger = LogManagerCompat.getLogger();
+public class LogManagerCompat {
 
-    @EventHandler
-    public void onTeleport(PlayerTeleportEvent event) {
-        if (event.isCancelled()) {
-            return;
-        }
-        if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.SPECTATE)) {
-            if (!event.getPlayer().hasPermission("builders.util.tpgm3")) {
-                event.setCancelled(true);
-                if (Settings.sendDebugMessages) {
-                    logger.info(
-                        "Spectate teleport was cancelled because {} lacks the permission builders.util.tpgm3", event.getPlayer());
-                }
-            }
-        }
+    private LogManagerCompat() {
     }
 
+    public static Logger getLogger() {
+        return LogManager.getLogger(getCallerCallerClassName());
+    }
+
+    private static String getCallerCallerClassName() {
+        List<StackTraceElement> lazyStack = Throwables.lazyStackTrace(new Throwable());
+        // 0 - this method
+        // 1 - caller
+        // 2 - caller caller
+        return lazyStack.get(2).getClassName();
+    }
 }

@@ -25,15 +25,15 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
+import net.arcaniax.buildersutilities.utils.LogManagerCompat;
+import org.apache.logging.log4j.Logger;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.weather.WeatherChangeEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class WeatherChangeListener implements Listener {
 
-    private static final Logger logger = LoggerFactory.getLogger("BU/" + WeatherChangeListener.class.getSimpleName());
+    private static final Logger logger = LogManagerCompat.getLogger();
 
     @EventHandler
     public void onWeather(WeatherChangeEvent e) {
