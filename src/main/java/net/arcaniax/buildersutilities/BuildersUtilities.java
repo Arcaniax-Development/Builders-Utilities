@@ -24,6 +24,7 @@
  */
 package net.arcaniax.buildersutilities;
 
+import io.papermc.lib.PaperLib;
 import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
 import net.arcaniax.buildersutilities.listeners.BlockBreakListener;
 import net.arcaniax.buildersutilities.listeners.BlockPhysicsListener;
@@ -46,6 +47,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.incendo.serverlib.ServerLib;
 
 public final class BuildersUtilities extends JavaPlugin {
 
@@ -77,6 +79,11 @@ public final class BuildersUtilities extends JavaPlugin {
         BannerUtil.addPatterns();
 
         Metrics metrics = new Metrics(this, BSTATS_ID);
+
+        // Check if we are in a safe environment
+        ServerLib.checkUnsafeForks();
+        ServerLib.checkJavaLTS();
+        PaperLib.suggestPaper(this);
 
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         this.getServer().getPluginManager().registerEvents(new BlockPhysicsListener(), this);

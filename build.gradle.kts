@@ -1,11 +1,13 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.cadixdev.gradle.licenser.LicenseExtension
+import org.ajoberstar.grgit.Grgit
 
 plugins {
     id("java")
     id("java-library")
     id("org.cadixdev.licenser") version "0.5.1"
     id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("org.ajoberstar.grgit") version "4.1.0"
 }
 
 configure<JavaPluginConvention> {
@@ -15,14 +17,21 @@ configure<JavaPluginConvention> {
 
 repositories {
     mavenCentral()
-    jcenter()
     maven {
         name = "Spigot"
         url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
     maven {
+        name = "Paper"
+        url = uri("https://papermc.io/repo/repository/maven-public/")
+    }
+    maven {
         name = "Mojang"
         url = uri("https://libraries.minecraft.net/")
+    }
+    maven {
+        name = "IntellectualSites 3rd Party"
+        url = uri("https://mvn.intellectualsites.com/content/repositories/thirdparty")
     }
 }
 
@@ -36,6 +45,8 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:7.9.1")
+    implementation("org.incendo.serverlib:ServerLib:2.0.0")
+    implementation("io.papermc:paperlib:1.0.6")
 }
 
 configurations.findByName("compileClasspath")?.apply {
@@ -49,11 +60,16 @@ configurations.findByName("compileClasspath")?.apply {
 var rootVersion by extra("2.0.0")
 var buildNumber by extra("")
 
-if (project.hasProperty("buildnumber")) {
-    buildNumber = project.properties["buildnumber"] as String
-} else {
-    var index = "local"
-    buildNumber = index.toString()
+ext {
+    val git: Grgit = Grgit.open {
+        dir = File("$rootDir/.git")
+    }
+    val commit: String? = git.head().abbreviatedId
+    buildNumber = if (project.hasProperty("buildnumber")) {
+        project.properties["buildnumber"] as String
+    } else {
+        commit.toString()
+    }
 }
 
 version = String.format("%s-%s", rootVersion, buildNumber)
@@ -67,6 +83,12 @@ tasks.named<ShadowJar>("shadowJar") {
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
             include(dependency("org.bstats:bstats-base:2.2.1"))
             include(dependency("org.bstats:bstats-bukkit:2.2.1"))
+        }
+        relocate("io.papermc.lib", "net.arcaniax.buildersutilities.paperlib") {
+            include(dependency("io.papermc:paperlib:1.0.6"))
+        }
+        relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
+            include(dependency("org.incendo.serverlib:ServerLib:2.0.0"))
         }
     }
     minimize()
