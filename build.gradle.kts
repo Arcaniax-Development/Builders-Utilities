@@ -6,7 +6,7 @@ plugins {
     id("java")
     id("java-library")
     id("org.cadixdev.licenser") version "0.5.1"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.ajoberstar.grgit") version "4.1.0"
 }
 
@@ -45,7 +45,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:7.9.1")
-    implementation("org.incendo.serverlib:ServerLib:2.0.0")
+    implementation("org.incendo.serverlib:ServerLib:2.1.0")
     implementation("io.papermc:paperlib:1.0.6")
 }
 
@@ -88,7 +88,7 @@ tasks.named<ShadowJar>("shadowJar") {
             include(dependency("io.papermc:paperlib:1.0.6"))
         }
         relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
-            include(dependency("org.incendo.serverlib:ServerLib:2.0.0"))
+            include(dependency("org.incendo.serverlib:ServerLib:2.1.0"))
         }
     }
     minimize()
