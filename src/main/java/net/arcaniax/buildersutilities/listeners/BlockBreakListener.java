@@ -57,6 +57,9 @@ public class BlockBreakListener implements Listener {
         if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
             return;
         }
+        if (!e.getPlayer().hasPermission("builders.util.slabs")) {
+            return;
+        }
         Material type = e.getPlayer().getInventory().getItemInMainHand().getType();
         if (type.toString().toLowerCase().contains("slab")) {
             if (e.isCancelled()) {

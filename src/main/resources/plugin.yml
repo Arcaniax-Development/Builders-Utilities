@@ -65,11 +65,11 @@ commands:
 
 permissions:
   builders.util.trapdoor:
-    default: false
+    default: true
   builders.util.slabs:
-    default: false
+    default: true
   builders.util.terracotta:
-    default: false
+    default: true
   builders.util.nightvision:
     default: false
   builders.util.noclip:

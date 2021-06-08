@@ -68,6 +68,9 @@ public class TerracottaInteractListener implements Listener {
         if (!event.getPlayer().isSneaking()) {
             return;
         }
+        if (!event.getPlayer().hasPermission("builders.util.terracotta")) {
+            return;
+        }
         Material type = event.getPlayer().getInventory().getItemInHand().getType();
         if (!(type.equals(Material.AIR))) {
             return;

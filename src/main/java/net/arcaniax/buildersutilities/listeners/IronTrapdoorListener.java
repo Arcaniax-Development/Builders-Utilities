@@ -59,6 +59,9 @@ public class IronTrapdoorListener implements Listener {
         if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
             return;
         }
+        if (!e.getPlayer().hasPermission("builders.util.trapdoor")) {
+            return;
+        }
         if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
