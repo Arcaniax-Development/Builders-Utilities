@@ -45,7 +45,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:8.1.0")
-    implementation("org.incendo.serverlib:ServerLib:2.2.0")
+    implementation("org.incendo.serverlib:ServerLib:2.2.1")
     implementation("io.papermc:paperlib:1.0.6")
 }
 
@@ -88,7 +88,7 @@ tasks.named<ShadowJar>("shadowJar") {
             include(dependency("io.papermc:paperlib:1.0.6"))
         }
         relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
-            include(dependency("org.incendo.serverlib:ServerLib:2.2.0"))
+            include(dependency("org.incendo.serverlib:ServerLib:2.2.1"))
         }
     }
     minimize()
