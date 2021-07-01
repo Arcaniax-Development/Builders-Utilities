@@ -10,17 +10,12 @@ plugins {
     id("org.ajoberstar.grgit") version "4.1.0"
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = sourceCompatibility
+the<JavaPluginExtension>().toolchain {
+    languageVersion.set(JavaLanguageVersion.of(16))
 }
 
 repositories {
     mavenCentral()
-    maven {
-        name = "Spigot"
-        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    }
     maven {
         name = "Paper"
         url = uri("https://papermc.io/repo/repository/maven-public/")
@@ -36,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compileOnlyApi("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
+    compileOnlyApi("io.papermc.paper:paper-api:1.17-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
     implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.8.1") {
         because("Spigot provides Log4J (sort of, not in API, implicitly part of server)")
@@ -57,7 +52,7 @@ configurations.findByName("compileClasspath")?.apply {
     }
 }
 
-var rootVersion by extra("2.0.0")
+var rootVersion by extra("2.1.0")
 var buildNumber by extra("")
 
 ext {
