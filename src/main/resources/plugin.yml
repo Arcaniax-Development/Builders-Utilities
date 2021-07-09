@@ -60,7 +60,7 @@ commands:
     description: alias
   fs:
     description: alias
-  help:
+  bu help:
     description: Help command
 
 permissions:

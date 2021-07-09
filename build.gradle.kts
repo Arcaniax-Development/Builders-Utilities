@@ -10,17 +10,20 @@ plugins {
     id("org.ajoberstar.grgit") version "4.1.0"
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = sourceCompatibility
+the<JavaPluginExtension>().toolchain {
+    languageVersion.set(JavaLanguageVersion.of(16))
+}
+
+tasks.compileJava.configure {
+    options.release.set(8)
+}
+
+configurations.all {
+    attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 16)
 }
 
 repositories {
     mavenCentral()
-    maven {
-        name = "Spigot"
-        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    }
     maven {
         name = "Paper"
         url = uri("https://papermc.io/repo/repository/maven-public/")
@@ -30,21 +33,21 @@ repositories {
         url = uri("https://libraries.minecraft.net/")
     }
     maven {
-        name = "IntellectualSites 3rd Party"
-        url = uri("https://mvn.intellectualsites.com/content/repositories/thirdparty")
+        name = "IntellectualSites"
+        url = uri("https://mvn.intellectualsites.com/content/groups/public/")
     }
 }
 
 dependencies {
-    compileOnlyApi("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
+    compileOnlyApi("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
-    implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.8.1") {
+    implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.14.1") {
         because("Spigot provides Log4J (sort of, not in API, implicitly part of server)")
     })
     implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
-    implementation("com.github.cryptomorin:XSeries:8.1.0")
+    implementation("com.github.cryptomorin:XSeries:8.2.0")
     implementation("org.incendo.serverlib:ServerLib:2.2.1")
     implementation("io.papermc:paperlib:1.0.6")
 }
@@ -57,7 +60,7 @@ configurations.findByName("compileClasspath")?.apply {
     }
 }
 
-var rootVersion by extra("2.0.0")
+var rootVersion by extra("2.1.1")
 var buildNumber by extra("")
 
 ext {
@@ -78,7 +81,7 @@ tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
     dependencies {
         relocate("com.cryptomorin.xseries", "net.arcaniax.utils") {
-            include(dependency("com.github.cryptomorin:XSeries:8.1.0"))
+            include(dependency("com.github.cryptomorin:XSeries:8.2.0"))
         }
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
             include(dependency("org.bstats:bstats-base:2.2.1"))
