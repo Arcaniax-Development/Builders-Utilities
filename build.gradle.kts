@@ -47,7 +47,7 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
-    implementation("com.github.cryptomorin:XSeries:8.2.0")
+    implementation("com.github.cryptomorin:XSeries:8.3.0")
     implementation("org.incendo.serverlib:ServerLib:2.2.1")
     implementation("io.papermc:paperlib:1.0.6")
 }
