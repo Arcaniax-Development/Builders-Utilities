@@ -3,8 +3,9 @@ import org.cadixdev.gradle.licenser.LicenseExtension
 import org.ajoberstar.grgit.Grgit
 
 plugins {
-    id("java")
-    id("java-library")
+    java
+    `java-library`
+
     id("org.cadixdev.licenser") version "0.6.1"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.ajoberstar.grgit") version "4.1.0"
@@ -41,28 +42,15 @@ repositories {
 dependencies {
     compileOnlyApi("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
     compileOnlyApi("com.mojang:authlib:1.5.25")
-    implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:2.14.1") {
-        because("Spigot provides Log4J (sort of, not in API, implicitly part of server)")
-    })
-    implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
-    implementation("com.github.cryptomorin:XSeries:8.2.0")
+    implementation("com.github.cryptomorin:XSeries:8.3.0")
     implementation("org.incendo.serverlib:ServerLib:2.2.1")
     implementation("io.papermc:paperlib:1.0.6")
+    compileOnlyApi("org.apache.logging.log4j:log4j-api:2.14.1")
 }
 
-configurations.findByName("compileClasspath")?.apply {
-    resolutionStrategy.componentSelection {
-        withModule("org.slf4j:slf4j-api") {
-            reject("No SLF4J allowed on compile classpath")
-        }
-    }
-}
-
-var rootVersion by extra("2.1.1")
 var buildNumber by extra("")
-
 ext {
     val git: Grgit = Grgit.open {
         dir = File("$rootDir/.git")
@@ -75,13 +63,13 @@ ext {
     }
 }
 
-version = String.format("%s-%s", rootVersion, buildNumber)
+version = String.format("%s-%s", rootProject.version, buildNumber)
 
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
     dependencies {
         relocate("com.cryptomorin.xseries", "net.arcaniax.utils") {
-            include(dependency("com.github.cryptomorin:XSeries:8.2.0"))
+            include(dependency("com.github.cryptomorin:XSeries:8.3.0"))
         }
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
             include(dependency("org.bstats:bstats-base:2.2.1"))
