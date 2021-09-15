@@ -71,10 +71,15 @@ public final class BuildersUtilities extends JavaPlugin {
         instance = this;
 
         this.settings = new Settings(new CustomConfig(this, "config.yml"));
-        this.noClipManager = new NoClipManager();
+
+        this.noClipManager = new NoClipManager(this);
+        this.noClipManager.start();
+
         this.nmsManager = new NmsManager();
+
         this.inventoryManager = new InventoryManager(this);
         this.inventoryManager.init();
+
         BannerUtil.addColors();
         BannerUtil.addPatterns();
 
