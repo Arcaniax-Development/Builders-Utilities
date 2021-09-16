@@ -67,4 +67,5 @@ public class TwistAliasCommand implements ICommand {
             player.sendMessage(BuildersUtilities.MSG_PREFIX + ChatColor.RED + "//twist [axis] [degrees]");
         }
     }
+
 }

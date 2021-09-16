@@ -41,8 +41,9 @@ public class WeatherChangeListener implements Listener {
             e.setCancelled(true);
             if (Settings.sendDebugMessages) {
                 logger.info(
-                    "Weather changing was cancelled because disable-weather-changes: true");
+                        "Weather changing was cancelled because disable-weather-changes: true");
             }
         }
     }
+
 }

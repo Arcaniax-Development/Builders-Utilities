@@ -41,6 +41,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class UtilitiesMenuProvider implements InventoryProvider {
+
     private static final ItemStack ENABLED = Items.create(Material.GREEN_STAINED_GLASS_PANE, "&c", "");
     private static final ItemStack DISABLED = Items.create(Material.RED_STAINED_GLASS_PANE, "&c", "");
     private static final ItemStack NO_PERMISSION = Items.create(Material.ORANGE_STAINED_GLASS_PANE, "&c", "");
@@ -76,20 +77,26 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
         if (!IronTrapdoorListener.ironTrapdoorIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(1, true, contents);
-            contents.set(1, 1, ClickableItem.of(Items.create(Material.IRON_TRAPDOOR,
-                    "&6Iron Trapdoor Interaction", ENABLED_LORE + IRON_TRAPDOOR_LORE),
+            contents.set(1, 1, ClickableItem.of(
+                    Items.create(Material.IRON_TRAPDOOR,
+                            "&6Iron Trapdoor Interaction", ENABLED_LORE + IRON_TRAPDOOR_LORE
+                    ),
                     inventoryClickEvent -> {
                         IronTrapdoorListener.ironTrapdoorIds.add(player.getUniqueId());
                         setIronTrapdoorItem(player, contents);
-                    }));
+                    }
+            ));
         } else {
             setEnabledGlassPanes(1, false, contents);
-            contents.set(1, 1, ClickableItem.of(Items.create(Material.IRON_TRAPDOOR,
-                    "&6Iron Trapdoor Interaction", DISABLED_LORE + IRON_TRAPDOOR_LORE),
+            contents.set(1, 1, ClickableItem.of(
+                    Items.create(Material.IRON_TRAPDOOR,
+                            "&6Iron Trapdoor Interaction", DISABLED_LORE + IRON_TRAPDOOR_LORE
+                    ),
                     inventoryClickEvent -> {
                         IronTrapdoorListener.ironTrapdoorIds.remove(player.getUniqueId());
                         setIronTrapdoorItem(player, contents);
-                    }));
+                    }
+            ));
         }
     }
 
@@ -103,20 +110,26 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
         if (!BlockBreakListener.slabIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(2, true, contents);
-            contents.set(1, 2, ClickableItem.of(Items.create(Material.STONE_SLAB,
-                    "&6Custom Slab Breaking", ENABLED_LORE + SLAB_BREAKING_LORE),
+            contents.set(1, 2, ClickableItem.of(
+                    Items.create(Material.STONE_SLAB,
+                            "&6Custom Slab Breaking", ENABLED_LORE + SLAB_BREAKING_LORE
+                    ),
                     inventoryClickEvent -> {
                         BlockBreakListener.slabIds.add(player.getUniqueId());
                         setSlabItem(player, contents);
-                    }));
+                    }
+            ));
         } else {
             setEnabledGlassPanes(2, false, contents);
-            contents.set(1, 2, ClickableItem.of(Items.create(Material.STONE_SLAB,
-                    "&6Custom Slab Breaking", DISABLED_LORE + SLAB_BREAKING_LORE),
+            contents.set(1, 2, ClickableItem.of(
+                    Items.create(Material.STONE_SLAB,
+                            "&6Custom Slab Breaking", DISABLED_LORE + SLAB_BREAKING_LORE
+                    ),
                     inventoryClickEvent -> {
                         BlockBreakListener.slabIds.remove(player.getUniqueId());
                         setSlabItem(player, contents);
-                    }));
+                    }
+            ));
         }
     }
 
@@ -130,20 +143,26 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
         if (!TerracottaInteractListener.terracottaIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(3, true, contents);
-            contents.set(1, 3, ClickableItem.of(Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
-                    "&6Glazed Terracotta Rotating", ENABLED_LORE + GLAZED_ROTATING_LORE),
+            contents.set(1, 3, ClickableItem.of(
+                    Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
+                            "&6Glazed Terracotta Rotating", ENABLED_LORE + GLAZED_ROTATING_LORE
+                    ),
                     inventoryClickEvent -> {
                         TerracottaInteractListener.terracottaIds.add(player.getUniqueId());
                         setTerracottaItem(player, contents);
-                    }));
+                    }
+            ));
         } else {
             setEnabledGlassPanes(3, false, contents);
-            contents.set(1, 3, ClickableItem.of(Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
-                    "&6Glazed Terracotta Rotating", DISABLED_LORE + GLAZED_ROTATING_LORE),
+            contents.set(1, 3, ClickableItem.of(
+                    Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
+                            "&6Glazed Terracotta Rotating", DISABLED_LORE + GLAZED_ROTATING_LORE
+                    ),
                     inventoryClickEvent -> {
                         TerracottaInteractListener.terracottaIds.remove(player.getUniqueId());
                         setTerracottaItem(player, contents);
-                    }));
+                    }
+            ));
         }
 
     }
@@ -158,20 +177,32 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
         if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
             setEnabledGlassPanes(5, true, contents);
-            contents.set(1, 5, ClickableItem.of(Items.create(Material.ENDER_EYE,
-                    "&6Night Vision", ENABLED_LORE + NIGHT_VISION_LORE),
+            contents.set(1, 5, ClickableItem.of(
+                    Items.create(Material.ENDER_EYE,
+                            "&6Night Vision", ENABLED_LORE + NIGHT_VISION_LORE
+                    ),
                     inventoryClickEvent -> {
                         player.removePotionEffect(PotionEffectType.NIGHT_VISION);
                         setNightVisionItem(player, contents);
-                    }));
+                    }
+            ));
         } else {
             setEnabledGlassPanes(5, false, contents);
-            contents.set(1, 5, ClickableItem.of(Items.create(Material.ENDER_EYE,
-                    "&6Night Vision", DISABLED_LORE + NIGHT_VISION_LORE),
+            contents.set(1, 5, ClickableItem.of(
+                    Items.create(Material.ENDER_EYE,
+                            "&6Night Vision", DISABLED_LORE + NIGHT_VISION_LORE
+                    ),
                     inventoryClickEvent -> {
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
+                        player.addPotionEffect(new PotionEffect(
+                                PotionEffectType.NIGHT_VISION,
+                                Integer.MAX_VALUE,
+                                0,
+                                true,
+                                false
+                        ));
                         setNightVisionItem(player, contents);
-                    }));
+                    }
+            ));
         }
     }
 
@@ -185,23 +216,29 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
         if (NoClipManager.noClipPlayerIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(6, true, contents);
-            contents.set(1, 6, ClickableItem.of(Items.create(Material.COMPASS,
-                    "&6No Clip", ENABLED_LORE + NO_CLIP_LORE),
+            contents.set(1, 6, ClickableItem.of(
+                    Items.create(Material.COMPASS,
+                            "&6No Clip", ENABLED_LORE + NO_CLIP_LORE
+                    ),
                     inventoryClickEvent -> {
                         NoClipManager.noClipPlayerIds.remove(player.getUniqueId());
-                        if (player.getGameMode().equals(GameMode.SPECTATOR)){
+                        if (player.getGameMode().equals(GameMode.SPECTATOR)) {
                             player.setGameMode(GameMode.CREATIVE);
                         }
                         setNoClipItem(player, contents);
-                    }));
+                    }
+            ));
         } else {
             setEnabledGlassPanes(6, false, contents);
-            contents.set(1, 6, ClickableItem.of(Items.create(Material.COMPASS,
-                    "&6No Clip", DISABLED_LORE + NO_CLIP_LORE),
+            contents.set(1, 6, ClickableItem.of(
+                    Items.create(Material.COMPASS,
+                            "&6No Clip", DISABLED_LORE + NO_CLIP_LORE
+                    ),
                     inventoryClickEvent -> {
                         NoClipManager.noClipPlayerIds.add(player.getUniqueId());
                         setNoClipItem(player, contents);
-                    }));
+                    }
+            ));
         }
     }
 
@@ -215,20 +252,26 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
         if (PlayerMoveListener.enabledPlayers.contains(player.getUniqueId())) {
             setEnabledGlassPanes(7, true, contents);
-            contents.set(1, 7, ClickableItem.of(Items.create(Material.FEATHER,
-                    "&6Advanced Fly", ENABLED_LORE + ADVANCED_FLY_LORE),
+            contents.set(1, 7, ClickableItem.of(
+                    Items.create(Material.FEATHER,
+                            "&6Advanced Fly", ENABLED_LORE + ADVANCED_FLY_LORE
+                    ),
                     inventoryClickEvent -> {
                         PlayerMoveListener.enabledPlayers.remove(player.getUniqueId());
                         setFlyItem(player, contents);
-                    }));
+                    }
+            ));
         } else {
             setEnabledGlassPanes(7, false, contents);
-            contents.set(1, 7, ClickableItem.of(Items.create(Material.FEATHER,
-                    "&6Advanced Fly", DISABLED_LORE + ADVANCED_FLY_LORE),
+            contents.set(1, 7, ClickableItem.of(
+                    Items.create(Material.FEATHER,
+                            "&6Advanced Fly", DISABLED_LORE + ADVANCED_FLY_LORE
+                    ),
                     inventoryClickEvent -> {
                         PlayerMoveListener.enabledPlayers.add(player.getUniqueId());
                         setFlyItem(player, contents);
-                    }));
+                    }
+            ));
         }
     }
 
@@ -249,4 +292,5 @@ public class UtilitiesMenuProvider implements InventoryProvider {
         contents.set(0, col, ClickableItem.empty(NO_PERMISSION));
         contents.set(2, col, ClickableItem.empty(NO_PERMISSION));
     }
+
 }

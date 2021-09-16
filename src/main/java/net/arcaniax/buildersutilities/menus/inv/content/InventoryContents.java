@@ -72,8 +72,10 @@ public interface InventoryContents {
 
     InventoryContents fillBorders(ClickableItem item);
 
-    InventoryContents fillRect(int fromRow, int fromColumn,
-                               int toRow, int toColumn, ClickableItem item);
+    InventoryContents fillRect(
+            int fromRow, int fromColumn,
+            int toRow, int toColumn, ClickableItem item
+    );
 
     InventoryContents fillRect(SlotPos fromPos, SlotPos toPos, ClickableItem item);
 
@@ -116,10 +118,13 @@ public interface InventoryContents {
         }
 
         @Override
-        public SlotIterator newIterator(String id, SlotIterator.Type type, int startRow,
-                                        int startColumn) {
+        public SlotIterator newIterator(
+                String id, SlotIterator.Type type, int startRow,
+                int startColumn
+        ) {
             SlotIterator iterator = new SlotIterator.Impl(this, inv,
-                    type, startRow, startColumn);
+                    type, startRow, startColumn
+            );
 
             this.iterators.put(id, iterator);
             return iterator;
@@ -248,8 +253,10 @@ public interface InventoryContents {
         }
 
         @Override
-        public InventoryContents fillRect(int fromRow, int fromColumn, int toRow, int toColumn,
-                                          ClickableItem item) {
+        public InventoryContents fillRect(
+                int fromRow, int fromColumn, int toRow, int toColumn,
+                ClickableItem item
+        ) {
             for (int row = fromRow; row <= toRow; row++) {
                 for (int column = fromColumn; column <= toColumn; column++) {
                     if (row != fromRow && row != toRow && column != fromColumn && column != toColumn) {
@@ -266,7 +273,8 @@ public interface InventoryContents {
         @Override
         public InventoryContents fillRect(SlotPos fromPos, SlotPos toPos, ClickableItem item) {
             return fillRect(fromPos.getRow(), fromPos.getColumn(), toPos.getRow(), toPos.getColumn(),
-                    item);
+                    item
+            );
         }
 
         @SuppressWarnings("unchecked")

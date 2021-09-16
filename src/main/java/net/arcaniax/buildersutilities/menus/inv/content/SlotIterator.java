@@ -77,8 +77,10 @@ public interface SlotIterator {
         private boolean allowOverride = true;
         private int row, column;
 
-        public Impl(InventoryContents contents, SmartInventory inv,
-                    Type type, int startRow, int startColumn) {
+        public Impl(
+                InventoryContents contents, SmartInventory inv,
+                Type type, int startRow, int startColumn
+        ) {
 
             this.contents = contents;
             this.inv = inv;
@@ -89,8 +91,10 @@ public interface SlotIterator {
             this.column = startColumn;
         }
 
-        public Impl(InventoryContents contents, SmartInventory inv,
-                    Type type) {
+        public Impl(
+                InventoryContents contents, SmartInventory inv,
+                Type type
+        ) {
 
             this(contents, inv, type, 0, 0);
         }

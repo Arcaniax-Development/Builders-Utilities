@@ -31,7 +31,6 @@ import net.arcaniax.buildersutilities.menus.inv.content.InventoryProvider;
 import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.Items;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
@@ -41,7 +40,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BannerPatternMenuProvider implements InventoryProvider {
 
@@ -49,7 +47,10 @@ public class BannerPatternMenuProvider implements InventoryProvider {
             .create(Material.GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
     private static final ItemStack randomizeHead = Items.createHead(
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19",
-            1, "&7Click to randomise", "");
+            1,
+            "&7Click to randomise",
+            ""
+    );
     //    private static final ItemStack currentColor = BannerUtil.createBanner("&a", 1, DyeColor.WHITE, "");
     private static final ItemStack closeButton = Items
             .create(Material.BARRIER, (short) 0, 1, "&cClick to close", "");
@@ -60,17 +61,33 @@ public class BannerPatternMenuProvider implements InventoryProvider {
     public void init(Player player, InventoryContents contents) {
         contents.fill(ClickableItem.empty(grayPane));
         contents.set(0, 1, ClickableItem.of(randomizeHead, inventoryClickEvent -> selectRandomPattern(player)));
-        contents.set(0, 4, ClickableItem.of(BannerUtil.currentBanner.get(player.getUniqueId()), inventoryClickEvent -> getBanner(player)));
+        contents.set(
+                0,
+                4,
+                ClickableItem.of(BannerUtil.currentBanner.get(player.getUniqueId()), inventoryClickEvent -> getBanner(player))
+        );
         contents.set(0, 7, ClickableItem.of(closeButton, inventoryClickEvent -> contents.inventory().close(player)));
 
         int row = 1;
         int column = 0;
-        for (PatternType pattern : BannerUtil.allPatterns){
+        for (PatternType pattern : BannerUtil.allPatterns) {
             List<Pattern> patterns = new ArrayList<>();
             patterns.add(new Pattern(BannerUtil.selectedColor.get(player.getUniqueId()), pattern));
-            contents.set(row, column, ClickableItem.of(BannerUtil.createBanner("&3" + StringUtils.capitalize(pattern.toString().toLowerCase().replace("_", " ")), BannerUtil.getOppositeBaseColor(BannerUtil.selectedColor.get(player.getUniqueId())), "&7__&7click to select", patterns), inventoryClickEvent -> selectPattern(player, pattern)));
+            contents.set(
+                    row,
+                    column,
+                    ClickableItem.of(BannerUtil.createBanner(
+                            "&3" + StringUtils.capitalize(pattern
+                                    .toString()
+                                    .toLowerCase()
+                                    .replace("_", " ")),
+                            BannerUtil.getOppositeBaseColor(BannerUtil.selectedColor.get(player.getUniqueId())),
+                            "&7__&7click to select",
+                            patterns
+                    ), inventoryClickEvent -> selectPattern(player, pattern))
+            );
             column++;
-            if (column==9){
+            if (column == 9) {
                 column = 0;
                 row++;
             }
@@ -89,36 +106,34 @@ public class BannerPatternMenuProvider implements InventoryProvider {
 //        }
     }
 
-    private void selectRandomPattern(Player player){
+    private void selectRandomPattern(Player player) {
         ItemStack banner = BannerUtil.currentBanner.get(player.getUniqueId());
 
 
         PatternType pattern = BannerUtil.getRandomPattern();
         BannerUtil.currentBanner.put(player.getUniqueId(), BannerUtil.addPattern(
                 banner, new Pattern(BannerUtil.selectedColor.get(player.getUniqueId()), pattern)));
-        if (BannerUtil.getPatterns(banner).size()==15){
+        if (BannerUtil.getPatterns(banner).size() == 15) {
             getBanner(player);
-        }
-        else{
+        } else {
             Menus.BANNER_MENU_COLOR.open(player);
         }
 
     }
 
-    private void selectPattern(Player player, PatternType patternType){
+    private void selectPattern(Player player, PatternType patternType) {
         ItemStack banner = BannerUtil.currentBanner.get(player.getUniqueId());
 
         BannerUtil.currentBanner.put(player.getUniqueId(), BannerUtil.addPattern(
                 banner, new Pattern(BannerUtil.selectedColor.get(player.getUniqueId()), patternType)));
-        if (BannerUtil.getPatterns(banner).size()==15){
+        if (BannerUtil.getPatterns(banner).size() == 15) {
             getBanner(player);
-        }
-        else{
+        } else {
             Menus.BANNER_MENU_COLOR.open(player);
         }
     }
 
-    private void getBanner(Player player){
+    private void getBanner(Player player) {
         ItemStack banner = BannerUtil.currentBanner.get(player.getUniqueId());
         ItemMeta meta = banner.getItemMeta();
         meta.setDisplayName("");
@@ -128,4 +143,5 @@ public class BannerPatternMenuProvider implements InventoryProvider {
         player.closeInventory();
         BannerUtil.currentBanner.remove(player.getUniqueId());
     }
+
 }

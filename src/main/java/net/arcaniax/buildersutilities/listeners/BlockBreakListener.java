@@ -40,6 +40,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class BlockBreakListener implements Listener {
+
     public static Set<UUID> slabIds;
 
     public BlockBreakListener() {

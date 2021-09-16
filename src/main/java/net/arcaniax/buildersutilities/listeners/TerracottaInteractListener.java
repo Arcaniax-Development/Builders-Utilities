@@ -42,6 +42,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class TerracottaInteractListener implements Listener {
+
     public static Set<UUID> terracottaIds;
 
     public TerracottaInteractListener() {

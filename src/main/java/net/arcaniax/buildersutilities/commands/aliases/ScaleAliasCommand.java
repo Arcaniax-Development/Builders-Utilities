@@ -31,6 +31,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class ScaleAliasCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
@@ -55,4 +56,5 @@ public class ScaleAliasCommand implements ICommand {
 
         BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/deform x/=" + size + ";y/=" + size + ";z/=" + size);
     }
+
 }

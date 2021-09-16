@@ -28,24 +28,24 @@ import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.commands.AdvancedFlyCommand;
 import net.arcaniax.buildersutilities.commands.BannerCommand;
 import net.arcaniax.buildersutilities.commands.ColorCommand;
-import net.arcaniax.buildersutilities.commands.SecretBlockCommand;
-import net.arcaniax.buildersutilities.commands.NoClipCommand;
 import net.arcaniax.buildersutilities.commands.NightVisionCommand;
+import net.arcaniax.buildersutilities.commands.NoClipCommand;
+import net.arcaniax.buildersutilities.commands.SecretBlockCommand;
 import net.arcaniax.buildersutilities.commands.UtilsCommand;
 import net.arcaniax.buildersutilities.commands.aliases.ConvexSelectionAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.CopyAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.CuboidSelectionAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.DeformRotateAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.FlipAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.FlySpeedAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.PasteAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.PosOneAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.PosTwoAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.SetAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.ReplaceAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.PasteAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.FlipAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.CopyAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.DeformRotateAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.TwistAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.ScaleAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.SetAliasCommand;
+import net.arcaniax.buildersutilities.commands.aliases.TwistAliasCommand;
 import net.arcaniax.buildersutilities.commands.aliases.WalkSpeedAliasCommand;
-import net.arcaniax.buildersutilities.commands.aliases.FlySpeedAliasCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -56,6 +56,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandForwarder implements CommandExecutor {
+
     private final Map<String, ICommand> commands;
 
     public CommandForwarder() {
@@ -104,4 +105,5 @@ public class CommandForwarder implements CommandExecutor {
         }
         return true;
     }
+
 }

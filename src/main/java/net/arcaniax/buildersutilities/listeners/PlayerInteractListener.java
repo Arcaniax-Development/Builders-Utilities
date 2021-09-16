@@ -48,13 +48,13 @@ public class PlayerInteractListener implements Listener {
                 && event.getClickedBlock().getType().equals(Material.DRAGON_EGG)
                 && Settings.preventDragonEggTeleport
                 && !(event.getPlayer().isSneaking()
-                   && (!event.getPlayer().getInventory().getItemInOffHand().getType().isAir()
-                       || !event.getPlayer().getInventory().getItemInMainHand().getType().isAir()))
+                && (!event.getPlayer().getInventory().getItemInOffHand().getType().isAir()
+                || !event.getPlayer().getInventory().getItemInMainHand().getType().isAir()))
         ) {
             event.setCancelled(true);
             if (Settings.sendDebugMessages) {
                 logger.info(
-                    "Dragon egg teleport was cancelled because prevent-dragon-egg-teleport: true");
+                        "Dragon egg teleport was cancelled because prevent-dragon-egg-teleport: true");
             }
         }
     }
@@ -72,11 +72,12 @@ public class PlayerInteractListener implements Listener {
                     event.setCancelled(true);
                     if (Settings.sendDebugMessages) {
                         logger.info(
-                            "Soil trampling was cancelled because disable-soil-trample: true");
+                                "Soil trampling was cancelled because disable-soil-trample: true");
                     }
                 }
             }
         }
 
     }
+
 }

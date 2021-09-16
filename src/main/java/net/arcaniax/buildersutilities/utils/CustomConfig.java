@@ -24,6 +24,7 @@
  */
 package net.arcaniax.buildersutilities.utils;
 
+import org.apache.logging.log4j.Logger;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -34,8 +35,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import org.apache.logging.log4j.Logger;
 
 public class CustomConfig {
 

@@ -33,6 +33,7 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 public class NoClipCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.noclip")) {
@@ -53,4 +54,5 @@ public class NoClipCommand implements ICommand {
             player.sendMessage(BuildersUtilities.MSG_PREFIX + "NoClip " + ChatColor.GREEN + "enabled");
         }
     }
+
 }

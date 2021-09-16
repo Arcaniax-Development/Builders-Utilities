@@ -31,6 +31,7 @@ import net.arcaniax.buildersutilities.menus.Menus;
 import org.bukkit.entity.Player;
 
 public class UtilsCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.gui")) {
@@ -42,4 +43,5 @@ public class UtilsCommand implements ICommand {
 
         Menus.TOGGLE_MENU.open(player);
     }
+
 }

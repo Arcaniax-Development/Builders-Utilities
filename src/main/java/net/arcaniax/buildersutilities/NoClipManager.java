@@ -93,4 +93,5 @@ public class NoClipManager {
                 || player.getLocation().add(0, 1, -0.4).getBlock().getType().isSolid()
                 || player.getLocation().add(0, +1.9, 0).getBlock().getType().isSolid();
     }
+
 }

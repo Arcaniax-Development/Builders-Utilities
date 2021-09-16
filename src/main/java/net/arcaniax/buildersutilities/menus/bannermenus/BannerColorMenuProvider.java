@@ -38,7 +38,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class BannerColorMenuProvider implements InventoryProvider {
 
@@ -47,7 +46,10 @@ public class BannerColorMenuProvider implements InventoryProvider {
             .create(Material.GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
     private static final ItemStack randomizeHead = Items.createHead(
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19",
-            1, "&7Click to randomise", "");
+            1,
+            "&7Click to randomise",
+            ""
+    );
     //    private static final ItemStack currentColor = BannerUtil.createBanner("&a", 1, DyeColor.WHITE, "");
     private static final ItemStack closeButton = Items
             .create(Material.BARRIER, (short) 0, 1, "&cClick to close", "");
@@ -58,15 +60,29 @@ public class BannerColorMenuProvider implements InventoryProvider {
     public void init(Player player, InventoryContents contents) {
         contents.fill(ClickableItem.empty(grayPane));
         contents.set(0, 1, ClickableItem.of(randomizeHead, inventoryClickEvent -> selectRandomColor(player)));
-        contents.set(0, 4, ClickableItem.of(BannerUtil.currentBanner.get(player.getUniqueId()), inventoryClickEvent -> getBanner(player)));
+        contents.set(
+                0,
+                4,
+                ClickableItem.of(BannerUtil.currentBanner.get(player.getUniqueId()), inventoryClickEvent -> getBanner(player))
+        );
         contents.set(0, 7, ClickableItem.of(closeButton, inventoryClickEvent -> contents.inventory().close(player)));
 
         int row = 2;
         int column = 1;
-        for (DyeColor color : BannerUtil.allColors){
-            contents.set(row, column, ClickableItem.of(BannerUtil.createDye("&3" + StringUtils.capitalize(color.toString().toLowerCase().replace("_", " ")), color, "&7__&7click to select"), inventoryClickEvent -> selectColor(player, color)));
+        for (DyeColor color : BannerUtil.allColors) {
+            contents.set(
+                    row,
+                    column,
+                    ClickableItem.of(
+                            BannerUtil.createDye("&3" + StringUtils.capitalize(color
+                                    .toString()
+                                    .toLowerCase()
+                                    .replace("_", " ")), color, "&7__&7click to select"),
+                            inventoryClickEvent -> selectColor(player, color)
+                    )
+            );
             column++;
-            if (column==9){
+            if (column == 9) {
                 column = 1;
                 row++;
             }
@@ -85,18 +101,18 @@ public class BannerColorMenuProvider implements InventoryProvider {
 //        }
     }
 
-    private void selectRandomColor(Player player){
+    private void selectRandomColor(Player player) {
         DyeColor dyeColor = BannerUtil.getRandomDye();
         BannerUtil.selectedColor.put(player.getUniqueId(), dyeColor);
         Menus.BANNER_MENU_PATTERN.open(player);
     }
 
-    private void selectColor(Player player, DyeColor dyeColor){
+    private void selectColor(Player player, DyeColor dyeColor) {
         BannerUtil.selectedColor.put(player.getUniqueId(), dyeColor);
         Menus.BANNER_MENU_PATTERN.open(player);
     }
 
-    private void getBanner(Player player){
+    private void getBanner(Player player) {
         ItemStack banner = BannerUtil.currentBanner.get(player.getUniqueId());
         ItemMeta meta = banner.getItemMeta();
         meta.setDisplayName("");
@@ -106,4 +122,5 @@ public class BannerColorMenuProvider implements InventoryProvider {
         player.closeInventory();
         BannerUtil.currentBanner.remove(player.getUniqueId());
     }
+
 }

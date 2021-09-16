@@ -60,4 +60,5 @@ public class Settings {
         sendErrorMessages = customConfig.get("send-error-messages", Boolean.class, true);
         sendDebugMessages = customConfig.get("send-debug-messages", Boolean.class, false);
     }
+
 }

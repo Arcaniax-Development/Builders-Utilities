@@ -31,9 +31,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class PlayerMoveListener implements Listener {
+
     private static final List<String> slower = new ArrayList<>();
     private static final List<String> slower2 = new ArrayList<>();
     public static Set<UUID> enabledPlayers = new HashSet<>();
@@ -55,7 +61,10 @@ public class PlayerMoveListener implements Listener {
             if (!enabledPlayers.contains(e.getPlayer().getUniqueId())) {
                 return;
             }
-            Double speed = e.getFrom().clone().add(0, -e.getFrom().getY(), 0).distance(e.getTo().clone().add(0, -e.getTo().getY(), 0));
+            Double speed = e.getFrom().clone().add(0, -e.getFrom().getY(), 0).distance(e
+                    .getTo()
+                    .clone()
+                    .add(0, -e.getTo().getY(), 0));
 
             if (Math.abs(e.getFrom().getYaw() - e.getTo().getYaw()) > 2.5) {
                 return;
@@ -93,4 +102,5 @@ public class PlayerMoveListener implements Listener {
             }
         }
     }
+
 }

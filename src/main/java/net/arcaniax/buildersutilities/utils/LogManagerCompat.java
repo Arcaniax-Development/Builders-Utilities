@@ -46,4 +46,5 @@ public class LogManagerCompat {
         // 2 - caller caller
         return lazyStack.get(2).getClassName();
     }
+
 }

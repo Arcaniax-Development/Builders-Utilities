@@ -32,6 +32,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class AdvancedFlyCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.advancedfly")) {
@@ -47,4 +48,5 @@ public class AdvancedFlyCommand implements ICommand {
             player.sendMessage(BuildersUtilities.MSG_PREFIX + "Advanced Fly " + ChatColor.RED + "disabled");
         }
     }
+
 }

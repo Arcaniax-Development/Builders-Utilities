@@ -33,6 +33,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class NightVisionCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.nightvision")) {
@@ -47,7 +48,8 @@ public class NightVisionCommand implements ICommand {
             player.sendMessage(BuildersUtilities.MSG_PREFIX + "Night Vision " + ChatColor.RED + "disabled");
         } else {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
-            player.sendMessage(BuildersUtilities.MSG_PREFIX + "Night Vision " + ChatColor.GREEN +  "enabled");
+            player.sendMessage(BuildersUtilities.MSG_PREFIX + "Night Vision " + ChatColor.GREEN + "enabled");
         }
     }
+
 }

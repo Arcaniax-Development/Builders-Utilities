@@ -30,6 +30,7 @@ import net.arcaniax.buildersutilities.commands.system.ICommand;
 import org.bukkit.entity.Player;
 
 public class WalkSpeedAliasCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
@@ -46,6 +47,7 @@ public class WalkSpeedAliasCommand implements ICommand {
             }
         }
 
-        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "speed walk " + builder.toString());
+        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "speed walk " + builder);
     }
+
 }

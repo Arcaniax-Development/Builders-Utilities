@@ -30,6 +30,7 @@ import net.arcaniax.buildersutilities.commands.system.ICommand;
 import org.bukkit.entity.Player;
 
 public class PasteAliasCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
@@ -46,6 +47,7 @@ public class PasteAliasCommand implements ICommand {
             }
         }
 
-        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/paste " + builder.toString());
+        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/paste " + builder);
     }
+
 }

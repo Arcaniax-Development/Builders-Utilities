@@ -30,6 +30,7 @@ import net.arcaniax.buildersutilities.commands.system.ICommand;
 import org.bukkit.entity.Player;
 
 public class FlySpeedAliasCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
@@ -46,6 +47,7 @@ public class FlySpeedAliasCommand implements ICommand {
             }
         }
 
-        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "speed fly " + builder.toString());
+        BuildersUtilities.getInstance().getServer().dispatchCommand(player, "speed fly " + builder);
     }
+
 }

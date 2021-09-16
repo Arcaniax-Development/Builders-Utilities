@@ -31,6 +31,7 @@ import net.arcaniax.buildersutilities.menus.Menus;
 import org.bukkit.entity.Player;
 
 public class SecretBlockCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.secretblocks")) {
@@ -42,4 +43,5 @@ public class SecretBlockCommand implements ICommand {
 
         Menus.SECRET_BLOCK_MENU.open(player);
     }
+
 }

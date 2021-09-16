@@ -106,8 +106,10 @@ public final class BuildersUtilities extends JavaPlugin {
 
         CommandExecutor commandExecutor = new CommandExecutor() {
             @Override
-            public boolean onCommand(CommandSender commandSender, Command command, String s,
-                                     String[] strings) {
+            public boolean onCommand(
+                    CommandSender commandSender, Command command, String s,
+                    String[] strings
+            ) {
                 String[] commandArgs = new String[strings.length + 1];
                 commandArgs[0] = s;
                 System.arraycopy(strings, 0, commandArgs, 1, strings.length);
@@ -115,7 +117,7 @@ public final class BuildersUtilities extends JavaPlugin {
                 return true;
             }
         };
-        
+
         getCommand("butil").setExecutor(commandExecutor);
         getCommand("banner").setExecutor(commandExecutor);
         getCommand("banner").setExecutor(commandExecutor);
@@ -157,4 +159,5 @@ public final class BuildersUtilities extends JavaPlugin {
     public NmsManager getNmsManager() {
         return nmsManager;
     }
+
 }

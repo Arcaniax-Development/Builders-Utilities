@@ -31,6 +31,7 @@ import net.arcaniax.buildersutilities.menus.Menus;
 import org.bukkit.entity.Player;
 
 public class ColorCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.color")) {
@@ -42,4 +43,5 @@ public class ColorCommand implements ICommand {
 
         Menus.COLOR_MENU.open(player);
     }
+
 }

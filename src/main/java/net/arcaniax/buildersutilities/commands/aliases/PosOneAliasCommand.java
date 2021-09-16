@@ -30,6 +30,7 @@ import net.arcaniax.buildersutilities.commands.system.ICommand;
 import org.bukkit.entity.Player;
 
 public class PosOneAliasCommand implements ICommand {
+
     @Override
     public void execute(Player player, String[] args) {
         if (!player.hasPermission("builders.util.aliases")) {
@@ -42,4 +43,5 @@ public class PosOneAliasCommand implements ICommand {
         BuildersUtilities.getInstance().getServer().dispatchCommand(player, "/pos1");
 
     }
+
 }

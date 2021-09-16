@@ -9,6 +9,9 @@ plugins {
     id("org.cadixdev.licenser") version "0.6.1"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.ajoberstar.grgit") version "4.1.0"
+
+    idea
+    eclipse
 }
 
 the<JavaPluginExtension>().toolchain {
@@ -33,10 +36,6 @@ repositories {
         name = "Mojang"
         url = uri("https://libraries.minecraft.net/")
     }
-    maven {
-        name = "IntellectualSites"
-        url = uri("https://mvn.intellectualsites.com/content/groups/public/")
-    }
 }
 
 dependencies {
@@ -45,7 +44,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:8.4.0")
-    implementation("org.incendo.serverlib:ServerLib:2.2.1")
+    implementation("dev.notmyfault.serverlib:ServerLib:2.3.0")
     implementation("io.papermc:paperlib:1.0.6")
     compileOnlyApi("org.apache.logging.log4j:log4j-api:2.14.1")
 }
@@ -68,7 +67,7 @@ version = String.format("%s-%s", rootProject.version, buildNumber)
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
     dependencies {
-        relocate("com.cryptomorin.xseries", "net.arcaniax.utils") {
+        relocate("com.cryptomorin.xseries", "net.arcaniax.buildersutilities.xseries") {
             include(dependency("com.github.cryptomorin:XSeries:8.4.0"))
         }
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
@@ -79,7 +78,7 @@ tasks.named<ShadowJar>("shadowJar") {
             include(dependency("io.papermc:paperlib:1.0.6"))
         }
         relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
-            include(dependency("org.incendo.serverlib:ServerLib:2.2.1"))
+            include(dependency("dev.notmyfault.serverlib:ServerLib:2.3.0"))
         }
     }
     minimize()

@@ -41,7 +41,7 @@ public class ExplosionListener implements Listener {
             event.setCancelled(true);
             if (Settings.sendDebugMessages) {
                 logger.info(
-                    "Explosion was cancelled because disable-explosions: true");
+                        "Explosion was cancelled because disable-explosions: true");
             }
         }
     }

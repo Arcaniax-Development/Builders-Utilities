@@ -33,9 +33,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 public class BannerUtil {
+
     public static final HashMap<UUID, ItemStack> currentBanner = new HashMap<>();
     public static final HashMap<UUID, DyeColor> selectedColor = new HashMap<>();
 
@@ -71,7 +76,13 @@ public class BannerUtil {
     }
 
     public static ItemStack createBanner(String name, DyeColor base, String lore, List<Pattern> patterns) {
-        ItemStack item = Items.create(XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial(), (short) 0, 1, name, "");
+        ItemStack item = Items.create(
+                XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial(),
+                (short) 0,
+                1,
+                name,
+                ""
+        );
         BannerMeta meta = (BannerMeta) item.getItemMeta();
 
         meta.setPatterns(patterns);
@@ -88,7 +99,13 @@ public class BannerUtil {
     }
 
     public static ItemStack createDye(String name, DyeColor base, String lore) {
-        ItemStack item = Items.create(XMaterial.matchXMaterial(base.toString() + "_DYE").get().parseMaterial(), (short) 0, 1, name, "");
+        ItemStack item = Items.create(
+                XMaterial.matchXMaterial(base.toString() + "_DYE").get().parseMaterial(),
+                (short) 0,
+                1,
+                name,
+                ""
+        );
         ItemMeta meta = item.getItemMeta();
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
@@ -105,7 +122,13 @@ public class BannerUtil {
     public static ItemStack createBanner(String name, DyeColor base, String lore) {
         XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial();
 
-        ItemStack item = Items.create(XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial(), (short) 0, 1, name, "");
+        ItemStack item = Items.create(
+                XMaterial.matchXMaterial(base + "_BANNER").get().parseMaterial(),
+                (short) 0,
+                1,
+                name,
+                ""
+        );
         BannerMeta meta = (BannerMeta) item.getItemMeta();
         if (!lore.equals("")) {
             String[] loreListArray = lore.split("__");
@@ -120,7 +143,13 @@ public class BannerUtil {
     }
 
     public static ItemStack createBanner(String name, int amount, DyeColor base, String lore, Pattern pat) {
-        ItemStack item = Items.create(XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial(), (short) 0, 1, name, "");
+        ItemStack item = Items.create(
+                XMaterial.matchXMaterial(base.toString() + "_BANNER").get().parseMaterial(),
+                (short) 0,
+                1,
+                name,
+                ""
+        );
         BannerMeta meta = (BannerMeta) item.getItemMeta();
         meta.addPattern(pat);
         if (!lore.equals("")) {
@@ -164,8 +193,8 @@ public class BannerUtil {
         return allPatterns.get(random.nextInt(allPatterns.size()));
     }
 
-    public static DyeColor getOppositeBaseColor(DyeColor dyeColor){
-        switch (dyeColor){
+    public static DyeColor getOppositeBaseColor(DyeColor dyeColor) {
+        switch (dyeColor) {
             case RED:
             case BLUE:
             case CYAN:
@@ -187,5 +216,6 @@ public class BannerUtil {
                 return DyeColor.BLACK;
         }
     }
+
 }
 
