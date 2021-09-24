@@ -33,36 +33,35 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Arrays;
+
 public class SecretBlockMenuProvider implements InventoryProvider {
 
-    private static final ItemStack SPAWNER = Items.create(Material.SPAWNER, (short) 0, 1, ChatColor.BLUE + "Spawner", "");
-    private static final ItemStack BARRIER = Items.create(Material.BARRIER, (short) 0, 1, ChatColor.RED + "Barrier", "");
+    private static final ItemStack SPAWNER = Items.create(Material.SPAWNER, ChatColor.BLUE + "Spawner", "");
+    private static final ItemStack BARRIER = Items.create(Material.BARRIER, ChatColor.RED + "Barrier", "");
     private static final ItemStack DRAGON_EGG = Items.create(
             Material.DRAGON_EGG,
-            (short) 0,
-            1,
             ChatColor.LIGHT_PURPLE + "Dragon Egg",
             ""
     );
     private static final ItemStack STRUCTURE_VOID = Items.create(
             Material.STRUCTURE_VOID,
-            (short) 0,
-            1,
             ChatColor.DARK_AQUA + "Structure Void",
             ""
     );
     private static final ItemStack DEBUG_STICK = Items.create(
             Material.DEBUG_STICK,
-            (short) 0,
-            1,
             ChatColor.AQUA + "Debug Stick",
             "&7Only works as operator in creative."
     );
     private static final ItemStack STRUCTURE_BLOCK = Items.create(
             Material.STRUCTURE_BLOCK,
-            (short) 0,
-            1,
             ChatColor.AQUA + "Structure Block",
+            ""
+    );
+    private static final ItemStack LIGHT = Items.create(
+            "LIGHT",
+            ChatColor.GOLD + "Light Block",
             ""
     );
 
@@ -82,6 +81,9 @@ public class SecretBlockMenuProvider implements InventoryProvider {
                 5,
                 ClickableItem.of(STRUCTURE_BLOCK, inventoryClickEvent -> player.getInventory().addItem(STRUCTURE_BLOCK))
         );
+        if (LIGHT != null) {
+            contents.set(0, 6, ClickableItem.of(LIGHT, inventoryClickEvent -> player.getInventory().addItem(LIGHT)));
+        }
     }
 
 
