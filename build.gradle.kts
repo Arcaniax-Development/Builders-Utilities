@@ -1,6 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.cadixdev.gradle.licenser.LicenseExtension
 import org.ajoberstar.grgit.Grgit
+import org.ec4j.gradle.EditorconfigExtension
 
 plugins {
     java
@@ -9,6 +10,7 @@ plugins {
     id("org.cadixdev.licenser") version "0.6.1"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.ajoberstar.grgit") version "4.1.0"
+    id("org.ec4j.editorconfig") version "0.0.3"
 
     idea
     eclipse
@@ -90,6 +92,10 @@ configure<LicenseExtension> {
     include("**/*.java")
 }
 
+configure<EditorconfigExtension> {
+    includes = listOf("**/*.java")
+}
+
 tasks.named<Copy>("processResources") {
     filesMatching("plugin.yml") {
         expand("version" to project.version)
@@ -98,4 +104,5 @@ tasks.named<Copy>("processResources") {
 
 tasks.named("build").configure {
     dependsOn("shadowJar")
+    dependsOn("editorconfigCheck")
 }
