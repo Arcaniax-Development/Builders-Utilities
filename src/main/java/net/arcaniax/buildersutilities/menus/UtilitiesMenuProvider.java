@@ -51,7 +51,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
 
     private static final String IRON_TRAPDOOR_LORE = "__&c__&8&oActs like wooden trapdoors";
     private static final String SLAB_BREAKING_LORE = "__&c__&8&oHold any slab to break double slab blocks";
-    private static final String GLAZED_ROTATING_LORE = "__&c__&8&oShift right click with emtpy hand";
+    private static final String GLAZED_ROTATING_LORE = "__&c__&8&oShift right click with empty hand";
 
     private static final String NIGHT_VISION_LORE = "__&c__&8&oSee in the dark";
     private static final String NO_CLIP_LORE = "__&c__&8&oFly through blocks with ease";
@@ -68,7 +68,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
     }
 
     private void setIronTrapdoorItem(Player player, InventoryContents contents) {
-        if (!player.hasPermission("builders.util.irontrapdoor")) {
+        if (!player.hasPermission("builders.util.trapdoor")) {
             setNoPermission(1, contents);
             contents.set(1, 1, ClickableItem.empty(
                     Items.create(Material.IRON_TRAPDOOR, "&6Iron Trapdoor Interaction", "&7&lNo Permission")));

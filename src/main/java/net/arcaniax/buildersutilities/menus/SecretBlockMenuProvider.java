@@ -33,8 +33,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-
 public class SecretBlockMenuProvider implements InventoryProvider {
 
     private static final ItemStack SPAWNER = Items.create(Material.SPAWNER, ChatColor.BLUE + "Spawner", "");

@@ -71,8 +71,8 @@ permissions:
   builders.util.terracotta:
     default: true
   builders.util.nightvision:
-    default: false
+    default: op
   builders.util.noclip:
-    default: false
+    default: op
   builders.util.advancedfly:
-    default: false
+    default: op
