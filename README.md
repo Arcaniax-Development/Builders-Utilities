@@ -19,7 +19,7 @@ This plugin is a collection of a lot of tiny features that help with building.
 * [Download](https://www.spigotmc.org/resources/builders-utilities.42361/)
 * [Development Builds](https://ci.athion.net/job/Builders-Utilities/)
 * [Discord](https://discord.gg/jpRVrjd)
-* [Issues](https://github.com/Brennian/Builders-Utilities/issues)
+* [Issues](https://github.com/Arcaniax-Development/Builders-Utilities/issues)
 
 # Building
 Gradle is the recommended way to build the project. Use `./gradlew build` in the main project directory to build the project.
@@ -28,4 +28,4 @@ Gradle is the recommended way to build the project. Use `./gradlew build` in the
 See [here](https://github.com/Brennian/Builders-Utilities/blob/master/CONTRIBUTING.md)
 
 ## Suggestions
-Suggestions are welcome! We have a separate issue form for suggestions, that can be found [here](https://github.com/Brennian/Builders-Utilities/issues).
+Suggestions are welcome! We have a separate issue form for suggestions, which can be found [here](https://github.com/Arcaniax-Development/Builders-Utilities/issues).
