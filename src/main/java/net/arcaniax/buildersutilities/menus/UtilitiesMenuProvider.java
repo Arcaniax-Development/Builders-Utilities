@@ -68,7 +68,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
     }
 
     private void setIronTrapdoorItem(Player player, InventoryContents contents) {
-        if (!player.hasPermission("builders.util.irontrapdoor")) {
+        if (!player.hasPermission("builders.util.trapdoor")) {
             setNoPermission(1, contents);
             contents.set(1, 1, ClickableItem.empty(
                     Items.create(Material.IRON_TRAPDOOR, "&6Iron Trapdoor Interaction", "&7&lNo Permission")));
