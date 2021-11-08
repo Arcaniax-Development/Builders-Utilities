@@ -126,8 +126,6 @@ public final class BuildersUtilities extends JavaPlugin {
         getCommand("blocks").setExecutor(commandExecutor);
         getCommand("n").setExecutor(commandExecutor);
         getCommand("nc").setExecutor(commandExecutor);
-        getCommand("/1").setExecutor(commandExecutor);
-        getCommand("/2").setExecutor(commandExecutor);
         getCommand("/cuboid").setExecutor(commandExecutor);
         getCommand("/convex").setExecutor(commandExecutor);
         getCommand("/s").setExecutor(commandExecutor);
