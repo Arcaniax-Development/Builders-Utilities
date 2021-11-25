@@ -44,7 +44,7 @@ dependencies {
     implementation("org.bstats:bstats-base:2.2.1")
     implementation("com.github.cryptomorin:XSeries:8.4.0")
     implementation("dev.notmyfault.serverlib:ServerLib:2.3.1")
-    implementation("io.papermc:paperlib:1.0.6")
+    implementation("io.papermc:paperlib:1.0.7")
     compileOnly("org.apache.logging.log4j:log4j-api:2.14.1")
 }
 
@@ -74,7 +74,7 @@ tasks.named<ShadowJar>("shadowJar") {
             include(dependency("org.bstats:bstats-bukkit:2.2.1"))
         }
         relocate("io.papermc.lib", "net.arcaniax.buildersutilities.paperlib") {
-            include(dependency("io.papermc:paperlib:1.0.6"))
+            include(dependency("io.papermc:paperlib:1.0.7"))
         }
         relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
             include(dependency("dev.notmyfault.serverlib:ServerLib:2.3.1"))
