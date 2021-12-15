@@ -6,7 +6,7 @@ plugins {
     java
 
     id("org.cadixdev.licenser") version "0.6.1"
-    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.1"
     id("org.ajoberstar.grgit") version "4.1.1"
 
     idea
