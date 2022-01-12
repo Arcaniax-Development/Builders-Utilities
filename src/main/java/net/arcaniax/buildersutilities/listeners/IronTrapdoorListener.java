@@ -28,6 +28,7 @@ import net.arcaniax.buildersutilities.BuildersUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.event.EventHandler;
@@ -82,6 +83,7 @@ public class IronTrapdoorListener implements Listener {
             TrapDoor trapDoor = (TrapDoor) b.getBlockData();
             trapDoor.setOpen(!trapDoor.isOpen());
             b.setBlockData(trapDoor);
+            b.getWorld().playSound(b.getLocation(), trapDoor.isOpen() ? Sound.BLOCK_IRON_TRAPDOOR_CLOSE : Sound.BLOCK_IRON_TRAPDOOR_OPEN, 1F, 1F);
         }, 0L);
         e.setCancelled(true);
     }
