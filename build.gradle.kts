@@ -42,7 +42,7 @@ dependencies {
     compileOnly("com.mojang:authlib:1.5.25")
     implementation("org.bstats:bstats-bukkit:2.2.1")
     implementation("org.bstats:bstats-base:2.2.1")
-    implementation("com.github.cryptomorin:XSeries:8.5.0.1")
+    implementation("com.github.cryptomorin:XSeries:8.6.2")
     implementation("dev.notmyfault.serverlib:ServerLib:2.3.1")
     implementation("io.papermc:paperlib:1.0.7")
     compileOnly("org.apache.logging.log4j:log4j-api:2.17.0")
@@ -67,7 +67,7 @@ tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
     dependencies {
         relocate("com.cryptomorin.xseries", "net.arcaniax.buildersutilities.xseries") {
-            include(dependency("com.github.cryptomorin:XSeries:8.5.0.1"))
+            include(dependency("com.github.cryptomorin:XSeries:8.6.2"))
         }
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
             include(dependency("org.bstats:bstats-base:2.2.1"))
