@@ -11,7 +11,7 @@ jobs:
       - name : "Validate Gradle Wrapper"
         uses : "gradle/wrapper-validation-action@v1"
       - name : "Grab SHA"
-        uses : "benjlevesque/short-sha@v1"
+        uses : "benjlevesque/short-sha@v2.0"
         id : "short-sha"
         with :
           length : "7"
