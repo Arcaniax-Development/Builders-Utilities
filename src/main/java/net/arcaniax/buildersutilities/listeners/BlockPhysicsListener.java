@@ -68,7 +68,8 @@ public class BlockPhysicsListener implements Listener {
                     e.getChangedType().name().toLowerCase().contains("fence") ||
                     e.getChangedType().name().toLowerCase().contains("pane") ||
                     e.getChangedType().name().toLowerCase().contains("wall") ||
-                    e.getChangedType().name().toLowerCase().contains("bar")) {
+                    e.getChangedType().name().toLowerCase().contains("bar") ||
+                    e.getChangedType().name().toLowerCase().contains("door")) {
                 return;
             }
         } catch (Exception ex) {
