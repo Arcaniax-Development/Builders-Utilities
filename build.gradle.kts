@@ -1,11 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.cadixdev.gradle.licenser.LicenseExtension
+import com.diffplug.gradle.spotless.SpotlessPlugin
 import org.ajoberstar.grgit.Grgit
 
 plugins {
     java
 
-    id("org.cadixdev.licenser") version "0.6.1"
+    id("com.diffplug.spotless") version "6.12.1"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.ajoberstar.grgit") version "5.0.0"
 
@@ -14,7 +14,7 @@ plugins {
 }
 
 the<JavaPluginExtension>().toolchain {
-    languageVersion.set(JavaLanguageVersion.of(16))
+    languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 tasks.compileJava.configure {
@@ -22,7 +22,7 @@ tasks.compileJava.configure {
 }
 
 configurations.all {
-    attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 16)
+    attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 17)
 }
 
 repositories {
@@ -38,7 +38,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:1.5.25")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("org.bstats:bstats-base:3.0.0")
@@ -83,10 +83,11 @@ tasks.named<ShadowJar>("shadowJar") {
     minimize()
 }
 
-configure<LicenseExtension> {
-    header.set(resources.text.fromFile(file("HEADER.txt")))
-    newLine.set(false)
-    include("**/*.java")
+spotless {
+    java {
+        licenseHeaderFile(rootProject.file("HEADER.txt"))
+        target("**/*.java")
+    }
 }
 
 tasks.named<Copy>("processResources") {
