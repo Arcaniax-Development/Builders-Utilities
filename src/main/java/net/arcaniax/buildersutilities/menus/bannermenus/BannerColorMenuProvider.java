@@ -30,7 +30,7 @@ import net.arcaniax.buildersutilities.menus.inv.content.InventoryContents;
 import net.arcaniax.buildersutilities.menus.inv.content.InventoryProvider;
 import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.Items;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

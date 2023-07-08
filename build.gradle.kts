@@ -18,7 +18,7 @@ the<JavaPluginExtension>().toolchain {
 }
 
 tasks.compileJava.configure {
-    options.release.set(8)
+    options.release.set(17)
 }
 
 configurations.all {
@@ -38,7 +38,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:1.5.25")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("org.bstats:bstats-base:3.0.0")
@@ -46,6 +46,7 @@ dependencies {
     implementation("dev.notmyfault.serverlib:ServerLib:2.3.1")
     implementation("io.papermc:paperlib:1.0.7")
     compileOnly("org.apache.logging.log4j:log4j-api:2.17.0")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
 }
 
 var buildNumber by extra("")
