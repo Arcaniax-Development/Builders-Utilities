@@ -78,6 +78,7 @@ public class IronTrapdoorListener implements Listener {
             trapDoor.setOpen(!trapDoor.isOpen());
             b.setBlockData(trapDoor);
             b.getWorld().playSound(b.getLocation(), trapDoor.isOpen() ? Sound.BLOCK_IRON_TRAPDOOR_CLOSE : Sound.BLOCK_IRON_TRAPDOOR_OPEN, 1F, 1F);
+            e.getPlayer().swingMainHand();
         }, 0L);
         e.setCancelled(true);
     }
