@@ -95,7 +95,7 @@ public class Items {
         }
         item.setItemMeta(meta);
         SkullMeta headMeta = (SkullMeta) item.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        GameProfile profile = new GameProfile(UUID.randomUUID(), "BuildersUtils");
         profile.getProperties().put("textures", new Property("textures", data));
         Field profileField;
         try {
