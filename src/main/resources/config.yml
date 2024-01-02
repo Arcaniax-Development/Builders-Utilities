@@ -13,6 +13,9 @@ disable-physics: true
 
 disable-gravity-physics: false
 
+# This completely disables all fading for blocks
+disable-fading: true
+
 # Disables all types of explosions
 # EX: creepers, tnt, end crystals, etc.
 disable-explosions: true

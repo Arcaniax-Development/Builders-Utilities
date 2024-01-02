@@ -26,6 +26,7 @@ public class Settings {
     public static boolean disableRedstone;
     public static boolean disablePhysics;
     public static boolean disableGravityPhysics;
+    public static boolean disableFading;
     public static boolean disableExplosions;
     public static boolean disableSoilTrample;
     public static boolean disableLeavesDecay;
@@ -46,6 +47,7 @@ public class Settings {
         disableRedstone = customConfig.get("disable-redstone", Boolean.class, false);
         disablePhysics = customConfig.get("disable-physics", Boolean.class, true);
         disableGravityPhysics = customConfig.get("disable-gravity-physics", Boolean.class, false);
+        disableFading = customConfig.get("disable-fading", Boolean.class, false);
         disableExplosions = customConfig.get("disable-explosions", Boolean.class, true);
         disableSoilTrample = customConfig.get("disable-soil-trample", Boolean.class, true);
         disableLeavesDecay = customConfig.get("disable-leaves-decay", Boolean.class, true);

@@ -23,6 +23,7 @@ import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
 import net.arcaniax.buildersutilities.listeners.BlockBreakListener;
 import net.arcaniax.buildersutilities.listeners.BlockPhysicsListener;
 import net.arcaniax.buildersutilities.listeners.ExplosionListener;
+import net.arcaniax.buildersutilities.listeners.BlockFadeListener;
 import net.arcaniax.buildersutilities.listeners.IronTrapdoorListener;
 import net.arcaniax.buildersutilities.listeners.LeafDecayListener;
 import net.arcaniax.buildersutilities.listeners.PlayerInteractListener;
@@ -86,6 +87,7 @@ public final class BuildersUtilities extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         this.getServer().getPluginManager().registerEvents(new BlockPhysicsListener(), this);
+        this.getServer().getPluginManager().registerEvents(new BlockFadeListener(), this);
         this.getServer().getPluginManager().registerEvents(new ExplosionListener(), this);
         this.getServer().getPluginManager().registerEvents(new IronTrapdoorListener(), this);
         this.getServer().getPluginManager().registerEvents(new LeafDecayListener(), this);
