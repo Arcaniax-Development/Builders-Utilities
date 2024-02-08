@@ -55,12 +55,15 @@ spotless {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-    targetCompatibility = JavaVersion.VERSION_17
+    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+    targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
 tasks {
+    compileJava {
+        options.release.set(8)
+    }
     shadowJar {
         archiveClassifier.set(null as String?)
         dependencies {
