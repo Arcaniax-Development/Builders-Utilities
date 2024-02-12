@@ -85,7 +85,8 @@ public class BlockBreakListener implements Listener {
         while ((!start.getBlock().equals(block)) && start.distance(player.getEyeLocation()) < 6) {
             start.add(player.getLocation().getDirection().multiply(0.05));
         }
-        return start.getY() % 1 > 0.5;
+        final double y = start.getY();
+        return Math.round(y) > y;
     }
 
 }
