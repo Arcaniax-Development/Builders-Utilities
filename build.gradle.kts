@@ -45,7 +45,7 @@ dependencies {
     implementation("com.github.cryptomorin:XSeries:9.9.0")
     implementation("dev.notmyfault.serverlib:ServerLib:2.3.4")
     implementation("io.papermc:paperlib:1.0.8")
-    compileOnly("org.apache.logging.log4j:log4j-api:2.22.1")
+    compileOnly("org.apache.logging.log4j:log4j-api:2.23.1")
 }
 
 var buildNumber by extra("")
