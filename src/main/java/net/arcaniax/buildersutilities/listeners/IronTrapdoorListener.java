@@ -64,10 +64,8 @@ public class IronTrapdoorListener implements Listener {
         if (!e.getClickedBlock().getType().equals(Material.IRON_TRAPDOOR)) {
             return;
         }
-        if (BuildersUtilities.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
-            if (!e.getHand().equals(EquipmentSlot.HAND)) {
-                return;
-            }
+        if (!e.getHand().equals(EquipmentSlot.HAND)) {
+            return;
         }
         if (e.getPlayer().isSneaking()) {
             return;
