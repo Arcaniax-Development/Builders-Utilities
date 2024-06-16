@@ -34,7 +34,6 @@ import net.arcaniax.buildersutilities.listeners.WeatherChangeListener;
 import net.arcaniax.buildersutilities.menus.inv.InventoryManager;
 import net.arcaniax.buildersutilities.utils.BannerUtil;
 import net.arcaniax.buildersutilities.utils.CustomConfig;
-import net.arcaniax.buildersutilities.utils.NmsManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -54,7 +53,6 @@ public final class BuildersUtilities extends JavaPlugin {
     private NoClipManager noClipManager;
 
     private InventoryManager inventoryManager;
-    private NmsManager nmsManager;
 
     public static BuildersUtilities getInstance() {
         return instance;
@@ -68,8 +66,6 @@ public final class BuildersUtilities extends JavaPlugin {
 
         this.noClipManager = new NoClipManager(this);
         this.noClipManager.start();
-
-        this.nmsManager = new NmsManager();
 
         this.inventoryManager = new InventoryManager(this);
         this.inventoryManager.init();
@@ -148,8 +144,5 @@ public final class BuildersUtilities extends JavaPlugin {
         return inventoryManager;
     }
 
-    public NmsManager getNmsManager() {
-        return nmsManager;
-    }
 
 }

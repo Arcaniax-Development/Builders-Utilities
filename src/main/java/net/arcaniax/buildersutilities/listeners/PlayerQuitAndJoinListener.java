@@ -39,20 +39,18 @@ public class PlayerQuitAndJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (BuildersUtilities.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
-            AttributeInstance attribute = event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
-            if (attribute == null) {
-                return;
-            }
-
-            if (Settings.fixAttackSpeed) {
-                attribute.setBaseValue(1024.0D);
-            } else if (attribute.getBaseValue() == 1024.0D) {
-                attribute.setBaseValue(4.0D);
-            }
-            event.getPlayer().saveData();
-
+        AttributeInstance attribute = event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
+        if (attribute == null) {
+            return;
         }
+
+        if (Settings.fixAttackSpeed) {
+            attribute.setBaseValue(1024.0D);
+        } else if (attribute.getBaseValue() == 1024.0D) {
+            attribute.setBaseValue(4.0D);
+        }
+        event.getPlayer().saveData();
+
     }
 
 }
