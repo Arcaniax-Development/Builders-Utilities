@@ -44,8 +44,8 @@ public class BannerUtil {
     private static final Random random = new Random();
 
     public static void addPatterns() {
-        String version = Bukkit.getMinecraftVersion();
-        boolean experimental = version.equals("1.20.5") || version.equals("1.20.6");
+        String version = Bukkit.getVersion(); // #getMinecraftVersion does not exist on Spigot; lame!
+        boolean experimental = version.contains("1.20.5") || version.contains("1.20.6");
 
         for (PatternType pt : PatternType.values()) {
             if (patternAllowed(pt, experimental)) {
