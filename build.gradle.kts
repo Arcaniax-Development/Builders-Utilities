@@ -38,7 +38,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:1.5.25")
     implementation("org.bstats:bstats-bukkit:3.0.2")
     implementation("org.bstats:bstats-base:3.0.2")
