@@ -19,6 +19,7 @@
 package net.arcaniax.buildersutilities.utils;
 
 import com.cryptomorin.xseries.XMaterial;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
@@ -43,11 +44,30 @@ public class BannerUtil {
     private static final Random random = new Random();
 
     public static void addPatterns() {
+        String version = Bukkit.getMinecraftVersion();
+        boolean experimental = version.equals("1.20.5") || version.equals("1.20.6");
+
         for (PatternType pt : PatternType.values()) {
-            if (!pt.equals(PatternType.BASE)) {
+            if (patternAllowed(pt, experimental)) {
                 allPatterns.add(pt);
             }
         }
+    }
+
+    private static boolean patternAllowed(PatternType pt, boolean experimental) {
+        if (pt.equals(PatternType.BASE)) {
+            return false;
+        }
+
+        // flow and guster patterns are experimental in 1.20.5/6.
+        if (experimental) {
+            String id = pt.getIdentifier();
+            if (id.equalsIgnoreCase("flw") || id.equalsIgnoreCase("gus")) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static void addColors() {
