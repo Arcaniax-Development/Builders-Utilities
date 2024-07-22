@@ -19,6 +19,7 @@
 package net.arcaniax.buildersutilities.utils;
 
 import com.cryptomorin.xseries.XMaterial;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
@@ -27,6 +28,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +51,28 @@ public class BannerUtil {
                 allPatterns.add(pt);
             }
         }
+
+        Class<?> craftPatternTypeClass;
+        Method bukkitToMinecraftHolder;
+        try {
+            String craftBukkitPackage = Bukkit.getServer().getClass().getPackage().getName();
+            craftPatternTypeClass = Class.forName(craftBukkitPackage + ".block.banner.CraftPatternType");
+            bukkitToMinecraftHolder = craftPatternTypeClass.getMethod("bukkitToMinecraftHolder", PatternType.class);
+        } catch (ClassNotFoundException | NoSuchMethodException ignored) {
+            // CraftPatternType class was only added in 1.20.5
+            return;
+        }
+
+        allPatterns.removeIf(pt -> {
+            try {
+                // Attempt to find pattern in banner pattern registry
+                bukkitToMinecraftHolder.invoke(craftPatternTypeClass, pt);
+                return false;
+            } catch (InvocationTargetException | IllegalAccessException ignored) {
+                // Pattern is not present in registry, thus remove it
+                return true;
+            }
+        });
     }
 
     public static void addColors() {
