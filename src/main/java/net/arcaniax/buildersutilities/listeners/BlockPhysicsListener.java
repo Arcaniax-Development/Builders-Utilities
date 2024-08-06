@@ -56,32 +56,33 @@ public class BlockPhysicsListener implements Listener {
                 }
             }
         }
+        String blockName = e.getChangedType().name().toLowerCase();
         try {
-            if (e.getChangedType().name().toLowerCase().contains("chest") ||
-                    e.getChangedType().name().toLowerCase().contains("stair") ||
-                    e.getChangedType().name().toLowerCase().contains("fence") ||
-                    e.getChangedType().name().toLowerCase().contains("pane") ||
-                    e.getChangedType().name().toLowerCase().contains("wall") ||
-                    e.getChangedType().name().toLowerCase().contains("bar") ||
-                    e.getChangedType().name().toLowerCase().contains("door")) {
+            if (blockName.contains("chest") ||
+                    blockName.contains("stair") ||
+                    blockName.contains("fence") ||
+                    blockName.contains("pane") ||
+                    blockName.contains("wall") ||
+                    blockName.contains("bar") ||
+                       blockName.contains("door")) {
                 return;
             }
         } catch (Exception ex) {
             return;
         }
         if (!Settings.disableRedstone) {
-            if (e.getChangedType().name().toLowerCase().contains("redstone") ||
-                    e.getChangedType().name().toLowerCase().contains("daylight") ||
-                    e.getChangedType().name().toLowerCase().contains("diode") ||
-                    e.getChangedType().name().toLowerCase().contains("note") ||
-                    e.getChangedType().name().toLowerCase().contains("lever") ||
-                    e.getChangedType().name().toLowerCase().contains("button") ||
-                    e.getChangedType().name().toLowerCase().contains("command") ||
-                    e.getChangedType().name().toLowerCase().contains("tripwire") ||
-                    e.getChangedType().name().toLowerCase().contains("plate") ||
-                    e.getChangedType().name().toLowerCase().contains("string") ||
-                    e.getChangedType().name().toLowerCase().contains("piston") ||
-                    e.getChangedType().name().toLowerCase().contains("observer")) {
+            if (blockName.contains("redstone") ||
+                    blockName.contains("daylight") ||
+                    blockName.contains("diode") ||
+                    blockName.contains("note") ||
+                    blockName.contains("lever") ||
+                    blockName.contains("button") ||
+                    blockName.contains("command") ||
+                    blockName.contains("tripwire") ||
+                    blockName.contains("plate") ||
+                    blockName.contains("string") ||
+                    blockName.contains("piston") ||
+                    blockName.contains("observer")) {
                 if (!e.getBlock().getType().name().contains("air")) {
                     return;
                 }
