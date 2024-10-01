@@ -41,7 +41,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:1.5.25")
     implementation("org.bstats:bstats-bukkit:3.0.3")
-    implementation("org.bstats:bstats-base:3.0.3")
+    implementation("org.bstats:bstats-base:3.1.0")
     implementation("com.github.cryptomorin:XSeries:11.3.0")
     implementation("dev.notmyfault.serverlib:ServerLib:2.3.6")
     implementation("io.papermc:paperlib:1.0.8")
@@ -70,7 +70,7 @@ tasks.named<ShadowJar>("shadowJar") {
             include(dependency("com.github.cryptomorin:XSeries:11.3.0"))
         }
         relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
-            include(dependency("org.bstats:bstats-base:3.0.3"))
+            include(dependency("org.bstats:bstats-base:3.1.0"))
             include(dependency("org.bstats:bstats-bukkit:3.0.3"))
         }
         relocate("io.papermc.lib", "net.arcaniax.buildersutilities.paperlib") {
