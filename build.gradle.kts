@@ -5,7 +5,7 @@ import org.ajoberstar.grgit.Grgit
 plugins {
     java
 
-    id("com.diffplug.spotless") version "6.25.0"
+    id("com.diffplug.spotless") version "7.0.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("org.ajoberstar.grgit") version "5.3.0"
 
