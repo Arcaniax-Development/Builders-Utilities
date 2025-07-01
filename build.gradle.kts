@@ -7,7 +7,7 @@ plugins {
 
     id("com.diffplug.spotless") version "7.0.3"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.ajoberstar.grgit") version "5.3.0"
+    id("org.ajoberstar.grgit") version "5.3.2"
 
     idea
     eclipse
