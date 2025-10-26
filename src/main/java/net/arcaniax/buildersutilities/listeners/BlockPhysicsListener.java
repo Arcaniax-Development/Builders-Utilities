@@ -74,6 +74,17 @@ public class BlockPhysicsListener implements Listener {
             if (blockName.contains("redstone") ||
                     blockName.contains("daylight") ||
                     blockName.contains("diode") ||
+                    blockName.contains("repeater") ||
+                    blockName.contains("comparator") ||
+                    blockName.contains("door") ||
+                    blockName.contains("target") ||
+                    blockName.contains("structure") ||
+                    blockName.contains("jukebox") ||
+                    blockName.contains("crafter") ||
+                    blockName.contains("powered_rail") ||
+                    blockName.contains("detector_rail") ||
+                    blockName.contains("activator_rail") ||
+                    blockName.contains("hopper") ||
                     blockName.contains("note") ||
                     blockName.contains("lever") ||
                     blockName.contains("button") ||
