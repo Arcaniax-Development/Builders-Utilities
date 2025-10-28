@@ -76,36 +76,35 @@ public class Items {
         return is;
     }
 
-
-    public static ItemStack createHead(String data, int amount, String name, String lore) {
+    public ItemStack createHead(String data, int amount, String name, String lore) {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount);
-        ItemMeta meta = item.getItemMeta();
-        if (!lore.isEmpty()) {
+        SkullMeta headMeta = (SkullMeta) item.getItemMeta();
+        GameProfile profile = new GameProfile(id, "Arceon");
+        item.setAmount(amount);
+        profile.getProperties().put("textures", new Property("textures", String.valueOf(data)));
+        try {
+                PlayerProfile playerProfile = Bukkit.getServer().createPlayerProfile(UUID.randomUUID(), "BuildersUtils");
+                PlayerTextures texture = playerProfile.getTextures();
+                String url = null;
+                byte[] decoded = Base64.getDecoder().decode(data);
+                try {
+                    url = new String(decoded, StandardCharsets.UTF_8);
+                } catch (Exception ignored) {}
+                url = url.replace("{\"textures\":{\"SKIN\":{\"url\":\"", "").replace("\"}}}", "");
+                texture.setSkin(new URL(url));
+                headMeta.setOwnerProfile(playerProfile);
+            } catch (Exception ignored) {
+            }
+       if (!lore.isEmpty()) {
             String[] loreListArray = lore.split("__");
             List<String> loreList = new ArrayList<>();
             for (String s : loreListArray) {
                 loreList.add(s.replace('&', ChatColor.COLOR_CHAR));
             }
-            meta.setLore(loreList);
+            headMeta.setLore(loreList);
         }
         if (!name.isEmpty()) {
-            meta.setDisplayName(name.replace('&', ChatColor.COLOR_CHAR));
-        }
-        item.setItemMeta(meta);
-        SkullMeta headMeta = (SkullMeta) item.getItemMeta();
-        GameProfile profile = new GameProfile(UUID.randomUUID(), "BuildersUtils");
-        profile.getProperties().put("textures", new Property("textures", data));
-        Field profileField;
-        try {
-            profileField = headMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            if (profileField.getType() == GameProfile.class) {
-                profileField.set(headMeta, profile);
-            } else {
-                Class<?> resolvableProfileClass = Class.forName("net.minecraft.world.item.component.ResolvableProfile");
-                profileField.set(headMeta, resolvableProfileClass.getConstructor(GameProfile.class).newInstance(profile));
-            }
-        } catch (Exception ignored) {
+            headMeta.setDisplayName(name.replace('&', ChatColor.COLOR_CHAR));
         }
         item.setItemMeta(headMeta);
         return item;
