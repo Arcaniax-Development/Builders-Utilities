@@ -79,9 +79,6 @@ public class Items {
     public ItemStack createHead(String data, int amount, String name, String lore) {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD, amount);
         SkullMeta headMeta = (SkullMeta) item.getItemMeta();
-        GameProfile profile = new GameProfile(id, "Arceon");
-        item.setAmount(amount);
-        profile.getProperties().put("textures", new Property("textures", String.valueOf(data)));
         try {
                 PlayerProfile playerProfile = Bukkit.getServer().createPlayerProfile(UUID.randomUUID(), "BuildersUtils");
                 PlayerTextures texture = playerProfile.getTextures();
@@ -95,16 +92,13 @@ public class Items {
                 headMeta.setOwnerProfile(playerProfile);
             } catch (Exception ignored) {
             }
-       if (!lore.isEmpty()) {
-            String[] loreListArray = lore.split("__");
-            List<String> loreList = new ArrayList<>();
-            for (String s : loreListArray) {
-                loreList.add(s.replace('&', ChatColor.COLOR_CHAR));
-            }
-            headMeta.setLore(loreList);
+        List<String> loreList = new ArrayList<>();
+        if (!lore.isEmpty()) {
+            loreList.add(lore);
         }
+        headMeta.setLore(loreList);
         if (!name.isEmpty()) {
-            headMeta.setDisplayName(name.replace('&', ChatColor.COLOR_CHAR));
+            headMeta.setDisplayName(name);
         }
         item.setItemMeta(headMeta);
         return item;
