@@ -40,7 +40,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.incendo.serverlib.ServerLib;
 
 public final class BuildersUtilities extends JavaPlugin {
 
@@ -75,9 +74,6 @@ public final class BuildersUtilities extends JavaPlugin {
 
         Metrics metrics = new Metrics(this, BSTATS_ID);
 
-        // Check if we are in a safe environment
-        ServerLib.checkUnsafeForks();
-        ServerLib.checkJavaLTS();
         PaperLib.suggestPaper(this);
 
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
