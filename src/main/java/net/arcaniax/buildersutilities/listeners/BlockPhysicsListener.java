@@ -93,6 +93,8 @@ public class BlockPhysicsListener implements Listener {
                     blockName.contains("plate") ||
                     blockName.contains("string") ||
                     blockName.contains("piston") ||
+                    blockName.contains("dropper") ||
+                    blockName.contains("dispenser") ||
                     blockName.contains("observer")) {
                 if (!e.getBlock().getType().name().contains("air")) {
                     return;
