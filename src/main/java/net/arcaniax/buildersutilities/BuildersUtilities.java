@@ -18,7 +18,6 @@
  */
 package net.arcaniax.buildersutilities;
 
-import io.papermc.lib.PaperLib;
 import net.arcaniax.buildersutilities.commands.system.CommandForwarder;
 import net.arcaniax.buildersutilities.listeners.BlockBreakListener;
 import net.arcaniax.buildersutilities.listeners.BlockPhysicsListener;
@@ -73,8 +72,6 @@ public final class BuildersUtilities extends JavaPlugin {
         BannerUtil.addPatterns();
 
         Metrics metrics = new Metrics(this, BSTATS_ID);
-
-        PaperLib.suggestPaper(this);
 
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         this.getServer().getPluginManager().registerEvents(new BlockPhysicsListener(), this);

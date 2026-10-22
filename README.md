@@ -17,7 +17,7 @@ This plugin is a collection of a lot of tiny features that help with building.
 ## Links
 
 * [Download](https://www.spigotmc.org/resources/builders-utilities.42361/)
-* [Development Builds](https://ci.athion.net/job/Builders-Utilities/)
+* Development builds are available to download on each commit
 * [Discord](https://discord.gg/jpRVrjd)
 * [Issues](https://github.com/Arcaniax-Development/Builders-Utilities/issues)
 

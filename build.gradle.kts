@@ -1,20 +1,18 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.diffplug.gradle.spotless.SpotlessPlugin
-import org.ajoberstar.grgit.Grgit
 
 plugins {
     java
 
     id("com.diffplug.spotless") version "8.10.1"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.ajoberstar.grgit") version "5.3.3"
+    id("com.gradleup.shadow") version "9.6.1"
 
     idea
     eclipse
 }
 
 the<JavaPluginExtension>().toolchain {
-    languageVersion.set(JavaLanguageVersion.of(17))
+    languageVersion.set(JavaLanguageVersion.of(25))
 }
 
 tasks.compileJava.configure {
@@ -22,7 +20,7 @@ tasks.compileJava.configure {
 }
 
 configurations.all {
-    attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 17)
+    attributes.attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 25)
 }
 
 repositories {
@@ -38,47 +36,24 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:26.3.build.+")
     compileOnly("com.mojang:authlib:1.5.25")
     implementation("org.bstats:bstats-bukkit:3.2.1")
     implementation("org.bstats:bstats-base:3.2.1")
-    implementation("com.github.cryptomorin:XSeries:13.7.1")
-    implementation("dev.notmyfault.serverlib:ServerLib:2.3.7")
-    implementation("io.papermc:paperlib:1.0.8")
+    implementation("com.github.cryptomorin:XSeries:14.0.0")
     compileOnly("org.apache.logging.log4j:log4j-api:2.26.1")
 }
 
-var buildNumber by extra("")
-ext {
-    val git: Grgit = Grgit.open {
-        dir = File("$rootDir/.git")
-    }
-    val commit: String? = git.head().abbreviatedId
-    buildNumber = if (project.hasProperty("buildnumber")) {
-        project.properties["buildnumber"] as String
-    } else {
-        commit.toString()
-    }
-}
-
-version = String.format("%s-%s", rootProject.version, buildNumber)
+version = "2.1.1-SNAPSHOT"
 
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
+    relocate("com.cryptomorin.xseries", "net.arcaniax.buildersutilities.xseries")
+    relocate("org.bstats", "net.arcaniax.buildersutilities.metrics")
     dependencies {
-        relocate("com.cryptomorin.xseries", "net.arcaniax.buildersutilities.xseries") {
-            include(dependency("com.github.cryptomorin:XSeries:13.7.1"))
-        }
-        relocate("org.bstats", "net.arcaniax.buildersutilities.metrics") {
-            include(dependency("org.bstats:bstats-base:3.2.1"))
-            include(dependency("org.bstats:bstats-bukkit:3.2.1"))
-        }
-        relocate("io.papermc.lib", "net.arcaniax.buildersutilities.paperlib") {
-            include(dependency("io.papermc:paperlib:1.0.8"))
-        }
-        relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
-            include(dependency("dev.notmyfault.serverlib:ServerLib:2.3.7"))
-        }
+        include(dependency("com.github.cryptomorin:XSeries:14.0.0"))
+        include(dependency("org.bstats:bstats-base:3.2.1"))
+        include(dependency("org.bstats:bstats-bukkit:3.2.1"))
     }
     minimize()
 }
