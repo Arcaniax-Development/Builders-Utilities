@@ -4,7 +4,7 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 plugins {
     java
 
-    id("com.diffplug.spotless") version "8.10.1"
+    id("com.diffplug.spotless") version "8.10.4"
     id("com.gradleup.shadow") version "9.6.1"
 
     idea
