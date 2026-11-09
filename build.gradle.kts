@@ -44,7 +44,7 @@ dependencies {
     compileOnly("org.apache.logging.log4j:log4j-api:2.26.1")
 }
 
-version = "2.1.1-SNAPSHOT"
+version = "2.1.1"
 
 tasks.named<ShadowJar>("shadowJar") {
     archiveClassifier.set(null as String?)
